@@ -1,0 +1,2 @@
+com.dan.config.WebApplicationContextConfig=org.springframework.stereotype.Component
+com.dan.controller.IndexController=org.springframework.stereotype.Component

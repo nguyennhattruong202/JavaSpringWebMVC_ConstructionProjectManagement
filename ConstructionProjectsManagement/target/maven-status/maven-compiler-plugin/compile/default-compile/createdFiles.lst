@@ -1,0 +1,4 @@
+com\dan\config\DispatcherServletInitializer.class
+META-INF\spring.components
+com\dan\config\WebApplicationContextConfig.class
+com\dan\controller\IndexController.class
