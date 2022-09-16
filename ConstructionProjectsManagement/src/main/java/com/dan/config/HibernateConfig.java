@@ -17,10 +17,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
-/**
- *
- * @author DELL
- */
 @Configuration
 @PropertySource("classpath:databases.properties")
 public class HibernateConfig {
@@ -30,11 +26,8 @@ public class HibernateConfig {
 
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
-        LocalSessionFactoryBean sessionFactory
-                = new LocalSessionFactoryBean();
-        sessionFactory.setPackagesToScan(new String[]{
-            "com.nhpvtl.pojo"
-        });
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setPackagesToScan(new String[]{"com.dan.pojo"});
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
@@ -42,8 +35,7 @@ public class HibernateConfig {
 
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource
-                = new DriverManagerDataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(
                 env.getProperty("hibernate.connection.driverClass"));
         dataSource.setUrl(env.getProperty("hibernate.connection.url"));
@@ -65,8 +57,7 @@ public class HibernateConfig {
     public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager
                 = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(
-                getSessionFactory().getObject());
+        transactionManager.setSessionFactory(getSessionFactory().getObject());
         return transactionManager;
     }
 }

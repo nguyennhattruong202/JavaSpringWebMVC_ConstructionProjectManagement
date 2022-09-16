@@ -10,17 +10,12 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
-/**
- *
- * @author DELL
- */
 @Configuration
 public class TilesConfig {
 
     @Bean
     public UrlBasedViewResolver viewResolver() {
-        UrlBasedViewResolver viewResolver
-                = new UrlBasedViewResolver();
+        UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
         viewResolver.setViewClass(TilesView.class);
         viewResolver.setOrder(-2);
         return viewResolver;

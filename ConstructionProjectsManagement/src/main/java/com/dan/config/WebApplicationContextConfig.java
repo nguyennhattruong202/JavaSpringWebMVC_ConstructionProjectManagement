@@ -15,8 +15,11 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -29,12 +32,12 @@ import org.springframework.web.servlet.view.JstlView;
     "com.dan.service"
 })
 public class WebApplicationContextConfig implements WebMvcConfigurer {
-
+    
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-
+    
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -43,42 +46,49 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
+    
     @Bean
     public CommonsMultipartResolver commonsMultipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
     }
-
+    
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource m = new ResourceBundleMessageSource();
-        m.setBasenames("messages");
-
+        m.setBasenames("languages/message");
+        m.setDefaultEncoding("UTF-8");
         return m;
     }
-
-    @Override
-    public Validator getValidator() {
-        return validator();
-    }
-
+    
     @Bean
     public Validator validator() {
         LocalValidatorFactoryBean v = new LocalValidatorFactoryBean();
         v.setValidationMessageSource(messageSource());
-
         return v;
     }
-
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/demo/**").addResourceLocations("/resources/demo/");
-//        registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
-//        registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
-//        registry.addResourceHandler("/img/**").addResourceLocations("/resources/img/");
-//        registry.addResourceHandler("/scss/**").addResourceLocations("/resources/scss/");
-//        registry.addResourceHandler("/fonts/**").addResourceLocations("/resources/fonts/");
-//    }
+    
+    @Bean
+    public CookieLocaleResolver localeResolver() {
+        return new CookieLocaleResolver();
+    }
+    
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        registry.addInterceptor(localeChangeInterceptor);
+    }
+    
+    @Override
+    public Validator getValidator() {
+        return validator();
+    }
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
+    }
 }
