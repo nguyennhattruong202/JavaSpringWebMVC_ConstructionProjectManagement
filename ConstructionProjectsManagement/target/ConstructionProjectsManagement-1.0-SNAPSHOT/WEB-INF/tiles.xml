@@ -14,4 +14,12 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Index"/>
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"/>
     </definition>
+    <definition name="personnel" extends="baseLayout">
+        <put-attribute name="title" value="Personnel"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnel.jsp"/>
+    </definition>
+    <definition name="addPersonnel" extends="baseLayout">
+        <put-attribute name="title" value="Add personnel"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/addPersonnel.jsp"/>
+    </definition>
 </tiles-definitions>

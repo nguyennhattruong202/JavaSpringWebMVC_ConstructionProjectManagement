@@ -17,5 +17,6 @@ com\dan\pojo\Category.class
 com\dan\pojo\Discuss.class
 com\dan\repository\ProjectRepository.class
 com\dan\config\TilesConfig.class
+com\dan\controller\PersonnelController.class
 com\dan\pojo\Status.class
 com\dan\pojo\Task.class
