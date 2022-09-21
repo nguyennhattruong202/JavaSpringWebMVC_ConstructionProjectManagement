@@ -6,7 +6,9 @@ package com.dan.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +18,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,6 +45,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Task.findByActive", query = "SELECT t FROM Task t WHERE t.active = :active"),
     @NamedQuery(name = "Task.findByTaskcol", query = "SELECT t FROM Task t WHERE t.taskcol = :taskcol")})
 public class Task implements Serializable {
+
+    @Size(max = 45)
+    @Column(name = "priority")
+    private String priority;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTask")
+    private Set<Issue> issueSet;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -208,6 +218,23 @@ public class Task implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Task[ id=" + id + " ]";
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    @XmlTransient
+    public Set<Issue> getIssueSet() {
+        return issueSet;
+    }
+
+    public void setIssueSet(Set<Issue> issueSet) {
+        this.issueSet = issueSet;
     }
     
 }

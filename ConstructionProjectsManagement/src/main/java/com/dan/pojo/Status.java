@@ -37,6 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Status.findByType", query = "SELECT s FROM Status s WHERE s.type = :type")})
 public class Status implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    private Set<Issue> issueSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    private Set<Invest> investSet;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -166,6 +171,24 @@ public class Status implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Status[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Set<Issue> getIssueSet() {
+        return issueSet;
+    }
+
+    public void setIssueSet(Set<Issue> issueSet) {
+        this.issueSet = issueSet;
+    }
+
+    @XmlTransient
+    public Set<Invest> getInvestSet() {
+        return investSet;
+    }
+
+    public void setInvestSet(Set<Invest> investSet) {
+        this.investSet = investSet;
     }
     
 }

@@ -2,19 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dan.service;
+package com.dan.repository;
 
-import com.dan.pojo.Project;
+import com.dan.pojo.Status;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author DELL
  */
-public interface ProjectService {
+public interface StatusRepository {
 
-    List<Project> getProjects(String kw, int page);
-
-    public int countProject();
+    List<Status> getStatus();
 }

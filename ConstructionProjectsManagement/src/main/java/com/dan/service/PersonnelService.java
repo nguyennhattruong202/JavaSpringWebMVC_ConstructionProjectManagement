@@ -4,17 +4,10 @@
  */
 package com.dan.service;
 
-import com.dan.pojo.Project;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author DELL
- */
-public interface ProjectService {
+public interface PersonnelService {
 
-    List<Project> getProjects(String kw, int page);
-
-    public int countProject();
+    List<Object[]> getAllPersonnel(Map<String, String>params, int page, boolean active);
 }

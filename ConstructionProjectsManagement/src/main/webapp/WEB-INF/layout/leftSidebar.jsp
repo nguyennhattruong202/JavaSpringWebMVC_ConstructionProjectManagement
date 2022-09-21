@@ -4,6 +4,7 @@
     Author     : ACER
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,8 +41,12 @@
         <i class="bi bi-calendar-week me-3"></i>
         <fmt:message key="leftSidebar.item.calendarLink"/>
     </a>
-    <a href="#" class="w3-bar-item w3-button">
+    <a href="<c:url value="/admin/projectmanagement"/>" class="w3-bar-item w3-button">
         <i class="bi bi-box-seam me-3"></i>
         <fmt:message key="leftSidebar.item.projectsLink"/>
+    </a>
+        <a href="<c:url value="/personnel"/>" class="w3-bar-item w3-button">
+        <i class="bi bi-person me-3"></i>
+        <fmt:message key="leftSidebar.item.personnel"/>
     </a>
 </div>

@@ -49,6 +49,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Personnel.findByActive", query = "SELECT p FROM Personnel p WHERE p.active = :active")})
 public class Personnel implements Serializable {
 
+    @Size(max = 50)
+    @Column(name = "gender")
+    private String gender;
+    @Column(name = "active")
+    private Boolean active;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
+    private Set<Participation> participationSet;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,7 +84,7 @@ public class Personnel implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "birthday")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date birthday;
     @Basic(optional = false)
     @NotNull
@@ -98,10 +106,6 @@ public class Personnel implements Serializable {
     @Size(max = 100)
     @Column(name = "role")
     private String role;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "active")
-    private boolean active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
     private Set<Task> taskSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
@@ -220,13 +224,6 @@ public class Personnel implements Serializable {
         this.role = role;
     }
 
-    public boolean getActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 
     @XmlTransient
     public Set<Task> getTaskSet() {
@@ -321,6 +318,31 @@ public class Personnel implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Personnel[ id=" + id + " ]";
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @XmlTransient
+    public Set<Participation> getParticipationSet() {
+        return participationSet;
+    }
+
+    public void setParticipationSet(Set<Participation> participationSet) {
+        this.participationSet = participationSet;
     }
     
 }

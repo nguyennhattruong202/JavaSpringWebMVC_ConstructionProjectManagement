@@ -40,6 +40,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Invest.findByActive", query = "SELECT i FROM Invest i WHERE i.active = :active")})
 public class Invest implements Serializable {
 
+    @JoinColumn(name = "id_status", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Status idStatus;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -167,6 +171,14 @@ public class Invest implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Invest[ id=" + id + " ]";
+    }
+
+    public Status getIdStatus() {
+        return idStatus;
+    }
+
+    public void setIdStatus(Status idStatus) {
+        this.idStatus = idStatus;
     }
     
 }

@@ -46,6 +46,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Project.findByActive", query = "SELECT p FROM Project p WHERE p.active = :active")})
 public class Project implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProject")
+    private Set<Participation> participationSet;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -245,6 +248,15 @@ public class Project implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Project[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Set<Participation> getParticipationSet() {
+        return participationSet;
+    }
+
+    public void setParticipationSet(Set<Participation> participationSet) {
+        this.participationSet = participationSet;
     }
     
 }
