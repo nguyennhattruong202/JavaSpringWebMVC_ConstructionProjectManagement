@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,14 +21,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "project")
@@ -40,14 +38,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Project.findByName", query = "SELECT p FROM Project p WHERE p.name = :name"),
     @NamedQuery(name = "Project.findByDescription", query = "SELECT p FROM Project p WHERE p.description = :description"),
     @NamedQuery(name = "Project.findByImage", query = "SELECT p FROM Project p WHERE p.image = :image"),
+    @NamedQuery(name = "Project.findByLocation", query = "SELECT p FROM Project p WHERE p.location = :location"),
     @NamedQuery(name = "Project.findByStartDate", query = "SELECT p FROM Project p WHERE p.startDate = :startDate"),
     @NamedQuery(name = "Project.findByFinishDate", query = "SELECT p FROM Project p WHERE p.finishDate = :finishDate"),
-    @NamedQuery(name = "Project.findByPercent", query = "SELECT p FROM Project p WHERE p.percent = :percent"),
-    @NamedQuery(name = "Project.findByActive", query = "SELECT p FROM Project p WHERE p.active = :active")})
+    @NamedQuery(name = "Project.findByCreatedDate", query = "SELECT p FROM Project p WHERE p.createdDate = :createdDate"),
+    @NamedQuery(name = "Project.findByMaxPerson", query = "SELECT p FROM Project p WHERE p.maxPerson = :maxPerson"),
+    @NamedQuery(name = "Project.findByPercent", query = "SELECT p FROM Project p WHERE p.percent = :percent")})
 public class Project implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProject")
-    private Set<Participation> participationSet;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,44 +52,44 @@ public class Project implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 255)
     @Column(name = "name")
     private String name;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "image")
     private String image;
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 255)
+    @Column(name = "location")
+    private String location;
     @Column(name = "start_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date startDate;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "finish_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date finishDate;
+    @Column(name = "created_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+    @Column(name = "max_person")
+    private Integer maxPerson;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "percent")
-    private Integer percent;
-    @Column(name = "active")
-    private Boolean active;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProject")
+    private Float percent;
+    @OneToMany(mappedBy = "idProject")
+    private Set<Participation> participationSet;
+    @OneToMany(mappedBy = "idProject")
     private Set<Change> changeSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProject")
+    @OneToMany(mappedBy = "idProject")
     private Set<Invest> investSet;
-    @JoinColumn(name = "id_personnel", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Personnel idPersonnel;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Status idStatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProject")
+    @OneToMany(mappedBy = "idProject")
     private Set<Category> categorySet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProject")
+    @OneToMany(mappedBy = "idProject")
     private Set<Discuss> discussSet;
 
     public Project() {
@@ -100,13 +97,6 @@ public class Project implements Serializable {
 
     public Project(Integer id) {
         this.id = id;
-    }
-
-    public Project(Integer id, String name, Date startDate, Date finishDate) {
-        this.id = id;
-        this.name = name;
-        this.startDate = startDate;
-        this.finishDate = finishDate;
     }
 
     public Integer getId() {
@@ -141,6 +131,14 @@ public class Project implements Serializable {
         this.image = image;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public Date getStartDate() {
         return startDate;
     }
@@ -157,20 +155,37 @@ public class Project implements Serializable {
         this.finishDate = finishDate;
     }
 
-    public Integer getPercent() {
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Integer getMaxPerson() {
+        return maxPerson;
+    }
+
+    public void setMaxPerson(Integer maxPerson) {
+        this.maxPerson = maxPerson;
+    }
+
+    public Float getPercent() {
         return percent;
     }
 
-    public void setPercent(Integer percent) {
+    public void setPercent(Float percent) {
         this.percent = percent;
     }
 
-    public Boolean getActive() {
-        return active;
+    @XmlTransient
+    public Set<Participation> getParticipationSet() {
+        return participationSet;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setParticipationSet(Set<Participation> participationSet) {
+        this.participationSet = participationSet;
     }
 
     @XmlTransient
@@ -189,14 +204,6 @@ public class Project implements Serializable {
 
     public void setInvestSet(Set<Invest> investSet) {
         this.investSet = investSet;
-    }
-
-    public Personnel getIdPersonnel() {
-        return idPersonnel;
-    }
-
-    public void setIdPersonnel(Personnel idPersonnel) {
-        this.idPersonnel = idPersonnel;
     }
 
     public Status getIdStatus() {
@@ -248,15 +255,6 @@ public class Project implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Project[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Set<Participation> getParticipationSet() {
-        return participationSet;
-    }
-
-    public void setParticipationSet(Set<Participation> participationSet) {
-        this.participationSet = participationSet;
     }
     
 }

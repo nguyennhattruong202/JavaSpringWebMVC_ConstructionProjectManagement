@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,12 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Issue.findAll", query = "SELECT i FROM Issue i"),
     @NamedQuery(name = "Issue.findById", query = "SELECT i FROM Issue i WHERE i.id = :id"),
-    @NamedQuery(name = "Issue.findByDescription", query = "SELECT i FROM Issue i WHERE i.description = :description"),
-    @NamedQuery(name = "Issue.findByCreatedDate", query = "SELECT i FROM Issue i WHERE i.createdDate = :createdDate"),
+    @NamedQuery(name = "Issue.findByName", query = "SELECT i FROM Issue i WHERE i.name = :name"),
     @NamedQuery(name = "Issue.findByStartDate", query = "SELECT i FROM Issue i WHERE i.startDate = :startDate"),
     @NamedQuery(name = "Issue.findByFinishDate", query = "SELECT i FROM Issue i WHERE i.finishDate = :finishDate"),
     @NamedQuery(name = "Issue.findByPriority", query = "SELECT i FROM Issue i WHERE i.priority = :priority"),
-    @NamedQuery(name = "Issue.findByActive", query = "SELECT i FROM Issue i WHERE i.active = :active")})
+    @NamedQuery(name = "Issue.findByCreatedDate", query = "SELECT i FROM Issue i WHERE i.createdDate = :createdDate")})
 public class Issue implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,28 +46,33 @@ public class Issue implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 200)
+    @Size(max = 255)
+    @Column(name = "name")
+    private String name;
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
+    @Column(name = "start_date")
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    @Column(name = "finish_date")
+    @Temporal(TemporalType.DATE)
+    private Date finishDate;
+    @Size(max = 255)
+    @Column(name = "priority")
+    private String priority;
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Column(name = "start_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;
-    @Column(name = "finish_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date finishDate;
-    @Size(max = 45)
-    @Column(name = "priority")
-    private String priority;
-    @Column(name = "active")
-    private Integer active;
+    @JoinColumn(name = "id_personnel", referencedColumnName = "id")
+    @ManyToOne
+    private Personnel idPersonnel;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Status idStatus;
     @JoinColumn(name = "id_task", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Task idTask;
 
     public Issue() {
@@ -85,20 +90,20 @@ public class Issue implements Serializable {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
     }
 
     public Date getStartDate() {
@@ -125,12 +130,20 @@ public class Issue implements Serializable {
         this.priority = priority;
     }
 
-    public Integer getActive() {
-        return active;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setActive(Integer active) {
-        this.active = active;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Personnel getIdPersonnel() {
+        return idPersonnel;
+    }
+
+    public void setIdPersonnel(Personnel idPersonnel) {
+        this.idPersonnel = idPersonnel;
     }
 
     public Status getIdStatus() {

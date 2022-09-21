@@ -7,7 +7,6 @@ package com.dan.pojo;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +16,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "position")
@@ -42,15 +40,15 @@ public class Position implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 255)
     @Column(name = "name")
     private String name;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPosition")
+    @OneToMany(mappedBy = "idPosition")
+    private Set<Participation> participationSet;
+    @OneToMany(mappedBy = "idPosition")
     private Set<Personnel> personnelSet;
 
     public Position() {
@@ -58,11 +56,6 @@ public class Position implements Serializable {
 
     public Position(Integer id) {
         this.id = id;
-    }
-
-    public Position(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -87,6 +80,15 @@ public class Position implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @XmlTransient
+    public Set<Participation> getParticipationSet() {
+        return participationSet;
+    }
+
+    public void setParticipationSet(Set<Participation> participationSet) {
+        this.participationSet = participationSet;
     }
 
     @XmlTransient

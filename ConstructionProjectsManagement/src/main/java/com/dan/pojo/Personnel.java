@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,14 +21,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "personnel")
@@ -37,25 +35,19 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Personnel.findAll", query = "SELECT p FROM Personnel p"),
     @NamedQuery(name = "Personnel.findById", query = "SELECT p FROM Personnel p WHERE p.id = :id"),
-    @NamedQuery(name = "Personnel.findByUsername", query = "SELECT p FROM Personnel p WHERE p.username = :username"),
-    @NamedQuery(name = "Personnel.findByPassword", query = "SELECT p FROM Personnel p WHERE p.password = :password"),
     @NamedQuery(name = "Personnel.findByAvatar", query = "SELECT p FROM Personnel p WHERE p.avatar = :avatar"),
-    @NamedQuery(name = "Personnel.findByFullname", query = "SELECT p FROM Personnel p WHERE p.fullname = :fullname"),
+    @NamedQuery(name = "Personnel.findByLastName", query = "SELECT p FROM Personnel p WHERE p.lastName = :lastName"),
+    @NamedQuery(name = "Personnel.findByFirstName", query = "SELECT p FROM Personnel p WHERE p.firstName = :firstName"),
+    @NamedQuery(name = "Personnel.findByGender", query = "SELECT p FROM Personnel p WHERE p.gender = :gender"),
     @NamedQuery(name = "Personnel.findByBirthday", query = "SELECT p FROM Personnel p WHERE p.birthday = :birthday"),
-    @NamedQuery(name = "Personnel.findByAddress", query = "SELECT p FROM Personnel p WHERE p.address = :address"),
+    @NamedQuery(name = "Personnel.findByIdentity", query = "SELECT p FROM Personnel p WHERE p.identity = :identity"),
     @NamedQuery(name = "Personnel.findByPhone", query = "SELECT p FROM Personnel p WHERE p.phone = :phone"),
     @NamedQuery(name = "Personnel.findByEmail", query = "SELECT p FROM Personnel p WHERE p.email = :email"),
+    @NamedQuery(name = "Personnel.findByAddress", query = "SELECT p FROM Personnel p WHERE p.address = :address"),
+    @NamedQuery(name = "Personnel.findByPassword", query = "SELECT p FROM Personnel p WHERE p.password = :password"),
     @NamedQuery(name = "Personnel.findByRole", query = "SELECT p FROM Personnel p WHERE p.role = :role"),
     @NamedQuery(name = "Personnel.findByActive", query = "SELECT p FROM Personnel p WHERE p.active = :active")})
 public class Personnel implements Serializable {
-
-    @Size(max = 50)
-    @Column(name = "gender")
-    private String gender;
-    @Column(name = "active")
-    private Boolean active;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
-    private Set<Participation> participationSet;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -63,66 +55,62 @@ public class Personnel implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "username")
-    private String username;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "password")
-    private String password;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "avatar")
     private String avatar;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "fullname")
-    private String fullname;
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 255)
+    @Column(name = "last_name")
+    private String lastName;
+    @Size(max = 255)
+    @Column(name = "first_name")
+    private String firstName;
+    @Size(max = 50)
+    @Column(name = "gender")
+    private String gender;
     @Column(name = "birthday")
     @Temporal(TemporalType.DATE)
     private Date birthday;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "address")
-    private String address;
+    @Size(max = 50)
+    @Column(name = "identity")
+    private String identity;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "phone")
     private String phone;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 255)
     @Column(name = "email")
     private String email;
-    @Size(max = 100)
+    @Size(max = 255)
+    @Column(name = "address")
+    private String address;
+    @Size(max = 255)
+    @Column(name = "password")
+    private String password;
+    @Size(max = 255)
     @Column(name = "role")
     private String role;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
-    private Set<Task> taskSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
+    @Column(name = "active")
+    private Boolean active;
+    @OneToMany(mappedBy = "idPersonnel")
+    private Set<Participation> participationSet;
+    @OneToMany(mappedBy = "idPersonnel")
+    private Set<Issue> issueSet;
+    @OneToMany(mappedBy = "idPersonnel")
     private Set<Change> changeSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
+    @OneToMany(mappedBy = "idPersonnel")
     private Set<Invest> investSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
-    private Set<Project> projectSet;
+    @OneToMany(mappedBy = "idPersonnel")
+    private Set<Task> taskSet;
     @JoinColumn(name = "id_department", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Department idDepartment;
     @JoinColumn(name = "id_position", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Position idPosition;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
+    @OneToMany(mappedBy = "personResponsible")
     private Set<Category> categorySet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
+    @OneToMany(mappedBy = "personCreated")
     private Set<Discuss> discussSet;
 
     public Personnel() {
@@ -130,18 +118,6 @@ public class Personnel implements Serializable {
 
     public Personnel(Integer id) {
         this.id = id;
-    }
-
-    public Personnel(Integer id, String username, String password, String fullname, Date birthday, String address, String phone, String email, boolean active) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.fullname = fullname;
-        this.birthday = birthday;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.active = active;
     }
 
     public Integer getId() {
@@ -152,22 +128,6 @@ public class Personnel implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getAvatar() {
         return avatar;
     }
@@ -176,12 +136,28 @@ public class Personnel implements Serializable {
         this.avatar = avatar;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Date getBirthday() {
@@ -192,12 +168,12 @@ public class Personnel implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getAddress() {
-        return address;
+    public String getIdentity() {
+        return identity;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setIdentity(String identity) {
+        this.identity = identity;
     }
 
     public String getPhone() {
@@ -216,6 +192,22 @@ public class Personnel implements Serializable {
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getRole() {
         return role;
     }
@@ -224,14 +216,30 @@ public class Personnel implements Serializable {
         this.role = role;
     }
 
-
-    @XmlTransient
-    public Set<Task> getTaskSet() {
-        return taskSet;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setTaskSet(Set<Task> taskSet) {
-        this.taskSet = taskSet;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @XmlTransient
+    public Set<Participation> getParticipationSet() {
+        return participationSet;
+    }
+
+    public void setParticipationSet(Set<Participation> participationSet) {
+        this.participationSet = participationSet;
+    }
+
+    @XmlTransient
+    public Set<Issue> getIssueSet() {
+        return issueSet;
+    }
+
+    public void setIssueSet(Set<Issue> issueSet) {
+        this.issueSet = issueSet;
     }
 
     @XmlTransient
@@ -253,12 +261,12 @@ public class Personnel implements Serializable {
     }
 
     @XmlTransient
-    public Set<Project> getProjectSet() {
-        return projectSet;
+    public Set<Task> getTaskSet() {
+        return taskSet;
     }
 
-    public void setProjectSet(Set<Project> projectSet) {
-        this.projectSet = projectSet;
+    public void setTaskSet(Set<Task> taskSet) {
+        this.taskSet = taskSet;
     }
 
     public Department getIdDepartment() {
@@ -318,31 +326,6 @@ public class Personnel implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Personnel[ id=" + id + " ]";
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    @XmlTransient
-    public Set<Participation> getParticipationSet() {
-        return participationSet;
-    }
-
-    public void setParticipationSet(Set<Participation> participationSet) {
-        this.participationSet = participationSet;
     }
     
 }

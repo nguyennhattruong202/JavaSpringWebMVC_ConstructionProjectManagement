@@ -9,8 +9,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "invest")
@@ -33,44 +31,45 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Invest.findAll", query = "SELECT i FROM Invest i"),
     @NamedQuery(name = "Invest.findById", query = "SELECT i FROM Invest i WHERE i.id = :id"),
+    @NamedQuery(name = "Invest.findByName", query = "SELECT i FROM Invest i WHERE i.name = :name"),
     @NamedQuery(name = "Invest.findByContent", query = "SELECT i FROM Invest i WHERE i.content = :content"),
     @NamedQuery(name = "Invest.findByMoney", query = "SELECT i FROM Invest i WHERE i.money = :money"),
     @NamedQuery(name = "Invest.findByCreatedDate", query = "SELECT i FROM Invest i WHERE i.createdDate = :createdDate"),
-    @NamedQuery(name = "Invest.findByApprovedDate", query = "SELECT i FROM Invest i WHERE i.approvedDate = :approvedDate"),
-    @NamedQuery(name = "Invest.findByActive", query = "SELECT i FROM Invest i WHERE i.active = :active")})
+    @NamedQuery(name = "Invest.findByApprovedDate", query = "SELECT i FROM Invest i WHERE i.approvedDate = :approvedDate")})
 public class Invest implements Serializable {
-
-    @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Status idStatus;
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 300)
+    @Column(name = "id")
+    private Integer id;
+    @Size(max = 255)
+    @Column(name = "name")
+    private String name;
+    @Size(max = 255)
     @Column(name = "content")
     private String content;
     @Column(name = "money")
     private Long money;
     @Column(name = "created_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date createdDate;
     @Column(name = "approved_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date approvedDate;
-    @Column(name = "active")
-    private Boolean active;
+    @JoinColumn(name = "id_partner", referencedColumnName = "id")
+    @ManyToOne
+    private Partner idPartner;
     @JoinColumn(name = "id_personnel", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Personnel idPersonnel;
     @JoinColumn(name = "id_project", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Project idProject;
+    @JoinColumn(name = "id_status", referencedColumnName = "id")
+    @ManyToOne
+    private Status idStatus;
 
     public Invest() {
     }
@@ -79,17 +78,20 @@ public class Invest implements Serializable {
         this.id = id;
     }
 
-    public Invest(Integer id, String content) {
-        this.id = id;
-        this.content = content;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getContent() {
@@ -124,12 +126,12 @@ public class Invest implements Serializable {
         this.approvedDate = approvedDate;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Partner getIdPartner() {
+        return idPartner;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setIdPartner(Partner idPartner) {
+        this.idPartner = idPartner;
     }
 
     public Personnel getIdPersonnel() {
@@ -146,6 +148,14 @@ public class Invest implements Serializable {
 
     public void setIdProject(Project idProject) {
         this.idProject = idProject;
+    }
+
+    public Status getIdStatus() {
+        return idStatus;
+    }
+
+    public void setIdStatus(Status idStatus) {
+        this.idStatus = idStatus;
     }
 
     @Override
@@ -171,14 +181,6 @@ public class Invest implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Invest[ id=" + id + " ]";
-    }
-
-    public Status getIdStatus() {
-        return idStatus;
-    }
-
-    public void setIdStatus(Status idStatus) {
-        this.idStatus = idStatus;
     }
     
 }

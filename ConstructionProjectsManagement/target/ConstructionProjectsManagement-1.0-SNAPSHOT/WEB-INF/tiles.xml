@@ -6,7 +6,6 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="baseLayout" template="/WEB-INF/layout/baseLayout.jsp">
         <put-attribute name="title" value="BaseLayout"/>
         <put-attribute name="headerLayout" value="/WEB-INF/layout/headerLayout.jsp"/>
-        <put-attribute name="leftSidebar" value="/WEB-INF/layout/leftSidebar.jsp"/>
         <put-attribute name="content" value="BaseLayout"/>
         <put-attribute name="footerLayout" value="/WEB-INF/layout/footerLayout.jsp"/>
     </definition>
@@ -33,5 +32,9 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="updateproject" extends="baseLayout">
         <put-attribute name="title" value="Sửa dự án"/>
         <put-attribute name="content" value="/WEB-INF/jsp/updateproject.jsp"/>
+    </definition>
+    <definition name="listPartner" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách các đối tác"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/listPartner.jsp"/>
     </definition>
 </tiles-definitions>

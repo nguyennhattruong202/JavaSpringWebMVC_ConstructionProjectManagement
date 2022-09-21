@@ -8,7 +8,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="shadow-lg p-3 mb-3 mt-3 bg-body rounded">
+<div class="shadow p-3 mb-3 mt-3 bg-body rounded">
     <h3 class="text-primary p-2 border-bottom mb-3">
         <fmt:message key="personnel.table.caption"/>
     </h3>
@@ -17,16 +17,16 @@
         <div class="d-flex mb-3">
             <select id="searchSelect" class="form-select" style="width: 20%" onchange="selectSearchBy()">
                 <option value="0" selected>
-                    <fmt:message key="personnel.search.selectSearchAll"/>
+                    <fmt:message key="search.searchAll"/>
                 </option>
                 <option value="1">
-                    <fmt:message key="personnel.search.selectSearchByName"/>
+                    <fmt:message key="search.searchByName"/>
                 </option>
                 <option value="2">
-                    <fmt:message key="personnel.search.selectSearchByPhone"/>
+                    <fmt:message key="search.searchByPhone"/>
                 </option>
                 <option value="3">
-                    <fmt:message key="personnel.search.selectSearchByEmail"/>
+                    <fmt:message key="search.searchByEmail"/>
                 </option>
             </select>
             <input name="kwName" id="nameSearch" type="text" class="form-control ms-3" style="display: none; width: 50%">
@@ -67,7 +67,7 @@
         <th><fmt:message key="personnel.address"/></th>
         <th><fmt:message key="personnel.position"/></th>
         <th><fmt:message key="personnel.role"/></th>
-        <th><fmt:message key="personnel.table.action"/></th>
+        <th><fmt:message key="table.action"/></th>
         </thead>
         <tbody id="listPersonnel">
             <c:forEach items="${listPersonnel[0]}">

@@ -5,6 +5,7 @@
 package com.dan.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -29,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Participation.findAll", query = "SELECT p FROM Participation p"),
     @NamedQuery(name = "Participation.findById", query = "SELECT p FROM Participation p WHERE p.id = :id"),
-    @NamedQuery(name = "Participation.findByRole", query = "SELECT p FROM Participation p WHERE p.role = :role")})
+    @NamedQuery(name = "Participation.findByStartDate", query = "SELECT p FROM Participation p WHERE p.startDate = :startDate"),
+    @NamedQuery(name = "Participation.findByEndDate", query = "SELECT p FROM Participation p WHERE p.endDate = :endDate")})
 public class Participation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,14 +41,20 @@ public class Participation implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "role")
-    private String role;
+    @Column(name = "start_date")
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    @Column(name = "end_date")
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
     @JoinColumn(name = "id_personnel", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Personnel idPersonnel;
+    @JoinColumn(name = "id_position", referencedColumnName = "id")
+    @ManyToOne
+    private Position idPosition;
     @JoinColumn(name = "id_project", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Project idProject;
 
     public Participation() {
@@ -63,12 +72,20 @@ public class Participation implements Serializable {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public Personnel getIdPersonnel() {
@@ -77,6 +94,14 @@ public class Participation implements Serializable {
 
     public void setIdPersonnel(Personnel idPersonnel) {
         this.idPersonnel = idPersonnel;
+    }
+
+    public Position getIdPosition() {
+        return idPosition;
+    }
+
+    public void setIdPosition(Position idPosition) {
+        this.idPosition = idPosition;
     }
 
     public Project getIdProject() {

@@ -6,29 +6,26 @@ package com.dan.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "change")
@@ -36,11 +33,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Change.findAll", query = "SELECT c FROM Change c"),
     @NamedQuery(name = "Change.findById", query = "SELECT c FROM Change c WHERE c.id = :id"),
-    @NamedQuery(name = "Change.findByContent", query = "SELECT c FROM Change c WHERE c.content = :content"),
-    @NamedQuery(name = "Change.findByOld", query = "SELECT c FROM Change c WHERE c.old = :old"),
-    @NamedQuery(name = "Change.findByNew1", query = "SELECT c FROM Change c WHERE c.new1 = :new1"),
+    @NamedQuery(name = "Change.findByTitle", query = "SELECT c FROM Change c WHERE c.title = :title"),
+    @NamedQuery(name = "Change.findByNewContent", query = "SELECT c FROM Change c WHERE c.newContent = :newContent"),
+    @NamedQuery(name = "Change.findByOldContent", query = "SELECT c FROM Change c WHERE c.oldContent = :oldContent"),
     @NamedQuery(name = "Change.findByCreatedDate", query = "SELECT c FROM Change c WHERE c.createdDate = :createdDate"),
-    @NamedQuery(name = "Change.findByActive", query = "SELECT c FROM Change c WHERE c.active = :active")})
+    @NamedQuery(name = "Change.findByPriority", query = "SELECT c FROM Change c WHERE c.priority = :priority")})
 public class Change implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,28 +46,31 @@ public class Change implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 100)
-    @Column(name = "content")
-    private String content;
-    @Size(max = 200)
-    @Column(name = "old")
-    private String old;
-    @Size(max = 200)
-    @Column(name = "new")
-    private String new1;
+    @Size(max = 255)
+    @Column(name = "title")
+    private String title;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "description")
+    private String description;
+    @Size(max = 255)
+    @Column(name = "new_content")
+    private String newContent;
+    @Size(max = 255)
+    @Column(name = "old_content")
+    private String oldContent;
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Column(name = "active")
-    private Boolean active;
+    @Size(max = 255)
+    @Column(name = "priority")
+    private String priority;
     @JoinColumn(name = "id_personnel", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Personnel idPersonnel;
     @JoinColumn(name = "id_project", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Project idProject;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersonnel")
-    private Set<Target> targetSet;
 
     public Change() {
     }
@@ -87,28 +87,36 @@ public class Change implements Serializable {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getOld() {
-        return old;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOld(String old) {
-        this.old = old;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getNew1() {
-        return new1;
+    public String getNewContent() {
+        return newContent;
     }
 
-    public void setNew1(String new1) {
-        this.new1 = new1;
+    public void setNewContent(String newContent) {
+        this.newContent = newContent;
+    }
+
+    public String getOldContent() {
+        return oldContent;
+    }
+
+    public void setOldContent(String oldContent) {
+        this.oldContent = oldContent;
     }
 
     public Date getCreatedDate() {
@@ -119,12 +127,12 @@ public class Change implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public Boolean getActive() {
-        return active;
+    public String getPriority() {
+        return priority;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     public Personnel getIdPersonnel() {
@@ -141,15 +149,6 @@ public class Change implements Serializable {
 
     public void setIdProject(Project idProject) {
         this.idProject = idProject;
-    }
-
-    @XmlTransient
-    public Set<Target> getTargetSet() {
-        return targetSet;
-    }
-
-    public void setTargetSet(Set<Target> targetSet) {
-        this.targetSet = targetSet;
     }
 
     @Override
