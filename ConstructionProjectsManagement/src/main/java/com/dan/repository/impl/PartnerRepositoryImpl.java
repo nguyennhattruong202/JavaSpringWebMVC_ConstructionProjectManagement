@@ -9,6 +9,7 @@ import com.dan.repository.PartnerRepository;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -25,14 +26,25 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
-    public List<Partner> getParner() {
+    public List<Partner> getPartner() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Partner> criteriaQuery = criteriaBuilder.createQuery(Partner.class);
         Root root = criteriaQuery.from(Partner.class);
-        criteriaQuery.select(root);
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("active"), true));
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
+    }
+
+    @Override
+    public void removePartner(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaUpdate<Partner> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Partner.class);
+        Root root = criteriaUpdate.from(Partner.class);
+        criteriaUpdate.set("active", false);
+        criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), id));
+        session.createQuery(criteriaUpdate).executeUpdate();
     }
 
 }

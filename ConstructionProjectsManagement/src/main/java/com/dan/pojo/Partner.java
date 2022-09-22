@@ -4,6 +4,7 @@
  */
 package com.dan.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -75,6 +76,7 @@ public class Partner implements Serializable {
     private String note;
     @Column(name = "active")
     private Boolean active;
+    @JsonIgnore
     @OneToMany(mappedBy = "idPartner")
     private Set<Invest> investSet;
 
@@ -198,5 +200,5 @@ public class Partner implements Serializable {
     public String toString() {
         return "com.dan.pojo.Partner[ id=" + id + " ]";
     }
-    
+
 }

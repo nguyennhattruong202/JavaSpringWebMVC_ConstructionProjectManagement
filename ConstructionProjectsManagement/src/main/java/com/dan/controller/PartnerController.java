@@ -4,11 +4,7 @@
  */
 package com.dan.controller;
 
-import com.dan.service.PartnerService;
-import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,12 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/list-partner")
 public class PartnerController {
 
-    @Autowired
-    private PartnerService partnerService;
-
     @GetMapping
-    public String listPartnerIndex(Model model) {
-        model.addAttribute("listPartnerIndex", this.partnerService.getParner());
+    public String listPartnerIndex() {
         return "listPartner";
     }
 }

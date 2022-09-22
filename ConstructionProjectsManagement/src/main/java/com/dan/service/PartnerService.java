@@ -9,5 +9,8 @@ import java.util.List;
 
 public interface PartnerService {
 
-    List<Partner> getParner();
+    List<Partner> getPartner();
+
+    void removePartner(int id);
+
 }

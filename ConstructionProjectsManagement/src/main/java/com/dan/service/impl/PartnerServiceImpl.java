@@ -16,9 +16,14 @@ public class PartnerServiceImpl implements PartnerService {
 
     @Autowired
     private PartnerRepository partnerRepository;
-    
+
     @Override
-    public List<Partner> getParner() {
-        return this.partnerRepository.getParner();
+    public List<Partner> getPartner() {
+        return this.partnerRepository.getPartner();
+    }
+
+    @Override
+    public void removePartner(int id) {
+        this.partnerRepository.removePartner(id);
     }
 }
