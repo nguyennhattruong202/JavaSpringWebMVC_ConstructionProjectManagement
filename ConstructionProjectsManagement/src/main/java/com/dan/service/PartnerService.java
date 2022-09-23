@@ -13,4 +13,5 @@ public interface PartnerService {
 
     void removePartner(int id);
 
+    List<Partner> searchAll(String kw);
 }

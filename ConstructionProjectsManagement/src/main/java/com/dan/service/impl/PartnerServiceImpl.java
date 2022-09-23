@@ -26,4 +26,9 @@ public class PartnerServiceImpl implements PartnerService {
     public void removePartner(int id) {
         this.partnerRepository.removePartner(id);
     }
+
+    @Override
+    public List<Partner> searchAll(String kw) {
+        return this.partnerRepository.searchAll(kw);
+    }
 }

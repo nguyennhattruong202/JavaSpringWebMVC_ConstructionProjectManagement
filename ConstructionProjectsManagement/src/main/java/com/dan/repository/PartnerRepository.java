@@ -12,4 +12,6 @@ public interface PartnerRepository {
     List<Partner> getPartner();
 
     void removePartner(int id);
+
+    List<Partner> searchAll(String kw);
 }

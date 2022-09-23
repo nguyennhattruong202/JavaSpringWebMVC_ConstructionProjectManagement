@@ -37,4 +37,8 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Danh sách các đối tác"/>
         <put-attribute name="content" value="/WEB-INF/jsp/listPartner.jsp"/>
     </definition>
+    <definition name="insertpartner" extends="baseLayout">
+        <put-attribute name="title" value="Thêm đối tác mới"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/insertPartner.jsp"/>
+    </definition>
 </tiles-definitions>

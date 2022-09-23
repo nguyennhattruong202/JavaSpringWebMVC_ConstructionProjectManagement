@@ -4,12 +4,9 @@
  */
 package com.dan.controller;
 
-import com.dan.pojo.Partner;
 import com.dan.service.PartnerService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +19,6 @@ public class ApiPartnerController {
 
     @Autowired
     private PartnerService partnerService;
-
-    @GetMapping
-    public ResponseEntity<List<Partner>> getPartner() {
-        return new ResponseEntity<>(this.partnerService.getPartner(), HttpStatus.OK);
-    }
 
     @GetMapping("/removed/{partnerId}")
     @ResponseStatus(HttpStatus.OK)

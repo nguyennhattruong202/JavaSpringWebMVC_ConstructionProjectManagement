@@ -39,7 +39,7 @@
         <!-- End css of this project -->
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid bg-light">
             <tiles:insertAttribute name="headerLayout"/>
             <tiles:insertAttribute name="content"/>
             <tiles:insertAttribute name="footerLayout"/>

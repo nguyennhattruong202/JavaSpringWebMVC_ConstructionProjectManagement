@@ -6,6 +6,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : Sep 21, 2022, 1:53:37 PM
     Author     : ACER
 */
-.my-scroll-x {
-    overflow-x: auto;
+.my-w-100{
+    width: 100%;
+}
+.my-hpx-400{
+    height: 400px;
+}
+.my-wpx-100{
+    width: 100px;
 }
