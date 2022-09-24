@@ -8,6 +8,7 @@ import com.dan.pojo.Partner;
 import com.dan.repository.PartnerRepository;
 import com.dan.service.PartnerService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,6 @@ public class PartnerServiceImpl implements PartnerService {
     private PartnerRepository partnerRepository;
 
     @Override
-    public List<Partner> getPartner() {
-        return this.partnerRepository.getPartner();
-    }
-
-    @Override
     public void removePartner(int id) {
         this.partnerRepository.removePartner(id);
     }
@@ -30,5 +26,10 @@ public class PartnerServiceImpl implements PartnerService {
     @Override
     public List<Partner> searchAll(String kw) {
         return this.partnerRepository.searchAll(kw);
+    }
+
+    @Override
+    public void updatePartner(int id, Map<String, String> params) {
+        this.partnerRepository.updatePartner(id, params);
     }
 }

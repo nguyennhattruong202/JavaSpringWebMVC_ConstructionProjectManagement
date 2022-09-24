@@ -7,6 +7,7 @@ package com.dan.repository.impl;
 import com.dan.pojo.Partner;
 import com.dan.repository.PartnerRepository;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
@@ -22,21 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class PartnerRepositoryImpl implements PartnerRepository {
-    
+
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
-    
-    @Override
-    public List<Partner> getPartner() {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Partner> criteriaQuery = criteriaBuilder.createQuery(Partner.class);
-        Root root = criteriaQuery.from(Partner.class);
-        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("active"), true));
-        Query query = session.createQuery(criteriaQuery);
-        return query.getResultList();
-    }
-    
+
     @Override
     public void removePartner(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
@@ -47,7 +37,7 @@ public class PartnerRepositoryImpl implements PartnerRepository {
         criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), id));
         session.createQuery(criteriaUpdate).executeUpdate();
     }
-    
+
     @Override
     public List<Partner> searchAll(String kw) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
@@ -66,5 +56,24 @@ public class PartnerRepositoryImpl implements PartnerRepository {
         }
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
+    }
+
+    @Override
+    public void updatePartner(int id, Map<String, String> params) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaUpdate<Partner> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Partner.class);
+        Root root = criteriaUpdate.from(Partner.class);
+        criteriaUpdate.set("name", params.get("name"));
+        criteriaUpdate.set("phone", params.get("phone"));
+        criteriaUpdate.set("email", params.get("email"));
+        criteriaUpdate.set("website", params.get("website"));
+        criteriaUpdate.set("country", params.get("country"));
+        criteriaUpdate.set("address", params.get("address"));
+        criteriaUpdate.set("type", params.get("type"));
+        criteriaUpdate.set("note", params.get("note"));
+        criteriaUpdate.set("active", params.get("active"));
+        criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), id));
+        session.createQuery(criteriaUpdate).executeUpdate();
     }
 }

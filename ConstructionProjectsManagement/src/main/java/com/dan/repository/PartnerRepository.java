@@ -6,12 +6,13 @@ package com.dan.repository;
 
 import com.dan.pojo.Partner;
 import java.util.List;
+import java.util.Map;
 
 public interface PartnerRepository {
-
-    List<Partner> getPartner();
 
     void removePartner(int id);
 
     List<Partner> searchAll(String kw);
+
+    void updatePartner(int id, Map<String, String> params);
 }

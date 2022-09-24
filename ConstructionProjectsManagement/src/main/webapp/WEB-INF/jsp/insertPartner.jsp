@@ -10,12 +10,10 @@
 <!DOCTYPE html>
 <div class="w-100 d-flex justify-content-center">
     <div class="shadow rounded bg-body mt-3 mb-3 w-75">
-        <img class="img-fluid my-w-100 my-hpx-400" 
-             src="<c:url value="/images/construction.jpg"/>" alt="construction">
-        <div class="ps-5 pe-5 pb-5 pt-3">
-            <h2 class="mb-3 text-primary text-uppercase">
-                <fmt:message key="text.insertPartner"/>
-            </h2>
+        <div class="p-3 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
+            <fmt:message key="text.insertPartner"/>
+        </div>
+        <div class="p-3">
             <div class="row mb-3">
                 <div class="form-outline">
                     <label class="form-label" for="partnerName">
