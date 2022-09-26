@@ -5,9 +5,8 @@
 package com.dan.repository;
 
 import java.util.List;
-import java.util.Map;
 
 public interface PersonnelRepository {
 
-    List<Object[]> getAllPersonnel(Map<String, String> params, int page, boolean active);
+    List<Object[]> getPersonnel(boolean active);
 }

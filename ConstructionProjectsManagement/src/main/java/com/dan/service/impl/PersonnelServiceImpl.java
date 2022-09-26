@@ -8,7 +8,6 @@ import com.dan.repository.PersonnelRepository;
 import org.springframework.stereotype.Service;
 import com.dan.service.PersonnelService;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
@@ -18,8 +17,8 @@ public class PersonnelServiceImpl implements PersonnelService {
     private PersonnelRepository personnelRepository;
 
     @Override
-    public List<Object[]> getAllPersonnel(Map<String, String> params, int page, boolean active) {
-        return this.personnelRepository.getAllPersonnel(params, page, active);
+    public List<Object[]> getPersonnel(boolean active) {
+        return this.personnelRepository.getPersonnel(active);
     }
 
 }
