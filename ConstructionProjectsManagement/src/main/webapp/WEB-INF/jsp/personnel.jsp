@@ -10,12 +10,6 @@
 <!DOCTYPE html>
 <div class="shadow rounded bg-body mt-3 mb-3">
     <div class="p-2 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
-        Personnel information
-    </div>
-    <div class="p-3">sfghjkjhgfdssdfgh</div>
-</div>
-<div class="shadow rounded bg-body mt-3 mb-3">
-    <div class="p-2 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
         <fmt:message key="personnel.table.caption"/>
     </div>
     <div class="p-3">
@@ -41,16 +35,16 @@
 
         <table class="table table-hover table-bordered border-dark">
             <thead class="text-center">
-                <th><fmt:message key="personnel.id"/></th>
-                <th><fmt:message key="personnel.lastname"/></th>
-                <th><fmt:message key="personnel.firstname"/></th>
-                <th><fmt:message key="personnel.gender"/></th>
-                <th><fmt:message key="personnel.birthday"/></th>
-                <th><fmt:message key="personnel.identity"/></th>
-                <th><fmt:message key="personnel.phone"/></th>
-                <th><fmt:message key="personnel.email"/></th>
-                <th>Role</th>
-                <th><fmt:message key="table.action"/></th>
+            <th><fmt:message key="personnel.id"/></th>
+            <th><fmt:message key="personnel.lastname"/></th>
+            <th><fmt:message key="personnel.firstname"/></th>
+            <th><fmt:message key="personnel.gender"/></th>
+            <th><fmt:message key="personnel.birthday"/></th>
+            <th><fmt:message key="personnel.identity"/></th>
+            <th><fmt:message key="personnel.phone"/></th>
+            <th><fmt:message key="personnel.email"/></th>
+            <th>Role</th>
+            <th><fmt:message key="table.action"/></th>
             </thead>
             <tbody>
                 <c:forEach items="${listPersonnel}" var="personnel">
@@ -65,7 +59,7 @@
                         <td>${personnel[8]}</td>
                         <td>${personnel[10]}</td>
                         <td class="text-center">
-                            <a href="#" class="text-decoration-none me-1">
+                            <a href="<c:url value="/personnel/${personnel[0]}"/>" class="text-decoration-none me-1">
                                 <i class="fas fa-eye"></i>
                             </a>
                             <a href="#" class="text-decoration-none me-1">
@@ -86,4 +80,4 @@
         </a>
     </div>
 </div>
-<script src="<c:url value="/js/partner.js"/>"></script>
+<script src="<c:url value="/js/personnel.js"/>"></script>

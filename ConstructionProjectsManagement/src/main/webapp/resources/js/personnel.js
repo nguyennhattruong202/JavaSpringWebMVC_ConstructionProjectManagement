@@ -3,62 +3,65 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 /* global fetch */
+function showPersonnelDetail(id, lName, fName, gender, BOD, identity, phone, email, address, pos, dep){
 
-function selectSearchBy() {
-    var selectInput = document.getElementById("searchSelect");
-    if (selectInput.value === '1') {
-        document.getElementById("nameSearch").style.display = "block";
-        document.getElementById("emailSearch").style.display = "none";
-        document.getElementById("phoneSearch").style.display = "none";
-    } else if (selectInput.value === '2') {
-        document.getElementById("nameSearch").style.display = "none";
-        document.getElementById("emailSearch").style.display = "none";
-        document.getElementById("phoneSearch").style.display = "block";
-    } else if (selectInput.value === '3') {
-        document.getElementById("nameSearch").style.display = "none";
-        document.getElementById("emailSearch").style.display = "block";
-        document.getElementById("phoneSearch").style.display = "none";
-    } else {
-        document.getElementById("emailSearch").style.display = "none";
-        document.getElementById("phoneSearch").style.display = "none";
-        document.getElementById("nameSearch").style.display = "none";
-    }
-};
-/*
-function loadPersonnel(endpoint) {
-    fetch(endpoint).then(function(res){
-        return res.json();
-    }).then(function(data){
-        let msg = "";
-        for (let i = 0; i < data.length; i++){
-            msg +=
-                `<tr class="align-middle">
-                    <td>
-                        <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>${data[i][0]}</td>
-                    <td>
-                        <img src="${data[i][1]}" alt="userAvatar" class="rounded-circle shadow rounded" width="40" height="40">
-                    </td>
-                    <td>${data[i][2]}</td>
-                    <td>${data[i][3]}</td>
-                    <td>${data[i][4]}</td>
-                    <td>${data[i][5]}</td>
-                    <td>${data[i][6]}</td>
-                    <td>${data[i][7]}</td>
-                    <td>${data[i][9]}</td>
-                    <td>
-                        <a class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <a class="btn btn-outline-danger btn-sm">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                    </td>
-                </tr>`;
-        };
-        let d = document.getElementById("listPersonnel");
+msg = `
+<div class="ps-3 pe-3 pb-3 pt-2 row">
+        <div class="col-2">
+            <img class="img-fluid h-100 w-100" src="<c:url value="/images/construction.jpg"/>" alt="avatarImage">
+        </div>
+        <div class="col-10">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">Ma nhan su:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${id}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">Gioi tinh:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${gender}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">CMND/CCCD:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${identity}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">Email:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${email}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex align-items-center">Chuc vu:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${pos}</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">Ho va ten:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${lName + fName}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">Ngay sinh:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${DOB}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">So dien thoai:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${phone}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-3 d-flex align-items-center">Dia chi:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${address}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex align-items-center">Phong ban:</div>
+                        <div class="col-9 d-flex align-items-center fw-bold">${dep}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+`;
+        let d = document.getElementById("personnelDetail");
         d.innerHTML = msg;
-    });
+        d.style.display = "block";
 };
- */

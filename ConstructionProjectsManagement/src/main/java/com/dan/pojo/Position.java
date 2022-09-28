@@ -46,6 +46,8 @@ public class Position implements Serializable {
     @Size(max = 255)
     @Column(name = "description")
     private String description;
+    @Column(name = "active")
+    private Boolean active;
     @OneToMany(mappedBy = "idPosition")
     private Set<Participation> participationSet;
     @OneToMany(mappedBy = "idPosition")
@@ -124,5 +126,13 @@ public class Position implements Serializable {
     public String toString() {
         return "com.dan.pojo.Position[ id=" + id + " ]";
     }
-    
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
 }
