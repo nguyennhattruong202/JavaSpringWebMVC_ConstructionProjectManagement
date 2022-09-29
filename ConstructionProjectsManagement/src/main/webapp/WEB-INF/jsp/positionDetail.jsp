@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <c:url value="/admin/position" var="action"/>
-<c:url value="/api/position" var="endpoint"/>
+<c:url value="/admin/api/position" var="endpoint"/>
 
 <div class="d-flex justify-content-center mb-3 mt-3">
     <div class="shadow p-3 rounded bg-body w-75">

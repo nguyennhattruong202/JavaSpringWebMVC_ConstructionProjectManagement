@@ -29,15 +29,16 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {
     "com.dan.controller",
     "com.dan.repository",
-    "com.dan.service"
+    "com.dan.service",
+    "com.dan.validator"
 })
 public class WebApplicationContextConfig implements WebMvcConfigurer {
-    
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-    
+
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -46,14 +47,14 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-    
+
     @Bean
     public CommonsMultipartResolver commonsMultipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
     }
-    
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource m = new ResourceBundleMessageSource();
@@ -61,31 +62,31 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         m.setDefaultEncoding("UTF-8");
         return m;
     }
-    
+
     @Bean
     public Validator validator() {
         LocalValidatorFactoryBean v = new LocalValidatorFactoryBean();
         v.setValidationMessageSource(messageSource());
         return v;
     }
-    
+
     @Bean
     public CookieLocaleResolver localeResolver() {
         return new CookieLocaleResolver();
     }
-    
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang");
         registry.addInterceptor(localeChangeInterceptor);
     }
-    
+
     @Override
     public Validator getValidator() {
         return validator();
     }
-    
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");

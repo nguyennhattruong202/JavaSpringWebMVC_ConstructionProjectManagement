@@ -15,3 +15,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .my-wpx-100{
     width: 100px;
 }
+#alertErrorNameNull{
+    display: none;
+}

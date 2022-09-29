@@ -18,8 +18,8 @@ public class PositionServiceImpl implements PositionService {
     private PositionRepository positionRepository;
 
     @Override
-    public List<Position> getPosition(boolean active) {
-        return this.positionRepository.getPosition(active);
+    public List<Position> getPosition(boolean active, String kw) {
+        return this.positionRepository.getPosition(active, kw);
     }
 
     @Override
@@ -35,6 +35,11 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public boolean updatePosition(int id, String name, String description) {
         return this.positionRepository.updatePosition(id, name, description);
+    }
+
+    @Override
+    public Position addPosition(String name, String description) {
+        return this.positionRepository.addPosition(name, description);
     }
 
 }

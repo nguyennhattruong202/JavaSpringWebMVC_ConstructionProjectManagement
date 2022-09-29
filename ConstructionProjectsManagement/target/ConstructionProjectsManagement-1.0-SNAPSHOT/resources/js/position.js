@@ -35,3 +35,28 @@ function updatePosition(endpoint, positionId, url) {
     });
 }
 ;
+function addPosition(endpoint, url) {
+    let inputNamePosition = document.getElementById("inputAddNamePosition").value;
+    if (inputNamePosition === "" || inputNamePosition === null) {
+        alert("Ten chuc vu khong duoc trong!");
+        return;
+    }
+    fetch(endpoint, {
+        method: "post",
+        body: JSON.stringify({
+            "name": inputNamePosition,
+            "description": document.getElementById("inputAddDescriptionPosition").value
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (res) {
+        if (res.status === 201) {
+            window.location = url;
+        }
+        return res.json();
+    }).catch(function (err) {
+        console.error(err);
+    });
+}
+;

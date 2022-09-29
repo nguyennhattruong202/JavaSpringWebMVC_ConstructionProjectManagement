@@ -9,11 +9,13 @@ import java.util.List;
 
 public interface PositionService {
 
-    List<Position> getPosition(boolean active);
+    List<Position> getPosition(boolean active, String kw);
 
     Position findPositionById(int id, boolean active);
 
     boolean removePosition(int id);
-    
+
     boolean updatePosition(int id, String name, String description);
+    
+    Position addPosition(String name, String description);
 }

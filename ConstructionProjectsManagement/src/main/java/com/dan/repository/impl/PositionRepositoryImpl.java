@@ -27,13 +27,20 @@ public class PositionRepositoryImpl implements PositionRepository {
     private LocalSessionFactoryBean sessionFactoryBean;
 
     @Override
-    public List<Position> getPosition(boolean active) {
+    public List<Position> getPosition(boolean active, String kw) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Position> criteriaQuery = criteriaBuilder.createQuery(Position.class);
         Root root = criteriaQuery.from(Position.class);
         Predicate pActive = criteriaBuilder.equal(root.get("active"), active);
-        criteriaQuery.select(root).where(pActive);
+        criteriaQuery.select(root);
+        if (kw != null && !kw.isEmpty()) {
+            Predicate pConcat = criteriaBuilder.like(criteriaBuilder.concat(root.get("id"),
+                    criteriaBuilder.concat(root.get("name"), root.get("description"))),
+                    String.format("%%%s%%", kw));
+            criteriaQuery.where(criteriaBuilder.and(pActive, pConcat));
+        }
+        criteriaQuery.where(pActive);
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }
@@ -80,6 +87,17 @@ public class PositionRepositoryImpl implements PositionRepository {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Position addPosition(String name, String description) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        Position position = new Position();
+        position.setName(name);
+        position.setDescription(description);
+        position.setActive(true);
+        session.save(position);
+        return position;
     }
 
 }
