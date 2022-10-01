@@ -1,13 +1,14 @@
 com.dan.config.HibernateConfig=org.springframework.stereotype.Component
 com.dan.config.TilesConfig=org.springframework.stereotype.Component
 com.dan.config.WebApplicationContextConfig=org.springframework.stereotype.Component
-com.dan.controller.AdminController=org.springframework.stereotype.Component
 com.dan.controller.ApiPartnerController=org.springframework.stereotype.Component
 com.dan.controller.ApiPositionController=org.springframework.stereotype.Component
+com.dan.controller.ApiProjectController=org.springframework.stereotype.Component
 com.dan.controller.IndexController=org.springframework.stereotype.Component
 com.dan.controller.PartnerController=org.springframework.stereotype.Component
 com.dan.controller.PersonnelController=org.springframework.stereotype.Component
 com.dan.controller.PositionController=org.springframework.stereotype.Component
+com.dan.controller.ProjectController=org.springframework.stereotype.Component
 com.dan.pojo.Category=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries
 com.dan.pojo.Change=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries
 com.dan.pojo.Department=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries

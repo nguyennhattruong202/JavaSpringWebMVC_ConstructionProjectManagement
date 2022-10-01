@@ -60,11 +60,11 @@
     <div class="vr me-3 ms-3"></div>
     <a href="#" class="text-decoration-none text-center">Calendar</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="<c:url value="/admin/projectmanagement"/>" class="text-decoration-none text-center">Projects</a>
+    <a href="<c:url value="/admin/project"/>" class="text-decoration-none text-center">Projects</a>
     <div class="vr me-3 ms-3"></div>
     <a href="<c:url value="/personnel"/>" class="text-decoration-none text-center">Personnel</a>
     <div class="vr me-3 ms-3"></div>
     <a href="<c:url value="/admin/partner/list"/>" class="text-decoration-none text-center">Partner</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="<c:url value="/admin/position/list"/>" class="text-decoration-none text-center">Position</a>
+    <a href="<c:url value="/admin/position"/>" class="text-decoration-none text-center">Position</a>
 </div>

@@ -21,7 +21,7 @@ public class PositionController {
     @Autowired
     private PositionService positionService;
 
-    @GetMapping("/list")
+    @GetMapping
     public String getPosition(Model model, @RequestParam Map<String, String> params) {
         String kw = params.get("kw");
         model.addAttribute("positionList", this.positionService.getPosition(true, kw));

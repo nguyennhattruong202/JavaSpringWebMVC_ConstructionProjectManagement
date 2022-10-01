@@ -4,17 +4,9 @@
  */
 package com.dan.service;
 
-import com.dan.pojo.Project;
 import java.util.List;
-import java.util.Map;
 
-/**
- *
- * @author DELL
- */
 public interface ProjectService {
 
-    List<Project> getProjects(String kw, int page);
-
-    public int countProject();
+    List<Object[]> getProjects();
 }

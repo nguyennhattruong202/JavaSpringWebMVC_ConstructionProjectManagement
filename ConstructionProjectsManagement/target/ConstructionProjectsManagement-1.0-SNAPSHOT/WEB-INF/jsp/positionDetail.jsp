@@ -12,7 +12,7 @@
 
 <div class="d-flex justify-content-center mb-3 mt-3">
     <div class="shadow p-3 rounded bg-body w-75">
-        <a href="<c:url value="/admin/position/list"/>" 
+        <a href="<c:url value="/admin/position"/>" 
            class="btn btn-outline-primary" data-bs-toggle="tooltip" 
            data-bs-placement="bottom" title="Back">
             <i class="fas fa-arrow-left"></i>
@@ -64,7 +64,7 @@
                         data-bs-dismiss="modal">
                     Dong
                 </button>
-                <button onclick="removePosition('${endpoint}/removed/${positionDetail.id}', '${action}/list')" 
+                <button onclick="removePosition('${endpoint}/removed/${positionDetail.id}', '${action}')" 
                         class="btn btn-outline-danger my-wpx-100 fw-bold">
                     Xoa
                 </button>
@@ -87,7 +87,7 @@
                         data-bs-dismiss="modal">
                     Dong
                 </button>
-                <button onclick="updatePosition('${endpoint}/update/${positionDetail.id}', ${positionDetail.id}, '${action}/list')" 
+                <button onclick="updatePosition('${endpoint}/update/${positionDetail.id}', ${positionDetail.id}, '${action}')" 
                         class="btn btn-outline-danger my-wpx-100 fw-bold">
                     Cap nhat
                 </button>

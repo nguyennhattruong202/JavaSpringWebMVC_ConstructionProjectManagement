@@ -1,7 +1,7 @@
 com\dan\pojo\Project.class
 com\dan\service\PartnerService.class
 META-INF\spring.components
-com\dan\controller\AdminController.class
+com\dan\controller\ApiProjectController.class
 com\dan\pojo\Department.class
 com\dan\service\impl\StatusServiceImpl.class
 com\dan\service\ProjectService.class
@@ -11,6 +11,7 @@ com\dan\controller\PartnerController.class
 com\dan\repository\StatusRepository.class
 com\dan\controller\IndexController.class
 com\dan\service\impl\PartnerServiceImpl.class
+com\dan\controller\ProjectController.class
 com\dan\repository\impl\PersonnelRepositoryImpl.class
 com\dan\controller\ApiPositionController.class
 com\dan\pojo\Discuss.class

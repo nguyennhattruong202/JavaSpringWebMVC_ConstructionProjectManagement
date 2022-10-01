@@ -49,7 +49,7 @@
                 <button type="button" class="btn btn-outline-primary my-wpx-100 fw-bold" data-bs-dismiss="modal">
                     Dong
                 </button>
-                <button onclick="addPosition('${endpoint}/add', '${action}/list')" 
+                <button onclick="addPosition('${endpoint}/add', '${action}')" 
                         class="btn btn-outline-danger my-wpx-100 fw-bold">
                     Luu
                 </button>
@@ -115,7 +115,7 @@
                                                     data-bs-dismiss="modal">
                                                 Đóng
                                             </button>
-                                            <button onclick="removePosition('${endpoint}/removed/${position.id}', '${action}/list')" 
+                                            <button onclick="removePosition('${endpoint}/removed/${position.id}', '${action}')" 
                                                     class="btn btn-outline-danger my-wpx-100 fw-bold">
                                                 Xóa
                                             </button>

@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Participation.findAll", query = "SELECT p FROM Participation p"),
     @NamedQuery(name = "Participation.findById", query = "SELECT p FROM Participation p WHERE p.id = :id"),
     @NamedQuery(name = "Participation.findByStartDate", query = "SELECT p FROM Participation p WHERE p.startDate = :startDate"),
-    @NamedQuery(name = "Participation.findByEndDate", query = "SELECT p FROM Participation p WHERE p.endDate = :endDate")})
+    @NamedQuery(name = "Participation.findByEndDate", query = "SELECT p FROM Participation p WHERE p.endDate = :endDate"),
+    @NamedQuery(name = "Participation.findByPosition", query = "SELECT p FROM Participation p WHERE p.position = :position")})
 public class Participation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,12 +49,12 @@ public class Participation implements Serializable {
     @Column(name = "end_date")
     @Temporal(TemporalType.DATE)
     private Date endDate;
+    @Size(max = 255)
+    @Column(name = "position")
+    private String position;
     @JoinColumn(name = "id_personnel", referencedColumnName = "id")
     @ManyToOne
     private Personnel idPersonnel;
-    @JoinColumn(name = "id_position", referencedColumnName = "id")
-    @ManyToOne
-    private Position idPosition;
     @JoinColumn(name = "id_project", referencedColumnName = "id")
     @ManyToOne
     private Project idProject;
@@ -88,20 +90,20 @@ public class Participation implements Serializable {
         this.endDate = endDate;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     public Personnel getIdPersonnel() {
         return idPersonnel;
     }
 
     public void setIdPersonnel(Personnel idPersonnel) {
         this.idPersonnel = idPersonnel;
-    }
-
-    public Position getIdPosition() {
-        return idPosition;
-    }
-
-    public void setIdPosition(Position idPosition) {
-        this.idPosition = idPosition;
     }
 
     public Project getIdProject() {

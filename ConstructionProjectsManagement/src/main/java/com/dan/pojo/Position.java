@@ -16,7 +16,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -32,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Position.findAll", query = "SELECT p FROM Position p"),
     @NamedQuery(name = "Position.findById", query = "SELECT p FROM Position p WHERE p.id = :id"),
     @NamedQuery(name = "Position.findByName", query = "SELECT p FROM Position p WHERE p.name = :name"),
-    @NamedQuery(name = "Position.findByDescription", query = "SELECT p FROM Position p WHERE p.description = :description")})
+    @NamedQuery(name = "Position.findByDescription", query = "SELECT p FROM Position p WHERE p.description = :description"),
+    @NamedQuery(name = "Position.findByActive", query = "SELECT p FROM Position p WHERE p.active = :active")})
 public class Position implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +49,6 @@ public class Position implements Serializable {
     private String description;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(mappedBy = "idPosition")
-    private Set<Participation> participationSet;
     @OneToMany(mappedBy = "idPosition")
     private Set<Personnel> personnelSet;
 
@@ -85,13 +83,12 @@ public class Position implements Serializable {
         this.description = description;
     }
 
-    @XmlTransient
-    public Set<Participation> getParticipationSet() {
-        return participationSet;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setParticipationSet(Set<Participation> participationSet) {
-        this.participationSet = participationSet;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @XmlTransient
@@ -127,13 +124,5 @@ public class Position implements Serializable {
     public String toString() {
         return "com.dan.pojo.Position[ id=" + id + " ]";
     }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
+    
 }
