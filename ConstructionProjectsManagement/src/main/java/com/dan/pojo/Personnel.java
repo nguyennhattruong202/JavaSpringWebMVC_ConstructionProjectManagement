@@ -101,6 +101,8 @@ public class Personnel implements Serializable {
     @OneToMany(mappedBy = "idPersonnel")
     private Set<Invest> investSet;
     @OneToMany(mappedBy = "idPersonnel")
+    private Set<Project> projectSet;
+    @OneToMany(mappedBy = "idPersonnel")
     private Set<Task> taskSet;
     @JoinColumn(name = "id_department", referencedColumnName = "id")
     @ManyToOne
@@ -258,6 +260,15 @@ public class Personnel implements Serializable {
 
     public void setInvestSet(Set<Invest> investSet) {
         this.investSet = investSet;
+    }
+
+    @XmlTransient
+    public Set<Project> getProjectSet() {
+        return projectSet;
+    }
+
+    public void setProjectSet(Set<Project> projectSet) {
+        this.projectSet = projectSet;
     }
 
     @XmlTransient

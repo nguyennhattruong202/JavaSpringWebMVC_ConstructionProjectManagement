@@ -4,9 +4,14 @@
  */
 package com.dan.repository;
 
+import com.dan.pojo.Project;
 import java.util.List;
 
 public interface ProjectRepository {
 
     List<Object[]> getProjects();
+
+    boolean removedProject(int id);
+
+    Project findProjectById(int id);
 }

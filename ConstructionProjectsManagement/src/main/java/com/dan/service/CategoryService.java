@@ -4,10 +4,9 @@
  */
 package com.dan.service;
 
-import com.dan.pojo.Status;
 import java.util.List;
 
-public interface StatusService {
+public interface CategoryService {
 
-    List<Status> getStatus();
+    List<Object[]> getCategory();
 }

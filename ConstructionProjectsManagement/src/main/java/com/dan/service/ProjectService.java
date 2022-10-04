@@ -4,9 +4,14 @@
  */
 package com.dan.service;
 
+import com.dan.pojo.Project;
 import java.util.List;
 
 public interface ProjectService {
 
     List<Object[]> getProjects();
+
+    boolean removedProject(int id);
+
+    Project findProjectById(int id);
 }

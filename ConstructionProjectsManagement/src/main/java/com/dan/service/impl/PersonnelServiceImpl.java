@@ -21,4 +21,9 @@ public class PersonnelServiceImpl implements PersonnelService {
         return this.personnelRepository.getPersonnel(active);
     }
 
+    @Override
+    public List<Object[]> constructionSupervisonList() {
+        return this.personnelRepository.constructionSupervisonList();
+    }
+
 }

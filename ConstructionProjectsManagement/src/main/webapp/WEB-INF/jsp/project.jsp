@@ -9,6 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <c:url value="/admin/api/project" var="endpoint" />
+<c:url value="/admin/project" var="action" />
 <div class="shadow rounded bg-body mt-3 mb-3">
     <div class="p-2 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
         Danh sach du an
@@ -37,21 +38,40 @@
                 <th>Ten du an</th>
                 <th>Ngay bat dau</th>
                 <th>Ngay ket thuc</th>
-                <th>Dia diem</th>
+                <th>Truong du an</th>
                 <th>Nhan cong toi da</th>
                 <th>Phan tram</th>
                 <th>Trang thai</th>
                 <th>Ngay tao</th>
-                <th>Thao tac</th>
+                <th></th>
                 </thead>
-                <tbody id="tbodyGetProjects"></tbody>
+                <tbody>
+                    <c:forEach items="${projectList}" var="pl">
+                        <tr>
+                            <td>${pl[0]}</td>
+                            <td>${pl[1]}</td>
+                            <td>${pl[2]}</td>
+                            <td>${pl[3]}</td>
+                            <td>${pl[8]} ${pl[9]}</td>
+                            <td>${pl[4]}</td>
+                            <td>${pl[5]}</td>
+                            <td>${pl[6]}</td>
+                            <td>${pl[7]}</td>
+                            <td class="text-center">
+                                <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Xem hang muc thi cong</a></li>
+                                    <li><a class="dropdown-item" href="${action}/${pl[0]}/detail">Sua du an</a></li>
+                                    <li><a class="dropdown-item" onclick="removeProject('${endpoint}/removed/${pl[0]}')">Xoa</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
             </table>
         </div>
     </div>
 </div>
 <script src="<c:url value="/js/project.js" />"></script>
-<script>
-    window.onload = function () {
-        getProjects('${endpoint}');
-    };
-</script>

@@ -39,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
     @NamedQuery(name = "Category.findByStartDate", query = "SELECT c FROM Category c WHERE c.startDate = :startDate"),
     @NamedQuery(name = "Category.findByFinishDate", query = "SELECT c FROM Category c WHERE c.finishDate = :finishDate"),
-    @NamedQuery(name = "Category.findByPercent", query = "SELECT c FROM Category c WHERE c.percent = :percent")})
+    @NamedQuery(name = "Category.findByPercent", query = "SELECT c FROM Category c WHERE c.percent = :percent"),
+    @NamedQuery(name = "Category.findByActive", query = "SELECT c FROM Category c WHERE c.active = :active")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,6 +65,8 @@ public class Category implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "percent")
     private Float percent;
+    @Column(name = "active")
+    private Boolean active;
     @OneToMany(mappedBy = "idCategory")
     private Set<Task> taskSet;
     @JoinColumn(name = "person_responsible", referencedColumnName = "id")
@@ -129,6 +132,14 @@ public class Category implements Serializable {
 
     public void setPercent(Float percent) {
         this.percent = percent;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @XmlTransient

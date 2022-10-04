@@ -43,7 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Project.findByFinishDate", query = "SELECT p FROM Project p WHERE p.finishDate = :finishDate"),
     @NamedQuery(name = "Project.findByCreatedDate", query = "SELECT p FROM Project p WHERE p.createdDate = :createdDate"),
     @NamedQuery(name = "Project.findByMaxPerson", query = "SELECT p FROM Project p WHERE p.maxPerson = :maxPerson"),
-    @NamedQuery(name = "Project.findByPercent", query = "SELECT p FROM Project p WHERE p.percent = :percent")})
+    @NamedQuery(name = "Project.findByPercent", query = "SELECT p FROM Project p WHERE p.percent = :percent"),
+    @NamedQuery(name = "Project.findByActive", query = "SELECT p FROM Project p WHERE p.active = :active")})
 public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -78,12 +79,17 @@ public class Project implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "percent")
     private Float percent;
+    @Column(name = "active")
+    private Boolean active;
     @OneToMany(mappedBy = "idProject")
     private Set<Participation> participationSet;
     @OneToMany(mappedBy = "idProject")
     private Set<Change> changeSet;
     @OneToMany(mappedBy = "idProject")
     private Set<Invest> investSet;
+    @JoinColumn(name = "id_personnel", referencedColumnName = "id")
+    @ManyToOne
+    private Personnel idPersonnel;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
     @ManyToOne
     private Status idStatus;
@@ -179,6 +185,14 @@ public class Project implements Serializable {
         this.percent = percent;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     @XmlTransient
     public Set<Participation> getParticipationSet() {
         return participationSet;
@@ -204,6 +218,14 @@ public class Project implements Serializable {
 
     public void setInvestSet(Set<Invest> investSet) {
         this.investSet = investSet;
+    }
+
+    public Personnel getIdPersonnel() {
+        return idPersonnel;
+    }
+
+    public void setIdPersonnel(Personnel idPersonnel) {
+        this.idPersonnel = idPersonnel;
     }
 
     public Status getIdStatus() {

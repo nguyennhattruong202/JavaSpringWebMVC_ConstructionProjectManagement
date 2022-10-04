@@ -1,6 +1,8 @@
 com\dan\pojo\Project.class
+com\dan\repository\CategoryRepository.class
 com\dan\service\PartnerService.class
 META-INF\spring.components
+com\dan\service\CategoryService.class
 com\dan\controller\ApiProjectController.class
 com\dan\pojo\Department.class
 com\dan\service\impl\StatusServiceImpl.class
@@ -14,9 +16,11 @@ com\dan\service\impl\PartnerServiceImpl.class
 com\dan\controller\ProjectController.class
 com\dan\repository\impl\PersonnelRepositoryImpl.class
 com\dan\controller\ApiPositionController.class
+com\dan\controller\CategoryController.class
 com\dan\pojo\Discuss.class
 com\dan\repository\impl\StatusRepositoryImpl.class
 com\dan\pojo\Partner.class
+com\dan\service\impl\CategoryServiceImpl.class
 com\dan\pojo\Status.class
 com\dan\repository\PersonnelRepository.class
 com\dan\config\DispatcherServletInitializer.class
@@ -35,6 +39,8 @@ com\dan\repository\impl\PartnerRepositoryImpl.class
 com\dan\pojo\Invest.class
 com\dan\pojo\Position.class
 com\dan\service\PositionService.class
+com\dan\formatter\ProjectLeaderFormatter.class
+com\dan\repository\impl\CategoryRepositoryImpl.class
 com\dan\service\impl\ProjectServiceImpl.class
 com\dan\service\StatusService.class
 com\dan\pojo\Category.class

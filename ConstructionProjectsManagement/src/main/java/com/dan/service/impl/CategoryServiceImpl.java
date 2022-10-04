@@ -4,22 +4,21 @@
  */
 package com.dan.service.impl;
 
-import com.dan.pojo.Status;
-import com.dan.repository.StatusRepository;
-import com.dan.service.StatusService;
+import com.dan.repository.CategoryRepository;
+import com.dan.service.CategoryService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StatusServiceImpl implements StatusService {
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    private StatusRepository statusRepository;
+    private CategoryRepository categoryRepository;
 
     @Override
-    public List<Status> getStatus() {
-        return this.statusRepository.getStatus();
+    public List<Object[]> getCategory() {
+        return this.categoryRepository.getCategory();
     }
 
 }

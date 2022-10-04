@@ -47,4 +47,21 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }
+
+    @Override
+    public List<Object[]> constructionSupervisonList() {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> criteriaQuery = criteriaBuilder.createQuery(Object[].class);
+        Root rPersonnel = criteriaQuery.from(Personnel.class);
+        Root rPosition = criteriaQuery.from(Position.class);
+        Predicate pPerPos = criteriaBuilder.equal(rPersonnel.get("idPosition"), rPosition.get("id"));
+        Predicate pPersonnelActive = criteriaBuilder.equal(rPersonnel.get("active"), true);
+        Predicate pPositionActive = criteriaBuilder.equal(rPosition.get("active"), true);
+        Predicate pPositionName = criteriaBuilder.like(rPosition.get("name"), String.format("%%%s%%", "giám sát xây dựng"));
+        criteriaQuery.where(pPersonnelActive, pPositionActive, pPositionName, pPerPos);
+        criteriaQuery.multiselect(rPersonnel.get("id"), rPersonnel.get("lastName"), rPersonnel.get("firstName"), rPosition.get("name"));
+        Query query = session.createQuery(criteriaQuery);
+        return query.getResultList();
+    }
 }

@@ -7,10 +7,6 @@ package com.dan.repository;
 import com.dan.pojo.Status;
 import java.util.List;
 
-/**
- *
- * @author DELL
- */
 public interface StatusRepository {
 
     List<Status> getStatus();

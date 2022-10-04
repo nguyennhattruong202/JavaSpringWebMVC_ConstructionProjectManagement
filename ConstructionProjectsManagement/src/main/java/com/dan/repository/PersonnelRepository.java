@@ -9,4 +9,6 @@ import java.util.List;
 public interface PersonnelRepository {
 
     List<Object[]> getPersonnel(boolean active);
+
+    List<Object[]> constructionSupervisonList();
 }
