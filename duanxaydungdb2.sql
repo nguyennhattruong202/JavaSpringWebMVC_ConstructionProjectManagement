@@ -29,6 +29,7 @@ CREATE TABLE `category` (
   `start_date` date DEFAULT NULL,
   `finish_date` date DEFAULT NULL,
   `percent` float DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
   `person_responsible` int DEFAULT NULL,
   `id_project` int DEFAULT NULL,
   `id_status` int DEFAULT NULL,
@@ -39,7 +40,7 @@ CREATE TABLE `category` (
   CONSTRAINT `fk_category_to_personnel` FOREIGN KEY (`person_responsible`) REFERENCES `personnel` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_category_to_project` FOREIGN KEY (`id_project`) REFERENCES `project` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_category_to_status` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,6 +49,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Lập phương án tiến độ thi công','Lập phương án tiến độ thi công phù hợp','2022-10-01','2022-10-07',NULL,_binary '',2,1,1),(2,'Chuẩn bị công trường','Chuẩn bị công trường phục vụ thi công ','2022-10-01','2022-10-07',NULL,_binary '',2,1,3),(3,'Thi công hạ tầng','Thi công từ sàn trệt trở xuống','2022-10-07','2022-10-27',NULL,_binary '',10,1,8),(4,'Thi công sàn tầng','Thi công sàn tầng','2022-10-28','2022-11-10',NULL,_binary '',10,1,8),(5,'Thi công xây tường','Thi công tường','2022-11-11','2022-12-05',NULL,_binary '',10,1,8),(6,'Thi công tô trát tường','Thi công tô trác tường','2022-12-06','2023-01-02',NULL,_binary '',10,1,8),(7,'Thi công mái che','Thi công mái che','2023-01-03','2023-01-23',NULL,_binary '',10,1,8),(8,'Công tác hoàn thiện','Thi công giai đoạn cuối','2023-01-24','2023-03-02',NULL,_binary '',10,1,8),(9,'Kiểm tra công trình','Kiểm tra trước khi bàn giao mặt bằng','2023-03-03','2023-03-14',NULL,_binary '',11,1,8),(10,'Tháo dỡ công trường','Di dời trang thiết bị xây dựng','2023-03-15','2023-03-22',NULL,_binary '',2,1,8);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,17 +230,15 @@ CREATE TABLE `participation` (
   `id` int NOT NULL AUTO_INCREMENT,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_project` int DEFAULT NULL,
   `id_personnel` int DEFAULT NULL,
-  `id_position` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_participation_to_project_idx` (`id_project`),
   KEY `fk_prticipation_to_personnel_idx` (`id_personnel`),
-  KEY `fk_participation_to_position_idx` (`id_position`),
-  CONSTRAINT `fk_participation_to_position` FOREIGN KEY (`id_position`) REFERENCES `position` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_participation_to_project` FOREIGN KEY (`id_project`) REFERENCES `project` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_prticipation_to_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnel` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,6 +247,7 @@ CREATE TABLE `participation` (
 
 LOCK TABLES `participation` WRITE;
 /*!40000 ALTER TABLE `participation` DISABLE KEYS */;
+INSERT INTO `participation` VALUES (2,'2022-10-01',NULL,'Thiết kế nội thất',1,9),(3,'2022-10-01',NULL,'Kiến trúc sư',1,3),(4,'2022-10-01',NULL,'Kỹ sư xây dựng',1,10),(5,'2022-10-01',NULL,'Kỹ sư giám sát xây dựng',1,11);
 /*!40000 ALTER TABLE `participation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +311,7 @@ CREATE TABLE `personnel` (
   KEY `fk_personnel_to_department_idx` (`id_department`),
   CONSTRAINT `fk_personnel_to_department` FOREIGN KEY (`id_department`) REFERENCES `department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_personnel_to_position` FOREIGN KEY (`id_position`) REFERENCES `position` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +320,7 @@ CREATE TABLE `personnel` (
 
 LOCK TABLES `personnel` WRITE;
 /*!40000 ALTER TABLE `personnel` DISABLE KEYS */;
-INSERT INTO `personnel` VALUES (1,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860612/photo-1438761681033-6461ffad8d80_vkpkbo.jpg','Trần Phương','Anh','Nữ','1999-01-24','107936578401','0909123564','107936578401anh@gmail.com','Quận 5, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',1,2,_binary ''),(2,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860902/photo-1619895862022-09114b41f16f_jyuw1s.jpg','Lê Trần Phương','Nhi','Nữ','2001-01-11','107423804325','0339559723','107423804325nhi@gmail.com','Quận 9, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_ADMIN',2,2,_binary ''),(3,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Vương Gia','Thanh','Nữ','2000-10-18','107423466831','0357070746','107423466831thanh@gmail.com','Quận Hóc Môn, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',3,4,_binary ''),(4,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Nguyễn Phương','Linh','Nữ','1999-11-28','107422175693','0961687266','107422175693linh@gmail.com','Quận 2, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',4,1,_binary ''),(5,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Phạm Văn','Nam','Nam','1999-04-19','107022201304','0339559721','107022201304nam@gmail.com','Quận 8, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',3,4,_binary ''),(6,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860984/photo-1557862921-37829c790f19_oqd0w4.jpg','Nguyễn Thiện Minh','Tâm','Nam','1997-06-14','106822980298','0347311331','106822980298tam@gmail.com','Quận Bình Thạnh, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_ADMIN',1,2,_binary ''),(7,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Trần Lê Quang','Chiến','Nam','2001-04-25','106822261393','0372405209','106822261393chien@gmail.com','Nhà Bè, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_ADMIN',4,1,_binary ''),(8,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Lê Đức Anh','Tuấn','Nam','1999-04-19','106822126899','0342461880','106822126899tuan@gmail.com','Quận 7, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',3,4,_binary ''),(9,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860529/photo-1633332755192-727a05c4013d_iwfpkd.jpg','Nguyễn Hữu','Minh','Nam','2000-10-01','106822059551','0392620393','106822059551minh@gmail.com','Quận Gò Vấp, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',2,2,_binary ''),(10,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Nguyễn Đăng Quốc','Anh','Nam','2000-07-07','104520019506','0902902019','104520019506anh@gmail.com','Quận 1, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',3,4,_binary '');
+INSERT INTO `personnel` VALUES (1,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860612/photo-1438761681033-6461ffad8d80_vkpkbo.jpg','Trần Phương','Anh','Nữ','1999-01-24','107936578401','0909123564','107936578401anh@gmail.com','Quận 5, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',1,2,_binary ''),(2,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860902/photo-1619895862022-09114b41f16f_jyuw1s.jpg','Lê Trần Phương','Nhi','Nữ','2001-01-11','107423804325','0339559723','107423804325nhi@gmail.com','Quận 9, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_ADMIN',2,2,_binary ''),(3,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Vương Gia','Thanh','Nữ','2000-10-18','107423466831','0357070746','107423466831thanh@gmail.com','Quận Hóc Môn, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',3,4,_binary ''),(4,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Nguyễn Phương','Linh','Nữ','1999-11-28','107422175693','0961687266','107422175693linh@gmail.com','Quận 2, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',4,1,_binary ''),(5,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Phạm Văn','Nam','Nam','1999-04-19','107022201304','0339559721','107022201304nam@gmail.com','Quận 8, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',3,4,_binary ''),(6,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860984/photo-1557862921-37829c790f19_oqd0w4.jpg','Nguyễn Thiện Minh','Tâm','Nam','1997-06-14','106822980298','0347311331','106822980298tam@gmail.com','Quận Bình Thạnh, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_ADMIN',24,4,_binary ''),(7,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Trần Lê Quang','Chiến','Nam','2001-04-25','106822261393','0372405209','106822261393chien@gmail.com','Nhà Bè, Tp Hồ Chí Minh','$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_ADMIN',4,1,_binary ''),(8,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Lê Đức Anh','Tuấn','Nam','1999-04-19','106822126899','0342461880','106822126899tuan@gmail.com','Quận 7, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',3,4,_binary ''),(9,'https://res.cloudinary.com/dgqmraoge/image/upload/v1662860529/photo-1633332755192-727a05c4013d_iwfpkd.jpg','Nguyễn Hữu','Minh','Nam','2000-10-01','106822059551','0392620393','106822059551minh@gmail.com','Quận Gò Vấp, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',2,2,_binary ''),(10,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Nguyễn Đăng Quốc','Anh','Nam','2000-07-07','104520019506','0902902019','104520019506anh@gmail.com','Quận 1, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',23,4,_binary ''),(11,'https://res.cloudinary.com/dgqmraoge/image/upload/v1658919834/UserAvatar_l51jgw.png','Lê Đức','Trung','Nam','1993-01-20','104520019555','0862902019','104520019555trung@gmail.com','Quận 7, Tp Hồ Chí Minh','$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO','ROLE_STAFF',24,4,_binary '');
 /*!40000 ALTER TABLE `personnel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,7 +337,7 @@ CREATE TABLE `position` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -345,7 +346,7 @@ CREATE TABLE `position` (
 
 LOCK TABLES `position` WRITE;
 /*!40000 ALTER TABLE `position` DISABLE KEYS */;
-INSERT INTO `position` VALUES (1,'Kỹ sư thiết kế cảnh quan','Chịu trách nhiệm thiết kế cảnh quan',_binary ''),(2,'Kỹ sư thiết kế nội thất','Chịu trách nhiệm thiết kế nội thất cho dự án thi công',_binary ''),(3,'Kiến trúc sư','Chịu trách nhiệm về bản vẻ xây dựng',_binary ''),(4,'Kế toán tài chính','Chịu trách nhiệm về các khoản chi cho công trình',_binary '');
+INSERT INTO `position` VALUES (1,'Kỹ sư thiết kế cảnh quan','Chịu trách nhiệm thiết kế cảnh quan',_binary ''),(2,'Kỹ sư thiết kế nội thất','Chịu trách nhiệm thiết kế nội thất cho dự án thi công',_binary ''),(3,'Kiến trúc sư','Chịu trách nhiệm về bản vẻ xây dựng',_binary ''),(4,'Kế toán tài chính','Chịu trách nhiệm về các khoản chi cho công trình',_binary ''),(23,'Kỹ sư xây dựng','Chịu trách nhiệm xây dựng công trình',_binary ''),(24,'Kỹ sư giám sát xây dựng','Chịu trách nhiệm giám sát thi công công trình',_binary '');
 /*!40000 ALTER TABLE `position` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,11 +368,15 @@ CREATE TABLE `project` (
   `created_date` datetime DEFAULT NULL,
   `max_person` int DEFAULT NULL,
   `percent` float DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
   `id_status` int DEFAULT NULL,
+  `id_personnel` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_project_to_status_idx` (`id_status`),
+  KEY `fk_project_to_personnel_idx` (`id_personnel`),
+  CONSTRAINT `fk_project_to_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnel` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_project_to_status` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,6 +385,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
+INSERT INTO `project` VALUES (1,'Dự án xây dựng nhà ở','Xây dựng nhà ở đơn giản, hiện đại','https://res.cloudinary.com/dgqmraoge/image/upload/v1664517641/photo-1512917774080-9991f1c4c750_pefctw.jpg','Quận 2, thành phố Hồ Chí Minh','2022-10-01','2023-04-20','2022-09-30 00:00:00',120,0,_binary '',2,2),(2,'Dự án xây dựng căn hộ cao cấp','Xây dựng căn hộ cho khách hàng VIP','https://res.cloudinary.com/dgqmraoge/image/upload/v1664517641/photo-1512917774080-9991f1c4c750_pefctw.jpg','Quận 7, thành phố Hồ Chí Minh','2022-10-01','2023-08-20','2022-09-20 00:00:00',200,0,_binary '',1,6);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,7 +401,7 @@ CREATE TABLE `status` (
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -404,6 +410,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
+INSERT INTO `status` VALUES (1,'Lập kế hoạch',NULL),(2,'Đã duyệt',NULL),(3,'Đang tiến hành',NULL),(4,'Đúng hướng',NULL),(5,'Đã hoãn',NULL),(6,'Đang kiểm tra',NULL),(7,'Đã hủy',NULL),(8,'Đang chờ',NULL),(9,'Đã hoàn tất',NULL),(10,'Đã lập hóa đơn',NULL);
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -422,6 +429,7 @@ CREATE TABLE `task` (
   `finish_date` date DEFAULT NULL,
   `priority` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `percent` float DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
   `id_personnel` int DEFAULT NULL,
   `id_category` int DEFAULT NULL,
   `id_status` int DEFAULT NULL,
@@ -432,7 +440,7 @@ CREATE TABLE `task` (
   CONSTRAINT `fk_stak_to_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_task_to_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnel` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_task_to_status` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,6 +449,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
+INSERT INTO `task` VALUES (1,'Lập kế hoạch tiến độ thi công','Lập kế hoạch chi tiết tiến độ thi công','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,1,3),(2,'Tổ chức công trường, làm láng trại cho công nhân','Làm lán trại cho công nhân thi công','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(3,'Vận chuyển thiết bị, vật tư, chuẩn bị mặt bằng thi công','Vận chuyển thiết bị vật tư','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(4,'Lập biên bản bàn giao mặt bằng, xác định ngày khởi công',NULL,'2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(5,'Kiểm tra hiện trạng đất, đo đạc, dọn dẹp mặt bằng thi công',NULL,'2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -453,4 +462,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-28 19:19:45
+-- Dump completed on 2022-10-04  8:55:00
