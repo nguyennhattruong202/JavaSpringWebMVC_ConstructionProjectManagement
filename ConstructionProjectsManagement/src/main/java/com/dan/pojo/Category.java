@@ -8,13 +8,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,14 +22,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "category")
@@ -38,7 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
     @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
-    @NamedQuery(name = "Category.findByDescription", query = "SELECT c FROM Category c WHERE c.description = :description"),
     @NamedQuery(name = "Category.findByStartDate", query = "SELECT c FROM Category c WHERE c.startDate = :startDate"),
     @NamedQuery(name = "Category.findByFinishDate", query = "SELECT c FROM Category c WHERE c.finishDate = :finishDate"),
     @NamedQuery(name = "Category.findByPercent", query = "SELECT c FROM Category c WHERE c.percent = :percent"),
@@ -51,54 +49,41 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 255)
     @Column(name = "name")
     private String name;
-    @Size(max = 300)
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "start_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date startDate;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "finish_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date finishDate;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "percent")
-    private Integer percent;
+    private Float percent;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategory")
+    @OneToMany(mappedBy = "idCategory")
     private Set<Task> taskSet;
-    @JoinColumn(name = "id_personnel", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Personnel idPersonnel;
+    @JoinColumn(name = "person_responsible", referencedColumnName = "id")
+    @ManyToOne
+    private Personnel personResponsible;
     @JoinColumn(name = "id_project", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Project idProject;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Status idStatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategory")
-    private Set<Target> targetSet;
 
     public Category() {
     }
 
     public Category(Integer id) {
         this.id = id;
-    }
-
-    public Category(Integer id, String name, Date startDate, Date finishDate) {
-        this.id = id;
-        this.name = name;
-        this.startDate = startDate;
-        this.finishDate = finishDate;
     }
 
     public Integer getId() {
@@ -141,11 +126,11 @@ public class Category implements Serializable {
         this.finishDate = finishDate;
     }
 
-    public Integer getPercent() {
+    public Float getPercent() {
         return percent;
     }
 
-    public void setPercent(Integer percent) {
+    public void setPercent(Float percent) {
         this.percent = percent;
     }
 
@@ -166,12 +151,12 @@ public class Category implements Serializable {
         this.taskSet = taskSet;
     }
 
-    public Personnel getIdPersonnel() {
-        return idPersonnel;
+    public Personnel getPersonResponsible() {
+        return personResponsible;
     }
 
-    public void setIdPersonnel(Personnel idPersonnel) {
-        this.idPersonnel = idPersonnel;
+    public void setPersonResponsible(Personnel personResponsible) {
+        this.personResponsible = personResponsible;
     }
 
     public Project getIdProject() {
@@ -188,15 +173,6 @@ public class Category implements Serializable {
 
     public void setIdStatus(Status idStatus) {
         this.idStatus = idStatus;
-    }
-
-    @XmlTransient
-    public Set<Target> getTargetSet() {
-        return targetSet;
-    }
-
-    public void setTargetSet(Set<Target> targetSet) {
-        this.targetSet = targetSet;
     }
 
     @Override

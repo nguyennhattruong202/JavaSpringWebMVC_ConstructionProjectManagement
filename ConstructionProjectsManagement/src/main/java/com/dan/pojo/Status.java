@@ -7,7 +7,6 @@ package com.dan.pojo;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +16,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "status")
@@ -33,8 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s"),
     @NamedQuery(name = "Status.findById", query = "SELECT s FROM Status s WHERE s.id = :id"),
     @NamedQuery(name = "Status.findByName", query = "SELECT s FROM Status s WHERE s.name = :name"),
-    @NamedQuery(name = "Status.findByDescription", query = "SELECT s FROM Status s WHERE s.description = :description"),
-    @NamedQuery(name = "Status.findByType", query = "SELECT s FROM Status s WHERE s.type = :type")})
+    @NamedQuery(name = "Status.findByDescription", query = "SELECT s FROM Status s WHERE s.description = :description")})
 public class Status implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,36 +40,28 @@ public class Status implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 255)
     @Column(name = "name")
     private String name;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @Size(max = 100)
-    @Column(name = "type")
-    private String type;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
-    private Set<Task> taskSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    @OneToMany(mappedBy = "idStatus")
+    private Set<Issue> issueSet;
+    @OneToMany(mappedBy = "idStatus")
+    private Set<Invest> investSet;
+    @OneToMany(mappedBy = "idStatus")
     private Set<Project> projectSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
+    @OneToMany(mappedBy = "idStatus")
+    private Set<Task> taskSet;
+    @OneToMany(mappedBy = "idStatus")
     private Set<Category> categorySet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idStatus")
-    private Set<Target> targetSet;
 
     public Status() {
     }
 
     public Status(Integer id) {
         this.id = id;
-    }
-
-    public Status(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -99,21 +88,22 @@ public class Status implements Serializable {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
+    @XmlTransient
+    public Set<Issue> getIssueSet() {
+        return issueSet;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setIssueSet(Set<Issue> issueSet) {
+        this.issueSet = issueSet;
     }
 
     @XmlTransient
-    public Set<Task> getTaskSet() {
-        return taskSet;
+    public Set<Invest> getInvestSet() {
+        return investSet;
     }
 
-    public void setTaskSet(Set<Task> taskSet) {
-        this.taskSet = taskSet;
+    public void setInvestSet(Set<Invest> investSet) {
+        this.investSet = investSet;
     }
 
     @XmlTransient
@@ -126,21 +116,21 @@ public class Status implements Serializable {
     }
 
     @XmlTransient
+    public Set<Task> getTaskSet() {
+        return taskSet;
+    }
+
+    public void setTaskSet(Set<Task> taskSet) {
+        this.taskSet = taskSet;
+    }
+
+    @XmlTransient
     public Set<Category> getCategorySet() {
         return categorySet;
     }
 
     public void setCategorySet(Set<Category> categorySet) {
         this.categorySet = categorySet;
-    }
-
-    @XmlTransient
-    public Set<Target> getTargetSet() {
-        return targetSet;
-    }
-
-    public void setTargetSet(Set<Target> targetSet) {
-        this.targetSet = targetSet;
     }
 
     @Override

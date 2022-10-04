@@ -6,12 +6,69 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="baseLayout" template="/WEB-INF/layout/baseLayout.jsp">
         <put-attribute name="title" value="BaseLayout"/>
         <put-attribute name="headerLayout" value="/WEB-INF/layout/headerLayout.jsp"/>
-        <put-attribute name="leftSidebar" value="/WEB-INF/layout/leftSidebar.jsp"/>
         <put-attribute name="content" value="BaseLayout"/>
         <put-attribute name="footerLayout" value="/WEB-INF/layout/footerLayout.jsp"/>
     </definition>
     <definition name="index" extends="baseLayout">
         <put-attribute name="title" value="Index"/>
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"/>
+    </definition>
+    <definition name="personnel" extends="baseLayout">
+        <put-attribute name="title" value="Personnel"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnel.jsp"/>
+    </definition>
+    <definition name="addPersonnel" extends="baseLayout">
+        <put-attribute name="title" value="Add personnel"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/addPersonnel.jsp"/>
+    </definition>
+    <definition name="project" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/project.jsp"/>
+    </definition>
+    <definition name="projectDetail" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/projectDetail.jsp"/>
+    </definition>
+    <definition name="addproject" extends="baseLayout">
+        <put-attribute name="title" value="Thêm dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/addproject.jsp"/>
+    </definition>
+    <definition name="updateproject" extends="baseLayout">
+        <put-attribute name="title" value="Sửa dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/updateproject.jsp"/>
+    </definition>
+    <definition name="listPartner" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách các đối tác"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/listPartner.jsp"/>
+    </definition>
+    <definition name="insertpartner" extends="baseLayout">
+        <put-attribute name="title" value="Thêm đối tác mới"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/insertPartner.jsp"/>
+    </definition>
+    <definition name="personnelDetail" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết nhân sự"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnelDetail.jsp"/>
+    </definition>
+    <definition name="position" extends="baseLayout">
+        <put-attribute name="title" value="Danh sách chức vụ"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/position.jsp"/>
+    </definition>
+    <definition name="positionDetail" extends="baseLayout">
+        <put-attribute name="title" value="Infomation"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/positionDetail.jsp"/>
+    </definition>
+    <definition name="task" extends="baseLayout">
+        <put-attribute name="title" value="Task"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/task.jsp"/>
+    </definition>
+    <definition name="category" extends="baseLayout">
+        <put-attribute name="title" value="Hang muc thi cong"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/category.jsp"/>
+    </definition>
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="Login"/>
+        <put-attribute name="headerLayout" value=""/>
+        <put-attribute name="content" value="/WEB-INF/jsp/login.jsp"/>
+        <put-attribute name="footerLayout" value=""/>
     </definition>
 </tiles-definitions>

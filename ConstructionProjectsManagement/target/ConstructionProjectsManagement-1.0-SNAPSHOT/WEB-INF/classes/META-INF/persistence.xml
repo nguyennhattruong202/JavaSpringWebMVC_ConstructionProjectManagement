@@ -13,6 +13,22 @@
     <class>com.dan.pojo.Category</class>
     <class>com.dan.pojo.Department</class>
     <class>com.dan.pojo.Status</class>
+    <class>com.dan.pojo.Participation</class>
+    <class>com.dan.pojo.Issue</class>
+    <class>com.dan.pojo.Partner</class>
+    <class>com.dan.pojo.Task_1</class>
+    <class>com.dan.pojo.Change_1</class>
+    <class>com.dan.pojo.Personnel_1</class>
+    <class>com.dan.pojo.Category_1</class>
+    <class>com.dan.pojo.Discuss_1</class>
+    <class>com.dan.pojo.Participation_1</class>
+    <class>com.dan.pojo.Invest_1</class>
+    <class>com.dan.pojo.Project_1</class>
+    <class>com.dan.pojo.Status_1</class>
+    <class>com.dan.pojo.Department_1</class>
+    <class>com.dan.pojo.Partner_1</class>
+    <class>com.dan.pojo.Issue_1</class>
+    <class>com.dan.pojo.Position_1</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/duanxaydungdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

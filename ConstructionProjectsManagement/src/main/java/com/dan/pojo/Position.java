@@ -7,7 +7,6 @@ package com.dan.pojo;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +16,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "position")
@@ -33,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Position.findAll", query = "SELECT p FROM Position p"),
     @NamedQuery(name = "Position.findById", query = "SELECT p FROM Position p WHERE p.id = :id"),
     @NamedQuery(name = "Position.findByName", query = "SELECT p FROM Position p WHERE p.name = :name"),
-    @NamedQuery(name = "Position.findByDescription", query = "SELECT p FROM Position p WHERE p.description = :description")})
+    @NamedQuery(name = "Position.findByDescription", query = "SELECT p FROM Position p WHERE p.description = :description"),
+    @NamedQuery(name = "Position.findByActive", query = "SELECT p FROM Position p WHERE p.active = :active")})
 public class Position implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,15 +41,15 @@ public class Position implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 255)
     @Column(name = "name")
     private String name;
-    @Size(max = 300)
+    @Size(max = 255)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPosition")
+    @Column(name = "active")
+    private Boolean active;
+    @OneToMany(mappedBy = "idPosition")
     private Set<Personnel> personnelSet;
 
     public Position() {
@@ -58,11 +57,6 @@ public class Position implements Serializable {
 
     public Position(Integer id) {
         this.id = id;
-    }
-
-    public Position(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -87,6 +81,14 @@ public class Position implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @XmlTransient

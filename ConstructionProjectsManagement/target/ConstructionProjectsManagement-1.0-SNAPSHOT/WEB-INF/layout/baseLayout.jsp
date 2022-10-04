@@ -27,20 +27,22 @@
         <!-- Begin font and icon cdn -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <!-- End font and icon cdn -->
 
         <!-- Begin java script of this project -->
         <script src="<c:url value="/js/baseLayout.js"/>"></script>
         <!-- End java script of this project -->
+
+        <!-- Begin css of this project -->
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/commonStyle.css"/>"/>
+        <!-- End css of this project -->
     </head>
     <body>
-        <div class="container-fluid">
-            <tiles:insertAttribute name="leftSidebar"/>
-            <div id="mainContent">
-                <tiles:insertAttribute name="headerLayout"/>
-                <tiles:insertAttribute name="content"/>
-                <tiles:insertAttribute name="footerLayout"/>
-            </div>
+        <div class="container-fluid bg-light">
+            <tiles:insertAttribute name="headerLayout"/>
+            <tiles:insertAttribute name="content"/>
+            <tiles:insertAttribute name="footerLayout"/>
         </div>
     </body>
 </html>

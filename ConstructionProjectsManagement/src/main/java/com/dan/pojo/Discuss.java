@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author DELL
+ * @author ACER
  */
 @Entity
 @Table(name = "discuss")
@@ -33,9 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Discuss.findAll", query = "SELECT d FROM Discuss d"),
     @NamedQuery(name = "Discuss.findById", query = "SELECT d FROM Discuss d WHERE d.id = :id"),
     @NamedQuery(name = "Discuss.findByTopic", query = "SELECT d FROM Discuss d WHERE d.topic = :topic"),
-    @NamedQuery(name = "Discuss.findByContent", query = "SELECT d FROM Discuss d WHERE d.content = :content"),
-    @NamedQuery(name = "Discuss.findByCreatedDate", query = "SELECT d FROM Discuss d WHERE d.createdDate = :createdDate"),
-    @NamedQuery(name = "Discuss.findByActive", query = "SELECT d FROM Discuss d WHERE d.active = :active")})
+    @NamedQuery(name = "Discuss.findByCreatedDate", query = "SELECT d FROM Discuss d WHERE d.createdDate = :createdDate")})
 public class Discuss implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,22 +43,21 @@ public class Discuss implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 200)
+    @Size(max = 255)
     @Column(name = "topic")
     private String topic;
-    @Size(max = 400)
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "content")
     private String content;
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Column(name = "active")
-    private Boolean active;
-    @JoinColumn(name = "id_personnel", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Personnel idPersonnel;
+    @JoinColumn(name = "person_created", referencedColumnName = "id")
+    @ManyToOne
+    private Personnel personCreated;
     @JoinColumn(name = "id_project", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Project idProject;
 
     public Discuss() {
@@ -101,20 +99,12 @@ public class Discuss implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Personnel getPersonCreated() {
+        return personCreated;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public Personnel getIdPersonnel() {
-        return idPersonnel;
-    }
-
-    public void setIdPersonnel(Personnel idPersonnel) {
-        this.idPersonnel = idPersonnel;
+    public void setPersonCreated(Personnel personCreated) {
+        this.personCreated = personCreated;
     }
 
     public Project getIdProject() {

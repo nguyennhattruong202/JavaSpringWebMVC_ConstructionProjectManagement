@@ -4,10 +4,14 @@
  */
 package com.dan.service;
 
-/**
- *
- * @author DELL
- */
+import com.dan.pojo.Project;
+import java.util.List;
+
 public interface ProjectService {
-    
+
+    List<Object[]> getProjects();
+
+    boolean removedProject(int id);
+
+    Project findProjectById(int id);
 }
