@@ -15,8 +15,8 @@
 <!-- End url area -->
 
 <div class="shadow rounded bg-body mt-3 mb-3">
-    <div class="p-3 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
-        <fmt:message key="partner.table.caption"/>
+    <div class="p-2 bg-primary d-flex align-items-center text-white fw-bold h5 rounded-top">
+        Danh sach doi tac
     </div>
     <div class="p-3">
         <div class="mb-2 d-flex justify-content-end">
@@ -39,16 +39,16 @@
             </a>
         </div>
 
-        <table class="table table-hover table-bordered">
-            <tr class="text-center">
-                <th><fmt:message key="partner.id"/></th>
-                <th><fmt:message key="partner.name"/></th>
-                <th><fmt:message key="partner.phone"/></th>
-                <th><fmt:message key="partner.email"/></th>
-                <th><fmt:message key="partner.website"/></th>
-                <th><fmt:message key="partner.country"/></th>
-                <th><fmt:message key="partner.type"/></th>
-                <th><fmt:message key="table.action"/></th>
+        <table class="table table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Ten doi tac</th>
+                <th>So dien thoai</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>Quoc gia</th>
+                <th>Loai</th>
+                <th>Thao tac</th>
             </tr>
             <tbody>
                 <c:forEach items="${partnerList}" var="partner">
@@ -61,69 +61,74 @@
                         <td>${partner.country}</td>
                         <td>${partner.type}</td>
                         <td class="text-center">
-                            <a href="#" class="text-decoration-none me-1" data-bs-toggle="modal" data-bs-target="#viewPartnerModal${partner.id}">
-                                <i class="fas fa-eye"></i>
+                            <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-ellipsis-h"></i>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewPartnerModal${partner.id}">Xem</a></li>
+                                <li><a class="dropdown-item" href="#">Sua</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#removePartnerModal${partner.id}">Xoa</a></li>
+                            </ul>
                             <div class="modal fade" id="viewPartnerModal${partner.id}">
                                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
-                                        <div class="text-start bg-primary text-white h5 text-uppercase w-100 p-3">
+                                        <div class="text-start bg-primary text-white h5 text-uppercase w-100 p-2">
                                             <fmt:message key="partner.info" />
                                         </div>
                                         <div class="modal-body">
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.id"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">ID:</div>
+                                                <div class="col">
+                                                    <input id="inputIdPartner" type="number" class="form-control bg-body" value="${partner.id}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.id}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.name"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">Tên đối tác:</div>
+                                                <div class="col">
+                                                    <input id="inputNamePartner" type="text" class="form-control bg-body" value="${partner.name}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.name}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.phone"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">Số điện thoại:</div>
+                                                <div class="col">
+                                                    <input id="inputPhonePartner" type="tel" class="form-control bg-body" value="${partner.phone}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.phone}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.email"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">Email:</div>
+                                                <div class="col">
+                                                    <input id="inputEmailPartner" type="email" class="form-control bg-body" value="${partner.email}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.email}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.website"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">Website:</div>
+                                                <div class="col">
+                                                    <input id="inputWebsitePartner" type="url" class="form-control bg-body" value="${partner.website}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.website}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.address"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">Địa chỉ:</div>
+                                                <div class="col">
+                                                    <input id="inputAddressPartner" type="text" class="form-control bg-body" value="${partner.address}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.address}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.country"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">Quốc gia:</div>
+                                                <div class="col">
+                                                    <input id="inputCountryPartner" type="text" class="form-control bg-body" value="${partner.country}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.country}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.type"/> 
+                                            <div class="row text-start mb-2">
+                                                <div class="col-2 d-flex align-items-center">Loại:</div>
+                                                <div class="col">
+                                                    <input id="inputTypePartner" type="text" class="form-control bg-body" value="${partner.type}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.type}</div>
                                             </div>
-                                            <div class="row mb-2 text-start border-bottom pt-2 pb-2">
-                                                <div class="col-2 d-flex align-items-center">
-                                                    <fmt:message key="partner.note"/> 
+                                            <div class="row text-start">
+                                                <div class="col-2 d-flex align-items-center">Ghi chú:</div>
+                                                <div class="col">
+                                                    <input id="inputNotePartner" type="text" class="form-control bg-body" value="${partner.note}" readonly="true">
                                                 </div>
-                                                <div class="col-10 d-flex align-items-center fw-bold">${partner.note}</div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -232,9 +237,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#removePartnerModal${partner.id}">
-                                <i class="fas fa-trash-alt text-danger"></i>
-                            </a>
                             <div class="modal fade" id="removePartnerModal${partner.id}" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <div class="modal-dialog">
                                     <div class="modal-content">

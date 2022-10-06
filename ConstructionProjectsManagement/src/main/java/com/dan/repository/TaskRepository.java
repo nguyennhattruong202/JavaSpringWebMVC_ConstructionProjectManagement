@@ -6,7 +6,7 @@ package com.dan.repository;
 
 import java.util.List;
 
-public interface CategoryRepository {
+public interface TaskRepository {
 
-    List<Object[]> getCategory(int projectId, boolean active);
+    List<Object[]> getTask(int categoryId, boolean active);
 }

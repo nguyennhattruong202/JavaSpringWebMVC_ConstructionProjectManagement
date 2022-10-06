@@ -4,22 +4,24 @@
  */
 package com.dan.formatter;
 
-import com.dan.pojo.Personnel;
+import com.dan.pojo.Status;
 import java.text.ParseException;
 import java.util.Locale;
 import org.springframework.format.Formatter;
 
-public class ProjectLeaderFormatter implements Formatter<Personnel> {
+public class StatusFormatter implements Formatter<Status> {
 
     @Override
-    public String print(Personnel t, Locale locale) {
+    public String print(Status t, Locale locale) {
         return String.valueOf(t.getId());
     }
 
     @Override
-    public Personnel parse(String id, Locale locale) throws ParseException {
-        Personnel personnel = new Personnel();
-        personnel.setId(Integer.parseInt(id));
-        return personnel;
+    public Status parse(String id, Locale locale) throws ParseException {
+        Status status = new Status();
+        status.setId(Integer.parseInt(id));
+
+        return status;
     }
+
 }

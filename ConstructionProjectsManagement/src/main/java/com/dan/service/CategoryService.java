@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CategoryService {
 
-    List<Object[]> getCategory();
+    List<Object[]> getCategory(int projectId, boolean active);
 }

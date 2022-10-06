@@ -10,6 +10,22 @@
 <div class="shadow rounded bg-body mt-3 mb-3">
     <div class="p-2 h5 bg-primary text-uppercase text-white rounded-top fw-bold">Danh sach cong viec</div>
     <div class="p-3">
+        <div class="mb-3 d-flex justify-content-end">
+            <form class="w-100 me-1">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputSearchTask">
+                    <button class="btn btn-outline-primary" id="buttonSearchTask" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <a id="buttonAddTask" class="btn btn-outline-primary me-1">
+                <i class="fas fa-plus"></i>
+            </a>
+            <a id="buttonPrintTask" class="btn btn-outline-primary">
+                <i class="fas fa-print"></i>
+            </a>
+        </div>
         <table class="table table-hover">
             <thead>
             <th>ID</th>
@@ -18,33 +34,19 @@
             <th>Ngay ket thuc</th>
             <th>Do uu tien</th>
             <th>Nguoi thuc hien</th>
-            <th>Hang muc thi cong</th>
             <th>Trang thai</th>
             <th class="text-center"></th>
             </thead>
-            <tbody>
-                <c:forEach begin="1" end="10" var="i">
+            <tbody id="tbodyListTask">
+                <c:forEach items="${dataOfTask}" var="data">
                     <tr class="align-middle">
-                        <td>ID</td>
-                        <td>Ten cong viec</td>
-                        <td>Ngay bat dau</td>
-                        <td>Ngay ket thuc</td>
-                        <td>
-                            <select class="form-control">
-                                <option value="1">Khong co</option>
-                                <option value="2">Thap</option>
-                                <option value="3">Trung binh</option>
-                                <option value="4">Cao</option>
-                            </select>
-                        </td>
-                        <td>Nguoi thuc hien</td>
-                        <td>Hang muc thi cong</td>
-                        <td>
-                            <select class="form-control">
-                                <option value="1">Value 1</option>
-                                <option value="2">Value 2</option>
-                            </select>
-                        </td>
+                        <td>${data[0]}</td>
+                        <td>${data[1]}</td>
+                        <td>${data[2]}</td>
+                        <td>${data[3]}</td>
+                        <td>${data[4]}</td>
+                        <td>${data[7]} ${data[8]}</td>
+                        <td>${data[9]}</td>
                         <td class="text-center">
                             <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-ellipsis-h"></i>
@@ -59,3 +61,4 @@
         </table>
     </div>
 </div>
+<script src="<c:url value="/js/task.js" />"></script>

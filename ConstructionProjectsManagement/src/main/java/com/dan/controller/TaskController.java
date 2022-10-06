@@ -4,7 +4,7 @@
  */
 package com.dan.controller;
 
-import com.dan.service.CategoryService;
+import com.dan.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,14 +12,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class CategoryController {
+public class TaskController {
 
     @Autowired
-    private CategoryService categoryService;
+    private TaskService taskService;
 
-    @GetMapping("/admin/project/{projectId}")
-    public String getCategoryList(Model model, @PathVariable(value = "projectId") int projectId) {
-        model.addAttribute("categoryList", this.categoryService.getCategory(projectId, true));
-        return "category";
+    @GetMapping("/admin/project/category/{categoryId}")
+    public String getTask(Model model, @PathVariable(value = "categoryId") int categoryId) {
+        model.addAttribute("dataOfTask", this.taskService.getTask(categoryId, true));
+        return "task";
+    }
+
+    @GetMapping("/admin/task/add")
+    public String addTask() {
+        return "taskAdd";
     }
 }

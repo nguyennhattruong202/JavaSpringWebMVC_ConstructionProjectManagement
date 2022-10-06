@@ -7,9 +7,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<c:url value="/admin/api/project" var="endpoint" />
+<c:url value="/admin" var="adminAction" />
 <div class="shadow rounded bg-body mt-3 mb-3">
-    <div class="p-2 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
-        Hang muc thi cong
+    <div class="p-2 bg-primary d-flex align-items-center text-white fw-bold h5 rounded-top">
+        Danh sach hang muc thi cong
     </div>
     <div class="p-3">
         <div class="mb-3 d-flex justify-content-end">
@@ -55,7 +57,7 @@
                                     <i class="fas fa-ellipsis-h"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Xem cong viec</a></li>
+                                    <li><a class="dropdown-item" href="${adminAction}/project/category/${listCategory[0]}">Xem cong viec</a></li>
                                     <li><a class="dropdown-item" href="#">Sua hang muc thi cong</a></li>
                                     <li><a class="dropdown-item" href="#">Xoa</a></li>
                                 </ul>

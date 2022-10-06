@@ -38,9 +38,4 @@ public class ProjectController {
         model.addAttribute("statusList", this.statusService.getStatus());
         return "projectDetail";
     }
-
-    @GetMapping("/task")
-    public String getTaskOfProject() {
-        return "task";
-    }
 }

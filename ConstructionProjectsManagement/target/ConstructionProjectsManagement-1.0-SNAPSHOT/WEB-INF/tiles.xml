@@ -37,9 +37,13 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Sửa dự án"/>
         <put-attribute name="content" value="/WEB-INF/jsp/updateproject.jsp"/>
     </definition>
-    <definition name="listPartner" extends="baseLayout">
+    <definition name="partner" extends="baseLayout">
         <put-attribute name="title" value="Danh sách các đối tác"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/listPartner.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/partner.jsp"/>
+    </definition>
+    <definition name="partnerUpdate" extends="baseLayout">
+        <put-attribute name="title" value="Chỉnh sửa thông tin đối tác"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/partnerUpdate.jsp"/>
     </definition>
     <definition name="insertpartner" extends="baseLayout">
         <put-attribute name="title" value="Thêm đối tác mới"/>
@@ -60,6 +64,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="task" extends="baseLayout">
         <put-attribute name="title" value="Task"/>
         <put-attribute name="content" value="/WEB-INF/jsp/task.jsp"/>
+    </definition>
+    <definition name="taskAdd" extends="baseLayout">
+        <put-attribute name="title" value="Add task"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/taskAdd.jsp"/>
     </definition>
     <definition name="category" extends="baseLayout">
         <put-attribute name="title" value="Hang muc thi cong"/>

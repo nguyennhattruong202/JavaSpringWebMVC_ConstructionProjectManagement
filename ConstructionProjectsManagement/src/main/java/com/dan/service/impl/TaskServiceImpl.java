@@ -4,21 +4,20 @@
  */
 package com.dan.service.impl;
 
-import com.dan.repository.CategoryRepository;
-import com.dan.service.CategoryService;
+import com.dan.repository.TaskRepository;
+import com.dan.service.TaskService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryServiceImpl implements CategoryService {
-    
+public class TaskServiceImpl implements TaskService {
+
     @Autowired
-    private CategoryRepository categoryRepository;
-    
+    private TaskRepository taskRepository;
+
     @Override
-    public List<Object[]> getCategory(int projectId, boolean active) {
-        return this.categoryRepository.getCategory(projectId, active);
+    public List<Object[]> getTask(int categoryId, boolean active) {
+        return this.taskRepository.getTask(categoryId, active);
     }
-    
 }

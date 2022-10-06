@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <c:url value="/admin/api/project" var="endpoint" />
-<c:url value="/admin/project" var="action" />
+<c:url value="/admin" var="adminAction" />
 <div class="shadow rounded bg-body mt-3 mb-3">
     <div class="p-2 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
         Danh sach du an
@@ -19,7 +19,7 @@
             <form class="w-100 me-1">
                 <div class="input-group">
                     <input type="text" class="form-control" id="inputSearchProject" placeholder="Nhập từ khóa...">
-                    <button class="btn btn-outline-primary" id="buttonSearchPrọect" type="button">
+                    <button class="btn btn-outline-primary" id="buttonSearchProject" type="button">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -62,8 +62,8 @@
                                     <i class="fas fa-ellipsis-h"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Xem hang muc thi cong</a></li>
-                                    <li><a class="dropdown-item" href="${action}/${pl[0]}/detail">Sua du an</a></li>
+                                    <li><a class="dropdown-item" href="${adminAction}/project/${pl[0]}">Xem hang muc thi cong</a></li>
+                                    <li><a class="dropdown-item" href="${adminAction}/${pl[0]}/detail">Sua du an</a></li>
                                     <li><a class="dropdown-item" onclick="removeProject('${endpoint}/removed/${pl[0]}')">Xoa</a></li>
                                 </ul>
                             </td>
