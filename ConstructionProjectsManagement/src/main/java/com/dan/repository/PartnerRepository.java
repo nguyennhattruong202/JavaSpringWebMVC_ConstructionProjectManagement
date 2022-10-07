@@ -6,7 +6,6 @@ package com.dan.repository;
 
 import com.dan.pojo.Partner;
 import java.util.List;
-import java.util.Map;
 
 public interface PartnerRepository {
 
@@ -14,5 +13,9 @@ public interface PartnerRepository {
 
     List<Partner> searchAll(String kw);
 
-    void updatePartner(int id, Map<String, String> params);
+    boolean updatePartner(int id, Partner partner);
+
+    Partner findPartnerById(int id, boolean active);
+
+    boolean addPartner(Partner partner);
 }

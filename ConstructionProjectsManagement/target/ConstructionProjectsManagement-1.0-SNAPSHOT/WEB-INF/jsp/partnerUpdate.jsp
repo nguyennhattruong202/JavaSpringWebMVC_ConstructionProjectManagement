@@ -4,62 +4,104 @@
     Author     : ACER
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<c:url value="/admin" var="adminAction"/>
 <div class="shadow rounded bg-body mt-3 mb-3">
     <div class="p-2 bg-primary d-flex align-items-center text-white fw-bold h5 rounded-top">
         Chỉnh sửa thông tin đối tác
     </div>
     <div class="p-3">
-        <div class="row mb-2">
-            <div class="col">
-                <label for="inputNamePartnerUpdate" class="form-label">Ten doi tac:</label>
-                <input id="inputNamePartnerUpdate" type="text" class="form-control bg-body" value="Ten doi tac">
+        <form:form method="post" action="${adminAction}/partner/${partnerById.id}/update" modelAttribute="partner">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">   
+                        <form:input path="name" id="inputNamePartnerUpdate" type="text" 
+                                    cssClass="form-control" placeholder="inputNamePartnerUpdate"
+                                    value="${partnerById.name}"/>
+                        <label for="inputNamePartnerUpdate">Tên đối tác</label>
+                        <form:errors path="name" cssClass="text-danger"/>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col">
-                <label for="inputPhonePartnerUpdate" class="form-label">So dien thoai:</label>
-                <input id="inputPhonePartnerUpdate" type="tel" class="form-control bg-body" value="0865761892">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <form:input path="phone" id="inputPhonePartnerUpdate" type="tel" 
+                                    cssClass="form-control" placeholder="inputPhonePartnerUpdate"
+                                    value="${partnerById.phone}"/>
+                        <label for="inputPhonePartnerUpdate">Số điện thoại</label>
+                        <form:errors path="phone" cssClass="text-danger"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating"> 
+                        <form:input path="email" id="inputEmailPartnerUpdate" type="email" 
+                                    cssClass="form-control" placeholder="inputEmailPartnerUpdate"
+                                    value="${partnerById.email}"/>
+                        <label for="inputEmailPartnerUpdate">Email</label>
+                        <form:errors path="email" cssClass="text-danger"/>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                <label for="inputEmailPartnerUpdate" class="form-label">Email:</label>
-                <input id="inputEmailPartnerUpdate" type="email" class="form-control bg-body" value="nhattruongnguyen202@gmail.com">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <form:input path="website" id="inputWebsitePartnerUpdate" type="url" 
+                                    cssClass="form-control" placeholder="inputWebsitePartnerUpdate"
+                                    value="${partnerById.website}"/>
+                        <label for="inputWebsitePartnerUpdate">Website</label>
+                        <form:errors path="website" cssClass="text-danger"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <form:input path="country" id="inputCountryPartnerUpdate" type="text" 
+                                    cssClass="form-control" placeholder="inputCountryPartnerUpdate"
+                                    value="${partnerById.country}"/>
+                        <label for="inputCountryPartnerUpdate">Quốc gia</label>
+                        <form:errors path="country" cssClass="text-danger"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <form:select path="type" id="selectTypePartnerUpdate" cssClass="form-select">
+                            <option selected="true" value="0" disabled="true">Chọn:</option>
+                            <option value="Tổ chức">Tổ chức</option>
+                            <option value="Cá nhân">Cá nhân</option>
+                        </form:select>
+                        <label for="selectTypePartnerUpdate">Loại</label>
+                        <form:errors path="type" cssClass="text-danger"/>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col">
-                <label for="inputWebsitePartnerUpdate" class="form-label">Website:</label>
-                <input id="inputWebsitePartnerUpdate" type="url" class="form-control bg-body" value="https://www.greentechco.com.vn">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <form:input path="address" id="inputAddressPartnerUpdate" type="text" 
+                                    cssClass="form-control" placeholder="inputAddressPartnerUpdate"
+                                    value="${partnerById.address}"/>
+                        <label for="inputAddressPartnerUpdate">Địa chỉ</label>
+                        <form:errors path="address" cssClass="text-danger"/>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                <label for="inputCountryPartnerUpdate" class="form-label">Quoc gia:</label>
-                <input id="inputCountryPartnerUpdate" type="text" class="form-control bg-body" value="Quoc gia">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating">
+                        <form:textarea path="note" id="textareaNotePartnerUpdate" type="text" 
+                                       cssClass="form-control" placeholder="textareaNotePartnerUpdate"/>
+                        <label for="textareaNotePartnerUpdate">Ghi chú</label>
+                        <form:errors path="note" cssClass="text-danger"/>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                <label for="selectTypePartnerUpdate" class="form-label">Loai:</label>
-                <select id="selectTypePartnerUpdate" class="form-select">
-                    <option selected="true" value="0" disabled="true">Chọn:</option>
-                    <option value="1">Tổ chức</option>
-                    <option value="0">Cá nhân</option>
-                </select>
+            <div class="text-end">
+                <a href="${adminAction}/partner/list" class="btn btn-outline-primary my-wpx-100">Quay lại</a>
+                <button type="submit" class="btn btn-outline-danger my-wpx-100">Lưu</button>
             </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col">
-                <label for="inputAddressPartnerUpdate" class="form-label">Địa chỉ:</label>
-                <input id="inputAddressPartnerUpdate" type="text" class="form-control bg-body" value="Địa chỉ">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col">
-                <label for="textareaNotePartnerUpdate" class="form-label">Ghi chú:</label>
-                <textarea id="textareaNotePartnerUpdate" type="text" class="form-control bg-body"></textarea>
-            </div>
-        </div>
-        <div class="text-end">
-            <button type="button" class="btn btn-outline-primary my-wpx-100">Quay lai</button>
-            <button type="button" class="btn btn-outline-danger my-wpx-100">Luu</button>
-        </div>
+        </form:form>
     </div>
 </div>

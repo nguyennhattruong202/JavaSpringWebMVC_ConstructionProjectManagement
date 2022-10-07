@@ -45,9 +45,9 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Chỉnh sửa thông tin đối tác"/>
         <put-attribute name="content" value="/WEB-INF/jsp/partnerUpdate.jsp"/>
     </definition>
-    <definition name="insertpartner" extends="baseLayout">
+    <definition name="partnerAdd" extends="baseLayout">
         <put-attribute name="title" value="Thêm đối tác mới"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/insertPartner.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/partnerAdd.jsp"/>
     </definition>
     <definition name="personnelDetail" extends="baseLayout">
         <put-attribute name="title" value="Chi tiết nhân sự"/>

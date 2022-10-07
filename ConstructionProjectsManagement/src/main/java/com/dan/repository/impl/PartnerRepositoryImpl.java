@@ -59,21 +59,51 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     }
 
     @Override
-    public void updatePartner(int id, Map<String, String> params) {
+    public boolean updatePartner(int id, Partner partner) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Partner> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Partner.class);
         Root root = criteriaUpdate.from(Partner.class);
-        criteriaUpdate.set("name", params.get("name"));
-        criteriaUpdate.set("phone", params.get("phone"));
-        criteriaUpdate.set("email", params.get("email"));
-        criteriaUpdate.set("website", params.get("website"));
-        criteriaUpdate.set("country", params.get("country"));
-        criteriaUpdate.set("address", params.get("address"));
-        criteriaUpdate.set("type", params.get("type"));
-        criteriaUpdate.set("note", params.get("note"));
-        criteriaUpdate.set("active", params.get("active"));
+        criteriaUpdate.set("name", partner.getName());
+        criteriaUpdate.set("phone", partner.getPhone());
+        criteriaUpdate.set("email", partner.getEmail());
+        criteriaUpdate.set("website", partner.getWebsite());
+        criteriaUpdate.set("country", partner.getCountry());
+        criteriaUpdate.set("address", partner.getAddress());
+        criteriaUpdate.set("type", partner.getType());
+        criteriaUpdate.set("note", partner.getNote());
+        criteriaUpdate.set("active", true);
         criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), id));
-        session.createQuery(criteriaUpdate).executeUpdate();
+        int result = session.createQuery(criteriaUpdate).executeUpdate();
+        if (result > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Partner findPartnerById(int id, boolean active) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Partner> criteriaQuery = criteriaBuilder.createQuery(Partner.class);
+        Root root = criteriaQuery.from(Partner.class);
+        Predicate pActive = criteriaBuilder.equal(root.get("active"), active);
+        Predicate pId = criteriaBuilder.equal(root.get("id"), id);
+        criteriaQuery.select(root).where(pActive, pId);
+        Query query = session.createQuery(criteriaQuery);
+        return (Partner) query.getSingleResult();
+    }
+
+    @Override
+    public boolean addPartner(Partner partner) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        try {
+            session.save(partner);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 }

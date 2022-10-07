@@ -4,6 +4,7 @@ com\dan\service\PartnerService.class
 META-INF\spring.components
 com\dan\service\CategoryService.class
 com\dan\controller\ApiProjectController.class
+com\dan\formatter\PersonnelFormatter.class
 com\dan\pojo\Department.class
 com\dan\service\impl\StatusServiceImpl.class
 com\dan\service\ProjectService.class
@@ -37,6 +38,7 @@ com\dan\config\HibernateConfig.class
 com\dan\repository\impl\PositionRepositoryImpl.class
 com\dan\pojo\Participation.class
 com\dan\repository\impl\ProjectRepositoryImpl.class
+com\dan\formatter\StatusFormatter.class
 com\dan\service\impl\PersonnelServiceImpl.class
 com\dan\service\impl\TaskServiceImpl.class
 com\dan\pojo\Issue.class
@@ -44,7 +46,6 @@ com\dan\repository\impl\PartnerRepositoryImpl.class
 com\dan\pojo\Invest.class
 com\dan\pojo\Position.class
 com\dan\service\PositionService.class
-com\dan\formatter\ProjectLeaderFormatter.class
 com\dan\repository\impl\CategoryRepositoryImpl.class
 com\dan\service\impl\ProjectServiceImpl.class
 com\dan\service\StatusService.class

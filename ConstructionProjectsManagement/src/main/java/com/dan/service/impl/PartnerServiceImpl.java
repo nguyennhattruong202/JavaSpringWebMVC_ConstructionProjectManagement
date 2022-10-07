@@ -8,7 +8,6 @@ import com.dan.pojo.Partner;
 import com.dan.repository.PartnerRepository;
 import com.dan.service.PartnerService;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +28,18 @@ public class PartnerServiceImpl implements PartnerService {
     }
 
     @Override
-    public void updatePartner(int id, Map<String, String> params) {
-        this.partnerRepository.updatePartner(id, params);
+    public boolean updatePartner(int id, Partner partner) {
+        return this.partnerRepository.updatePartner(id, partner);
+    }
+
+    @Override
+    public Partner findPartnerById(int id, boolean active) {
+        return this.partnerRepository.findPartnerById(id, active);
+    }
+
+    @Override
+    public boolean addPartner(Partner partner) {
+        partner.setActive(true);
+        return this.partnerRepository.addPartner(partner);
     }
 }
