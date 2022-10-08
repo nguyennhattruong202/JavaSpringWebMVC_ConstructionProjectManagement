@@ -25,17 +25,13 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Quản lý dự án"/>
         <put-attribute name="content" value="/WEB-INF/jsp/project.jsp"/>
     </definition>
-    <definition name="projectDetail" extends="baseLayout">
+    <definition name="projectAdd" extends="baseLayout">
+        <put-attribute name="title" value="Thêm dự án mới"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/projectAdd.jsp"/>
+    </definition>
+    <definition name="projectUpdate" extends="baseLayout">
         <put-attribute name="title" value="Chi tiết dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/projectDetail.jsp"/>
-    </definition>
-    <definition name="addproject" extends="baseLayout">
-        <put-attribute name="title" value="Thêm dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/addproject.jsp"/>
-    </definition>
-    <definition name="updateproject" extends="baseLayout">
-        <put-attribute name="title" value="Sửa dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/updateproject.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/projectUpdate.jsp"/>
     </definition>
     <definition name="partner" extends="baseLayout">
         <put-attribute name="title" value="Danh sách các đối tác"/>
@@ -72,6 +68,14 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="category" extends="baseLayout">
         <put-attribute name="title" value="Hang muc thi cong"/>
         <put-attribute name="content" value="/WEB-INF/jsp/category.jsp"/>
+    </definition>
+    <definition name="categoryAdd" extends="baseLayout">
+        <put-attribute name="title" value="Thêm dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/categoryAdd.jsp"/>
+    </definition>
+    <definition name="categoryUpdate" extends="baseLayout">
+        <put-attribute name="title" value="Sửa dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/categoryUpdate.jsp"/>
     </definition>
     <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Login"/>

@@ -31,4 +31,14 @@ public class ProjectServiceImpl implements ProjectService {
     public Project findProjectById(int id) {
         return this.projectRepository.findProjectById(id);
     }
+
+    @Override
+    public boolean addProject(Project project) {
+        return this.projectRepository.addProject(project);
+    }
+
+    @Override
+    public boolean updateProject(Project project) {
+        return this.projectRepository.updateProject(project);
+    }
 }

@@ -4,9 +4,12 @@
  */
 package com.dan.service;
 
+import com.dan.pojo.Category;
 import java.util.List;
 
 public interface CategoryService {
 
     List<Object[]> getCategory(int projectId, boolean active);
+
+    Category findCategoryById(int categoryId, boolean active);
 }

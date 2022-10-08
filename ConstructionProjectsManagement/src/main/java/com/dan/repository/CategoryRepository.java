@@ -4,9 +4,12 @@
  */
 package com.dan.repository;
 
+import com.dan.pojo.Category;
 import java.util.List;
 
 public interface CategoryRepository {
 
     List<Object[]> getCategory(int projectId, boolean active);
+
+    Category findCategoryById(int categoryId, boolean active);
 }

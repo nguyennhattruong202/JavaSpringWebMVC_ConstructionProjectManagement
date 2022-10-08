@@ -40,10 +40,10 @@ public class ProjectRepositoryImpl implements ProjectRepository {
         Predicate pProjectPersonnel = criteriaBuilder.equal(rootProject.get("idPersonnel"), rootPersonnel.get("id"));
         Predicate pActive = criteriaBuilder.equal(rootProject.get("active"), true);
         criteriaQuery.where(pProjectStatus, pActive, pProjectPersonnel);
-        criteriaQuery.multiselect(rootProject.get("id"), rootProject.get("name"), rootProject.get("startDate"),
-                rootProject.get("finishDate"), rootProject.get("maxPerson"), rootProject.get("percent"),
-                rootStatus.get("name"), rootProject.get("createdDate"), rootPersonnel.get("lastName"),
-                rootPersonnel.get("firstName"));
+        criteriaQuery.multiselect(rootProject.get("id"), rootProject.get("name"), rootProject.get("description"),
+                rootProject.get("image"), rootProject.get("location"), rootProject.get("startDate"),
+                rootProject.get("finishDate"), rootProject.get("createdDate"), rootProject.get("maxPerson"),
+                rootProject.get("percent"), rootStatus.get("name"), rootPersonnel.get("lastName"), rootPersonnel.get("firstName"));
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }
@@ -74,5 +74,29 @@ public class ProjectRepositoryImpl implements ProjectRepository {
         criteriaQuery.select(root).where(pActive, pId);
         Query query = session.createQuery(criteriaQuery);
         return (Project) query.getSingleResult();
+    }
+
+    @Override
+    public boolean addProject(Project project) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            session.save(project);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateProject(Project project) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            session.update(project);
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
     }
 }

@@ -14,4 +14,8 @@ public interface ProjectService {
     boolean removedProject(int id);
 
     Project findProjectById(int id);
+
+    boolean addProject(Project project);
+
+    boolean updateProject(Project project);
 }

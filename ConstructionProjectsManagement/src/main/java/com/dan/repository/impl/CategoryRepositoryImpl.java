@@ -50,4 +50,17 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         return query.getResultList();
     }
 
+    @Override
+    public Category findCategoryById(int categoryId, boolean active) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Category> criteriaQuery = criteriaBuilder.createQuery(Category.class);
+        Root root = criteriaQuery.from(Category.class);
+        Predicate pId = criteriaBuilder.equal(root.get("id"), categoryId);
+        Predicate pActive = criteriaBuilder.equal(root.get("active"), active);
+        criteriaQuery.select(root).where(pId, pActive);
+        Query query = session.createQuery(criteriaQuery);
+        return (Category) query.getSingleResult();
+    }
+
 }

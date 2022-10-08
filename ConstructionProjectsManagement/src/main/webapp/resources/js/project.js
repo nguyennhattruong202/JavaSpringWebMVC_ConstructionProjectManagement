@@ -7,9 +7,8 @@ function removeProject(endpoint) {
     fetch(endpoint, {
         method: "get"
     }).then(function (res) {
-        if (confirm("Ban co chac muon xoa?") === true)
-            if (res.status === 200)
-                location.reload();
+        if (res.status === 200)
+            location.reload();
     }).catch(function (err) {
         console.error(err);
     });

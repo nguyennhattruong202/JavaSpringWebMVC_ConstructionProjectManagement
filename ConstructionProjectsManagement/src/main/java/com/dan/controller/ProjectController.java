@@ -4,6 +4,7 @@
  */
 package com.dan.controller;
 
+import com.dan.pojo.Project;
 import com.dan.service.PersonnelService;
 import com.dan.service.ProjectService;
 import com.dan.service.StatusService;
@@ -11,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/admin/project")
 public class ProjectController {
 
     @Autowired
@@ -25,17 +26,45 @@ public class ProjectController {
     @Autowired
     private StatusService statusService;
 
-    @GetMapping
+    @GetMapping("/admin/project")
     public String getProjectList(Model model) {
         model.addAttribute("projectList", this.projectService.getProjects());
         return "project";
     }
 
-    @GetMapping("/{id}/detail")
-    public String getProjectDetail(@PathVariable(value = "id") int id, Model model) {
+    @GetMapping("/admin/project/add")
+    public String loadAddProjectForm(Model model) {
+        model.addAttribute("CSListForProjectAdd", this.personnelService.constructionSupervisonList());
+        model.addAttribute("statusListForProjectAdd", this.statusService.getStatus());
+        model.addAttribute("newProject", new Project());
+        return "projectAdd";
+    }
+
+    @PostMapping("/admin/project/add")
+    public String addProject(@ModelAttribute(value = "newProject") Project project) {
+        project.setImageProject(null);
+        project.setImage(null);
+        project.setActive(true);
+        if (this.projectService.addProject(project) == true) {
+            return "redirect:/admin/project";
+        }
+        return "projectAdd";
+    }
+
+    @GetMapping("/admin/project/{id}/update")
+    public String loadUpdateProjectForm(@PathVariable(value = "id") int id, Model model) {
         model.addAttribute("projectById", this.projectService.findProjectById(id));
-        model.addAttribute("CSList", this.personnelService.constructionSupervisonList());
-        model.addAttribute("statusList", this.statusService.getStatus());
-        return "projectDetail";
+        model.addAttribute("csListForUpdate", this.personnelService.constructionSupervisonList());
+        model.addAttribute("statusListForUpdate", this.statusService.getStatus());
+        model.addAttribute("projectUpdate", new Project());
+        return "projectUpdate";
+    }
+
+    @PostMapping("/admin/project/{id}/update")
+    public String updateProject(@ModelAttribute(value = "projectUpdate") Project projectUpdate) {
+        if (this.projectService.updateProject(projectUpdate) == true) {
+            return "redirect:/admin/project";
+        }
+        return "projectUpdate";
     }
 }

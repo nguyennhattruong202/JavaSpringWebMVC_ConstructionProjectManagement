@@ -4,6 +4,7 @@
  */
 package com.dan.service.impl;
 
+import com.dan.pojo.Category;
 import com.dan.repository.CategoryRepository;
 import com.dan.service.CategoryService;
 import java.util.List;
@@ -12,13 +13,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    
+
     @Autowired
     private CategoryRepository categoryRepository;
-    
+
     @Override
     public List<Object[]> getCategory(int projectId, boolean active) {
         return this.categoryRepository.getCategory(projectId, active);
     }
-    
+
+    @Override
+    public Category findCategoryById(int categoryId, boolean active) {
+        return this.categoryRepository.findCategoryById(categoryId, active);
+    }
+
 }

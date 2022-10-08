@@ -49,7 +49,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Lập phương án tiến độ thi công','Lập phương án tiến độ thi công phù hợp','2022-10-01','2022-10-07',NULL,_binary '',2,1,1),(2,'Chuẩn bị công trường','Chuẩn bị công trường phục vụ thi công ','2022-10-01','2022-10-07',NULL,_binary '',2,1,3),(3,'Thi công hạ tầng','Thi công từ sàn trệt trở xuống','2022-10-07','2022-10-27',NULL,_binary '',10,1,8),(4,'Thi công sàn tầng','Thi công sàn tầng','2022-10-28','2022-11-10',NULL,_binary '',10,1,8),(5,'Thi công xây tường','Thi công tường','2022-11-11','2022-12-05',NULL,_binary '',10,1,8),(6,'Thi công tô trát tường','Thi công tô trác tường','2022-12-06','2023-01-02',NULL,_binary '',10,1,8),(7,'Thi công mái che','Thi công mái che','2023-01-03','2023-01-23',NULL,_binary '',10,1,8),(8,'Công tác hoàn thiện','Thi công giai đoạn cuối','2023-01-24','2023-03-02',NULL,_binary '',10,1,8),(9,'Kiểm tra công trình','Kiểm tra trước khi bàn giao mặt bằng','2023-03-03','2023-03-14',NULL,_binary '',11,1,8),(10,'Tháo dỡ công trường','Di dời trang thiết bị xây dựng','2023-03-15','2023-03-22',NULL,_binary '',2,1,8);
+INSERT INTO `category` VALUES (1,'Lập phương án tiến độ thi công','Lập phương án tiến độ thi công phù hợp','2022-10-01','2022-10-07',0,_binary '',2,1,1),(2,'Chuẩn bị công trường','Chuẩn bị công trường phục vụ thi công ','2022-10-01','2022-10-07',0,_binary '',2,1,3),(3,'Thi công hạ tầng','Thi công từ sàn trệt trở xuống','2022-10-07','2022-10-27',0,_binary '',10,1,8),(4,'Thi công sàn tầng','Thi công sàn tầng','2022-10-28','2022-11-10',0,_binary '',10,1,8),(5,'Thi công xây tường','Thi công tường','2022-11-11','2022-12-05',0,_binary '',10,1,8),(6,'Thi công tô trát tường','Thi công tô trác tường','2022-12-06','2023-01-02',0,_binary '',10,1,8),(7,'Thi công mái che','Thi công mái che','2023-01-03','2023-01-23',0,_binary '',10,1,8),(8,'Công tác hoàn thiện','Thi công giai đoạn cuối','2023-01-24','2023-03-02',0,_binary '',10,1,8),(9,'Kiểm tra công trình','Kiểm tra trước khi bàn giao mặt bằng','2023-03-03','2023-03-14',0,_binary '',11,1,8),(10,'Tháo dỡ công trường','Di dời trang thiết bị xây dựng','2023-03-15','2023-03-22',0,_binary '',2,1,8);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +270,7 @@ CREATE TABLE `partner` (
   `note` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +279,7 @@ CREATE TABLE `partner` (
 
 LOCK TABLES `partner` WRITE;
 /*!40000 ALTER TABLE `partner` DISABLE KEYS */;
-INSERT INTO `partner` VALUES (1,'Công ty TNHH Thương Mại Green Tech','0972699926','partner@greentechco.com.vn','https://www.greentechco.com.vn','Việt Nam','B2, đường số 3, khu phố 4, phường An Khánh, Tp Thủ Đức, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary '\0'),(2,'Công ty TNHH Adal Home','0901189896','partner@adalhome.com.vn','https://www.adalhome.com.vn','Việt Nam','Số 2, đường số 7, khu phố 4, phường An Phú, Tp Thủ Đức, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(3,'Công ty TNHH MTV Vina Built','0987447766','vinbuilt7777@gmail.com','https://www.vinbuilt.bizz.vn','Việt Nam','394/35, Âu Cơ, phường 10, quận Tân Bình, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(4,'Công ty TNHH vật liệu xây dựng An Nhiên Phát','0868697082','sanvachtran@gmail.com','https://www.sanvachtran.com','Việt Nam','52, Lê Hoàng Phái, phường 17, quận Gò Vấp, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary ''),(5,'Công ty TNHH MTV vật liệu xây dựng Hiệp Hà','0909672222','ctyhiepha@gmail.com','https://www.vlxdhiepha.com','Việt Nam','33/2, Cao Lỗ, phường 4, quận 8, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary '\0');
+INSERT INTO `partner` VALUES (1,'Công ty TNHH Thương Mại Green Tech','0972699926','partner@greentechco.com.vn','https://www.greentechco.com.vn','Việt Nam','B2, đường số 3, khu phố 4, phường An Khánh, Tp Thủ Đức, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(2,'CÃ´ng ty TNHH Adal Home 123','0901189896','partner@adalhome.com.vn','https://www.adalhome.com.vn','Viá»t Nam','Sá» 2, ÄÆ°á»ng sá» 7, khu phá» 4, phÆ°á»ng An PhÃº, Tp Thá»§ Äá»©c, Tp Há» ChÃ­ Minh','Tá» chá»©c','Demo update',_binary ''),(3,'Công ty TNHH MTV Vina Built','0987447766','vinbuilt7777@gmail.com','https://www.vinbuilt.bizz.vn','Việt Nam','394/35, Âu Cơ, phường 10, quận Tân Bình, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(4,'Công ty TNHH vật liệu xây dựng An Nhiên Phát','0868697082','sanvachtran@gmail.com','https://www.sanvachtran.com','Việt Nam','52, Lê Hoàng Phái, phường 17, quận Gò Vấp, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary ''),(5,'Công ty TNHH MTV vật liệu xây dựng Hiệp Hà','0909672222','ctyhiepha@gmail.com','https://www.vlxdhiepha.com','Việt Nam','33/2, Cao Lỗ, phường 4, quận 8, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary '\0');
 /*!40000 ALTER TABLE `partner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,7 +376,7 @@ CREATE TABLE `project` (
   KEY `fk_project_to_personnel_idx` (`id_personnel`),
   CONSTRAINT `fk_project_to_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnel` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_project_to_status` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -449,7 +449,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'Lập kế hoạch tiến độ thi công','Lập kế hoạch chi tiết tiến độ thi công','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,1,3),(2,'Tổ chức công trường, làm láng trại cho công nhân','Làm lán trại cho công nhân thi công','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(3,'Vận chuyển thiết bị, vật tư, chuẩn bị mặt bằng thi công','Vận chuyển thiết bị vật tư','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(4,'Lập biên bản bàn giao mặt bằng, xác định ngày khởi công',NULL,'2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(5,'Kiểm tra hiện trạng đất, đo đạc, dọn dẹp mặt bằng thi công',NULL,'2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3);
+INSERT INTO `task` VALUES (1,'Lập kế hoạch tiến độ thi công','Lập kế hoạch chi tiết tiến độ thi công','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,1,3),(2,'Tổ chức công trường, làm láng trại cho công nhân','Làm lán trại cho công nhân thi công','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(3,'Vận chuyển thiết bị, vật tư, chuẩn bị mặt bằng thi công','Vận chuyển thiết bị vật tư','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(4,'Lập biên bản bàn giao mặt bằng, xác định ngày khởi công','Bàn giao, xác định ngày khởi công','2022-10-01','2022-10-07','Trung bình',0,_binary '',2,2,3),(5,'Kiểm tra hiện trạng đất, đo đạc, dọn dẹp mặt bằng thi công','Kiểm tra đất, đo đạc, dọn dẹp mặt bằng','2022-10-01','2022-10-06','Trung bình',0,_binary '',2,2,3);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -462,4 +462,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-04  8:55:00
+-- Dump completed on 2022-10-08 19:06:30

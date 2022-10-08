@@ -5,6 +5,8 @@
 package com.dan.controller;
 
 import com.dan.service.CategoryService;
+import com.dan.service.ProjectService;
+import com.dan.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,22 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ProjectService projectService;
+    @Autowired
+    private StatusService statusService;
 
-    @GetMapping("/admin/project/{projectId}")
+    @GetMapping("/admin/project/{projectId}/categories")
     public String getCategoryList(Model model, @PathVariable(value = "projectId") int projectId) {
         model.addAttribute("categoryList", this.categoryService.getCategory(projectId, true));
+        model.addAttribute("projectById", this.projectService.findProjectById(projectId));
         return "category";
+    }
+
+    @GetMapping("/admin/project/{projectId}/category/{categoryId}/update")
+    public String showUpdateCategory(Model model, @PathVariable(value = "projectId") int projectId) {
+        model.addAttribute("projectById", this.projectService.findProjectById(projectId));
+        model.addAttribute("status", this.statusService.getStatus());
+        return "categoryUpdate";
     }
 }

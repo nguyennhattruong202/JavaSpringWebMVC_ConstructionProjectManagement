@@ -21,9 +21,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -97,6 +99,8 @@ public class Project implements Serializable {
     private Set<Category> categorySet;
     @OneToMany(mappedBy = "idProject")
     private Set<Discuss> discussSet;
+    @Transient
+    private MultipartFile imageProject;
 
     public Project() {
     }
@@ -278,5 +282,19 @@ public class Project implements Serializable {
     public String toString() {
         return "com.dan.pojo.Project[ id=" + id + " ]";
     }
-    
+
+    /**
+     * @return the imageProject
+     */
+    public MultipartFile getImageProject() {
+        return imageProject;
+    }
+
+    /**
+     * @param imageProject the imageProject to set
+     */
+    public void setImageProject(MultipartFile imageProject) {
+        this.imageProject = imageProject;
+    }
+
 }
