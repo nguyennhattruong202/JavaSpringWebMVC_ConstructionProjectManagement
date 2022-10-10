@@ -4,9 +4,12 @@ com\dan\service\PartnerService.class
 META-INF\spring.components
 com\dan\service\CategoryService.class
 com\dan\controller\ApiProjectController.class
+com\dan\repository\DepartmentRepository.class
+com\dan\formatter\DepartmentFormatter.class
 com\dan\formatter\PersonnelFormatter.class
 com\dan\pojo\Department.class
 com\dan\service\impl\StatusServiceImpl.class
+com\dan\service\impl\DepartmentServiceImpl.class
 com\dan\service\ProjectService.class
 com\dan\controller\PositionController.class
 com\dan\pojo\Change.class
@@ -17,10 +20,13 @@ com\dan\service\impl\PartnerServiceImpl.class
 com\dan\controller\ProjectController.class
 com\dan\repository\impl\PersonnelRepositoryImpl.class
 com\dan\controller\ApiPositionController.class
+com\dan\repository\impl\DepartmentRepositoryImpl.class
+com\dan\formatter\PositionFormatter.class
 com\dan\controller\CategoryController.class
 com\dan\pojo\Discuss.class
 com\dan\repository\impl\StatusRepositoryImpl.class
 com\dan\pojo\Partner.class
+com\dan\service\DepartmentService.class
 com\dan\service\impl\CategoryServiceImpl.class
 com\dan\pojo\Status.class
 com\dan\repository\TaskRepository.class

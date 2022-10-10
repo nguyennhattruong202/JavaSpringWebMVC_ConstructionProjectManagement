@@ -27,20 +27,13 @@ public class PositionRepositoryImpl implements PositionRepository {
     private LocalSessionFactoryBean sessionFactoryBean;
 
     @Override
-    public List<Position> getPosition(boolean active, String kw) {
+    public List<Position> getPosition(boolean active) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Position> criteriaQuery = criteriaBuilder.createQuery(Position.class);
         Root root = criteriaQuery.from(Position.class);
         Predicate pActive = criteriaBuilder.equal(root.get("active"), active);
-        criteriaQuery.select(root);
-        if (kw != null && !kw.isEmpty()) {
-            Predicate pConcat = criteriaBuilder.like(criteriaBuilder.concat(root.get("id"),
-                    criteriaBuilder.concat(root.get("name"), root.get("description"))),
-                    String.format("%%%s%%", kw));
-            criteriaQuery.where(criteriaBuilder.and(pActive, pConcat));
-        }
-        criteriaQuery.where(pActive);
+        criteriaQuery.select(root).where(pActive);
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }

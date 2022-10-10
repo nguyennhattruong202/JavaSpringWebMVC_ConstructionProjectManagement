@@ -50,21 +50,21 @@
     </div>
 </div>
 <div class="shadow rounded p-3 mt-3 bg-body d-flex">
-    <a href="#" class="text-decoration-none text-center">Home</a>
+    <a href="#" class="text-decoration-none text-center">Trang chủ</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="#" class="text-decoration-none text-center">News</a>
+    <a href="#" class="text-decoration-none text-center">Tin tức</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="#" class="text-decoration-none text-center">Discussion</a>
+    <a href="#" class="text-decoration-none text-center">Thảo luận</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="#" class="text-decoration-none text-center">Report</a>
+    <a href="#" class="text-decoration-none text-center">Báo cáo</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="#" class="text-decoration-none text-center">Calendar</a>
+    <a href="#" class="text-decoration-none text-center">Lịch</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="<c:url value="/admin/project"/>" class="text-decoration-none text-center">Projects</a>
+    <a href="<c:url value="/admin/project"/>" class="text-decoration-none text-center">Dự án</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="<c:url value="/personnel"/>" class="text-decoration-none text-center">Personnel</a>
+    <a href="<c:url value="/admin/personnel"/>" class="text-decoration-none text-center">Nhân sự</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="<c:url value="/admin/partner/list"/>" class="text-decoration-none text-center">Partner</a>
+    <a href="<c:url value="/admin/partner/list"/>" class="text-decoration-none text-center">Đối tác</a>
     <div class="vr me-3 ms-3"></div>
-    <a href="<c:url value="/admin/position"/>" class="text-decoration-none text-center">Position</a>
+    <a href="<c:url value="/admin/position"/>" class="text-decoration-none text-center">Chức vụ</a>
 </div>

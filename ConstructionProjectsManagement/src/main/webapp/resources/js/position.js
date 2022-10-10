@@ -45,7 +45,7 @@ function addPosition(endpoint, url) {
         method: "post",
         body: JSON.stringify({
             "name": inputNamePosition,
-            "description": document.getElementById("inputAddDescriptionPosition").value
+            "description": document.getElementById("textareaAddDescriptionPosition").value
         }),
         headers: {
             "Content-Type": "application/json"

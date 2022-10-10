@@ -4,6 +4,7 @@
  */
 package com.dan.repository;
 
+import com.dan.pojo.Personnel;
 import java.util.List;
 
 public interface PersonnelRepository {
@@ -11,4 +12,10 @@ public interface PersonnelRepository {
     List<Object[]> getPersonnel(boolean active);
 
     List<Object[]> constructionSupervisonList();
+
+    Personnel findPersonnelById(int id, boolean active);
+
+    List<String> getPersonnelRole();
+
+    boolean addPersonnel(Personnel personnel);
 }

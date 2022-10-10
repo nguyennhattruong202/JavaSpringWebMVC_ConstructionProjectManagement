@@ -18,3 +18,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 #alertErrorNameNull{
     display: none;
 }
+.my-img-200{
+    width: 200px;
+    height: 200px;
+}

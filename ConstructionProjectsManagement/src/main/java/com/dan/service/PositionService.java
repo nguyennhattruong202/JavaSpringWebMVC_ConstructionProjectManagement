@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PositionService {
 
-    List<Position> getPosition(boolean active, String kw);
+    List<Position> getPosition(boolean active);
 
     Position findPositionById(int id, boolean active);
 

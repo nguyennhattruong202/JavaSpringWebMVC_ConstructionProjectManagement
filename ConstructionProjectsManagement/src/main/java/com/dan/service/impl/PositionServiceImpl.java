@@ -18,8 +18,8 @@ public class PositionServiceImpl implements PositionService {
     private PositionRepository positionRepository;
 
     @Override
-    public List<Position> getPosition(boolean active, String kw) {
-        return this.positionRepository.getPosition(active, kw);
+    public List<Position> getPosition(boolean active) {
+        return this.positionRepository.getPosition(active);
     }
 
     @Override

@@ -17,9 +17,13 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Personnel"/>
         <put-attribute name="content" value="/WEB-INF/jsp/personnel.jsp"/>
     </definition>
-    <definition name="addPersonnel" extends="baseLayout">
-        <put-attribute name="title" value="Add personnel"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/addPersonnel.jsp"/>
+    <definition name="personnelAdd" extends="baseLayout">
+        <put-attribute name="title" value="Thêm nhân sự mới"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnelAdd.jsp"/>
+    </definition>
+    <definition name="personnelUpdate" extends="baseLayout">
+        <put-attribute name="title" value="Cập nhật thông tin nhân sự"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnelUpdate.jsp"/>
     </definition>
     <definition name="project" extends="baseLayout">
         <put-attribute name="title" value="Quản lý dự án"/>
@@ -44,10 +48,6 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="partnerAdd" extends="baseLayout">
         <put-attribute name="title" value="Thêm đối tác mới"/>
         <put-attribute name="content" value="/WEB-INF/jsp/partnerAdd.jsp"/>
-    </definition>
-    <definition name="personnelDetail" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết nhân sự"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/personnelDetail.jsp"/>
     </definition>
     <definition name="position" extends="baseLayout">
         <put-attribute name="title" value="Danh sách chức vụ"/>

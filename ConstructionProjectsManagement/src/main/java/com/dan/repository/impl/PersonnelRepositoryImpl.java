@@ -64,4 +64,41 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }
+
+    @Override
+    public Personnel findPersonnelById(int id, boolean active) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Personnel> criteriaQuery = criteriaBuilder.createQuery(Personnel.class);
+        Root root = criteriaQuery.from(Personnel.class);
+        Predicate pId = criteriaBuilder.equal(root.get("id"), id);
+        Predicate pActive = criteriaBuilder.equal(root.get("active"), active);
+        criteriaQuery.select(root).where(pId, pActive);
+        Query query = session.createQuery(criteriaQuery);
+        return (Personnel) query.getSingleResult();
+    }
+
+    @Override
+    public List<String> getPersonnelRole() {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Personnel> criteriaQuery = criteriaBuilder.createQuery(Personnel.class);
+        Root root = criteriaQuery.from(Personnel.class);
+        criteriaQuery.select(root.get("role"));
+        Query query = session.createQuery(criteriaQuery);
+        return query.getResultList();
+    }
+
+    @Override
+    public boolean addPersonnel(Personnel personnel) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            session.save(personnel);
+            return true;
+        } catch (Exception ex) {
+            System.err.println("===Add personnel error repository===" + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return false;
+    }
 }

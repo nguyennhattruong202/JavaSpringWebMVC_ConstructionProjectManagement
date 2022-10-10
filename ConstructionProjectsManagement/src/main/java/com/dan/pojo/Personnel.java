@@ -21,9 +21,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -114,6 +116,8 @@ public class Personnel implements Serializable {
     private Set<Category> categorySet;
     @OneToMany(mappedBy = "personCreated")
     private Set<Discuss> discussSet;
+    @Transient
+    private MultipartFile personnelImage;
 
     public Personnel() {
     }
@@ -337,6 +341,20 @@ public class Personnel implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Personnel[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the personnelImage
+     */
+    public MultipartFile getPersonnelImage() {
+        return personnelImage;
+    }
+
+    /**
+     * @param personnelImage the personnelImage to set
+     */
+    public void setPersonnelImage(MultipartFile personnelImage) {
+        this.personnelImage = personnelImage;
     }
     
 }
