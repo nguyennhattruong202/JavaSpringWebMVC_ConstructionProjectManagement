@@ -311,7 +311,7 @@ CREATE TABLE `personnel` (
   KEY `fk_personnel_to_department_idx` (`id_department`),
   CONSTRAINT `fk_personnel_to_department` FOREIGN KEY (`id_department`) REFERENCES `department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_personnel_to_position` FOREIGN KEY (`id_position`) REFERENCES `position` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,7 +337,7 @@ CREATE TABLE `position` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,7 +346,7 @@ CREATE TABLE `position` (
 
 LOCK TABLES `position` WRITE;
 /*!40000 ALTER TABLE `position` DISABLE KEYS */;
-INSERT INTO `position` VALUES (1,'Kỹ sư thiết kế cảnh quan','Chịu trách nhiệm thiết kế cảnh quan',_binary ''),(2,'Kỹ sư thiết kế nội thất','Chịu trách nhiệm thiết kế nội thất cho dự án thi công',_binary ''),(3,'Kiến trúc sư','Chịu trách nhiệm về bản vẻ xây dựng',_binary ''),(4,'Kế toán tài chính','Chịu trách nhiệm về các khoản chi cho công trình',_binary ''),(23,'Kỹ sư xây dựng','Chịu trách nhiệm xây dựng công trình',_binary ''),(24,'Kỹ sư giám sát xây dựng','Chịu trách nhiệm giám sát thi công công trình',_binary '');
+INSERT INTO `position` VALUES (1,'Kỹ sư thiết kế cảnh quan','Chịu trách nhiệm thiết kế cảnh quan',_binary ''),(2,'Kỹ sư thiết kế nội thất','Chịu trách nhiệm thiết kế nội thất cho dự án thi công',_binary ''),(3,'Kiến trúc sư','Chịu trách nhiệm về bản vẻ xây dựng',_binary ''),(4,'Kế toán tài chính','Chịu trách nhiệm về các khoản chi cho công trình',_binary ''),(23,'Kỹ sư xây dựng','Chịu trách nhiệm xây dựng công trình',_binary ''),(24,'Kỹ sư giám sát xây dựng','Chịu trách nhiệm giám sát thi công công trình',_binary ''),(25,'Demo','Demo',_binary '\0');
 /*!40000 ALTER TABLE `position` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,4 +462,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-08 19:06:30
+-- Dump completed on 2022-10-10 19:28:34
