@@ -4,24 +4,24 @@
  */
 package com.dan.service.impl;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import com.dan.pojo.Personnel;
 import com.dan.repository.PersonnelRepository;
 import org.springframework.stereotype.Service;
 import com.dan.service.PersonnelService;
-import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Service
 public class PersonnelServiceImpl implements PersonnelService {
 
     @Autowired
     private PersonnelRepository personnelRepository;
-    @Autowired
-    private Cloudinary cloudinary;
 
     @Override
     public List<Object[]> getPersonnel(boolean active) {
@@ -45,16 +45,25 @@ public class PersonnelServiceImpl implements PersonnelService {
 
     @Override
     public boolean addPersonnel(Personnel personnel) {
-        try {
-            Map r = this.cloudinary.uploader().upload(personnel.getPersonnelImage().getBytes(),
-                    ObjectUtils.asMap("resource_type", "auto"));
-            personnel.setAvatar((String) r.get("secure_url"));
-            personnel.setActive(true);
-            return this.personnelRepository.addPersonnel(personnel);
-        } catch (IOException ex) {
-            System.err.println("===Add personnel error service===" + ex.getMessage());
-        }
         return false;
     }
 
+    @Override
+    public Personnel getPersonnelByEmail(String email) {
+        return this.personnelRepository.getPersonnelByEmail(email);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String string) throws UsernameNotFoundException {
+        Personnel personnel = this.personnelRepository.getPersonnelByEmail(string);
+        if (personnel == null) {
+            throw new UsernameNotFoundException("Invalid username!!!");
+        }
+
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(personnel.getRole()));
+
+        return new org.springframework.security.core.userdetails.User(
+                personnel.getEmail(), personnel.getPassword(), authorities);
+    }
 }

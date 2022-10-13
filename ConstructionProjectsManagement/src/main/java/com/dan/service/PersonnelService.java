@@ -6,8 +6,9 @@ package com.dan.service;
 
 import com.dan.pojo.Personnel;
 import java.util.List;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface PersonnelService {
+public interface PersonnelService extends UserDetailsService {
 
     List<Object[]> getPersonnel(boolean active);
 
@@ -18,4 +19,6 @@ public interface PersonnelService {
     List<String> getPersonnelRole();
 
     boolean addPersonnel(Personnel personnel);
+
+    Personnel getPersonnelByEmail(String email);
 }

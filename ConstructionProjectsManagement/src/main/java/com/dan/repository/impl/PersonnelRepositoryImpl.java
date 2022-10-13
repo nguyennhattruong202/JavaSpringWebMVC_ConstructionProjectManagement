@@ -101,4 +101,17 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
         }
         return false;
     }
+
+    @Override
+    public Personnel getPersonnelByEmail(String email) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Personnel> criteriaQuery = criteriaBuilder.createQuery(Personnel.class);
+        Root root = criteriaQuery.from(Personnel.class);
+        Predicate pEmail = criteriaBuilder.equal(root.get("email"), email);
+        Predicate pActive = criteriaBuilder.equal(root.get("active"), true);
+        criteriaQuery.select(root).where(pEmail, pActive);
+        Query query = session.createQuery(criteriaQuery);
+        return (Personnel) query.getSingleResult();
+    }
 }

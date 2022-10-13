@@ -10,11 +10,17 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="footerLayout" value="/WEB-INF/layout/footerLayout.jsp"/>
     </definition>
     <definition name="index" extends="baseLayout">
-        <put-attribute name="title" value="Index"/>
+        <put-attribute name="title" value="Trang chủ"/>
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"/>
+        <put-attribute name="headerLayout" value=""/>
+        <put-attribute name="footerLayout" value=""/>
+    </definition>
+    <definition name="home" extends="baseLayout">
+        <put-attribute name="title" value="Trang chủ quản trị"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/home.jsp"/>
     </definition>
     <definition name="personnel" extends="baseLayout">
-        <put-attribute name="title" value="Personnel"/>
+        <put-attribute name="title" value="Nhân sự"/>
         <put-attribute name="content" value="/WEB-INF/jsp/personnel.jsp"/>
     </definition>
     <definition name="personnelAdd" extends="baseLayout">
@@ -54,19 +60,19 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="/WEB-INF/jsp/position.jsp"/>
     </definition>
     <definition name="positionDetail" extends="baseLayout">
-        <put-attribute name="title" value="Infomation"/>
+        <put-attribute name="title" value="Sửa chức vụ"/>
         <put-attribute name="content" value="/WEB-INF/jsp/positionDetail.jsp"/>
     </definition>
     <definition name="task" extends="baseLayout">
-        <put-attribute name="title" value="Task"/>
+        <put-attribute name="title" value="Công việc"/>
         <put-attribute name="content" value="/WEB-INF/jsp/task.jsp"/>
     </definition>
     <definition name="taskAdd" extends="baseLayout">
-        <put-attribute name="title" value="Add task"/>
+        <put-attribute name="title" value="Thêm công việc"/>
         <put-attribute name="content" value="/WEB-INF/jsp/taskAdd.jsp"/>
     </definition>
     <definition name="category" extends="baseLayout">
-        <put-attribute name="title" value="Hang muc thi cong"/>
+        <put-attribute name="title" value="Hạng mục thi công"/>
         <put-attribute name="content" value="/WEB-INF/jsp/category.jsp"/>
     </definition>
     <definition name="categoryAdd" extends="baseLayout">
@@ -77,8 +83,12 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Sửa dự án"/>
         <put-attribute name="content" value="/WEB-INF/jsp/categoryUpdate.jsp"/>
     </definition>
+    <definition name="department" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý phòng ban"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/department.jsp"/>
+    </definition>
     <definition name="login" extends="baseLayout">
-        <put-attribute name="title" value="Login"/>
+        <put-attribute name="title" value="Đăng nhập"/>
         <put-attribute name="headerLayout" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/login.jsp"/>
         <put-attribute name="footerLayout" value=""/>

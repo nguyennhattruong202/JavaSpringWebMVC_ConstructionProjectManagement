@@ -22,3 +22,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     width: 200px;
     height: 200px;
 }
+/* Begin 'index' css */
+#aLoginIndex{
+    background-color: #00C851;
+    color: white;
+    width: 50%;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50px;
+}
+#aLoginIndex:hover{
+    text-decoration: underline;
+}
+/* End 'index' css */

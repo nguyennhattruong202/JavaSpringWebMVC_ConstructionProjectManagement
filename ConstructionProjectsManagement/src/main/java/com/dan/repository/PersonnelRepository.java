@@ -18,4 +18,6 @@ public interface PersonnelRepository {
     List<String> getPersonnelRole();
 
     boolean addPersonnel(Personnel personnel);
+
+    Personnel getPersonnelByEmail(String email);
 }

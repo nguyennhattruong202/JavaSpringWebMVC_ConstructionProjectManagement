@@ -67,4 +67,6 @@
     <a href="<c:url value="/admin/partner/list"/>" class="text-decoration-none text-center">Đối tác</a>
     <div class="vr me-3 ms-3"></div>
     <a href="<c:url value="/admin/position"/>" class="text-decoration-none text-center">Chức vụ</a>
+    <div class="vr me-3 ms-3"></div>
+    <a href="<c:url value="/admin/department"/>" class="text-decoration-none text-center">Phòng ban</a>
 </div>

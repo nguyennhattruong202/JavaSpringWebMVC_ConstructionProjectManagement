@@ -16,6 +16,7 @@ com\dan\pojo\Change.class
 com\dan\controller\PartnerController.class
 com\dan\repository\StatusRepository.class
 com\dan\controller\IndexController.class
+com\dan\handler\LoginHandler.class
 com\dan\service\impl\PartnerServiceImpl.class
 com\dan\controller\ProjectController.class
 com\dan\repository\impl\PersonnelRepositoryImpl.class
@@ -25,10 +26,12 @@ com\dan\formatter\PositionFormatter.class
 com\dan\controller\CategoryController.class
 com\dan\pojo\Discuss.class
 com\dan\repository\impl\StatusRepositoryImpl.class
+com\dan\config\SpringSecurityConfig.class
 com\dan\pojo\Partner.class
 com\dan\service\DepartmentService.class
 com\dan\service\impl\CategoryServiceImpl.class
 com\dan\pojo\Status.class
+com\dan\config\SpringSecurityInit.class
 com\dan\repository\TaskRepository.class
 com\dan\repository\PersonnelRepository.class
 com\dan\config\DispatcherServletInitializer.class
@@ -47,6 +50,7 @@ com\dan\repository\impl\ProjectRepositoryImpl.class
 com\dan\formatter\StatusFormatter.class
 com\dan\service\impl\PersonnelServiceImpl.class
 com\dan\service\impl\TaskServiceImpl.class
+com\dan\controller\DepartmentController.class
 com\dan\pojo\Issue.class
 com\dan\repository\impl\PartnerRepositoryImpl.class
 com\dan\pojo\Invest.class
@@ -60,5 +64,6 @@ com\dan\repository\ProjectRepository.class
 com\dan\controller\ApiPartnerController.class
 com\dan\repository\PositionRepository.class
 com\dan\config\TilesConfig.class
+com\dan\handler\LogoutHandler.class
 com\dan\controller\PersonnelController.class
 com\dan\pojo\Task.class
