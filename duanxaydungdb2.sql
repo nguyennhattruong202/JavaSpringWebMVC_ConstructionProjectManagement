@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `duanxaydungdb2` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `duanxaydungdb2`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: localhost    Database: duanxaydungdb2
@@ -231,6 +233,7 @@ CREATE TABLE `participation` (
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
   `id_project` int DEFAULT NULL,
   `id_personnel` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -247,7 +250,7 @@ CREATE TABLE `participation` (
 
 LOCK TABLES `participation` WRITE;
 /*!40000 ALTER TABLE `participation` DISABLE KEYS */;
-INSERT INTO `participation` VALUES (2,'2022-10-01',NULL,'Thiết kế nội thất',1,9),(3,'2022-10-01',NULL,'Kiến trúc sư',1,3),(4,'2022-10-01',NULL,'Kỹ sư xây dựng',1,10),(5,'2022-10-01',NULL,'Kỹ sư giám sát xây dựng',1,11);
+INSERT INTO `participation` VALUES (2,'2022-10-01','2022-10-14','Thiết kế nội thất',_binary '\0',1,9),(3,'2022-10-01',NULL,'Kiến trúc sư',_binary '',1,3),(4,'2022-10-01',NULL,'Kỹ sư xây dựng',_binary '',1,10),(5,'2022-10-01',NULL,'Kỹ sư giám sát xây dựng',_binary '',1,11);
 /*!40000 ALTER TABLE `participation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,4 +465,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-13 19:31:16
+-- Dump completed on 2022-10-14 19:13:52

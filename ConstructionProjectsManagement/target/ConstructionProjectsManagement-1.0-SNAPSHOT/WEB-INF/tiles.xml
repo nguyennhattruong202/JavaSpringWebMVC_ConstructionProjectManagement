@@ -43,6 +43,14 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Chi tiết dự án"/>
         <put-attribute name="content" value="/WEB-INF/jsp/projectUpdate.jsp"/>
     </definition>
+    <definition name="participation" extends="baseLayout">
+        <put-attribute name="title" value="Nhân sự tham gia dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/participation.jsp"/>
+    </definition>
+    <definition name="participationUpdate" extends="baseLayout">
+        <put-attribute name="title" value="Nhân sự tham gia dự án"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/participationUpdate.jsp"/>
+    </definition>
     <definition name="partner" extends="baseLayout">
         <put-attribute name="title" value="Danh sách các đối tác"/>
         <put-attribute name="content" value="/WEB-INF/jsp/partner.jsp"/>

@@ -62,6 +62,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="${adminAction}/project/${iProjectList[0]}/categories">Xem hạng mục thi công</a></li>
+                                <li><a class="dropdown-item" href="${adminAction}/project/${iProjectList[0]}/personnel">Xem nhân sự tham gia dự án</a></li>
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalViewProject${iProjectList[0]}">Chi tiết dự án</a></li>
                                 <li><a class="dropdown-item" href="${adminAction}/project/${iProjectList[0]}/update">Sửa dự án</a></li>
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalRemovedProject${iProjectList[0]}">Xóa</a></li>

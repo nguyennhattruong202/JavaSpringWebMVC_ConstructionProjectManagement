@@ -4,8 +4,9 @@
  */
 package com.dan.controller;
 
+import com.dan.pojo.Participation;
+import com.dan.service.ParticipationService;
 import com.dan.service.ProjectService;
-import com.dan.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +21,19 @@ public class ApiProjectController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private ParticipationService participationService;
 
     @GetMapping("project/removed/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void removeProjectApi(@PathVariable(value = "id") int id) {
         this.projectService.removedProject(id);
+    }
+
+    @GetMapping("/project/removed/personnel/{participationId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void removePersonnelFromProjectApi(@PathVariable(value = "participationId") int participationId) {
+        Participation participation = this.participationService.findParticipationById(participationId);
+        this.participationService.removePersonnelFromProject(participation);
     }
 }

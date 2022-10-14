@@ -1,5 +1,7 @@
+com\dan\service\ParticipationService.class
 com\dan\pojo\Project.class
 com\dan\repository\CategoryRepository.class
+com\dan\repository\impl\ParticipationRepositoryImpl.class
 com\dan\service\PartnerService.class
 META-INF\spring.components
 com\dan\service\CategoryService.class
@@ -18,8 +20,10 @@ com\dan\repository\StatusRepository.class
 com\dan\controller\IndexController.class
 com\dan\handler\LoginHandler.class
 com\dan\service\impl\PartnerServiceImpl.class
+com\dan\service\impl\ParticipationServiceImpl.class
 com\dan\controller\ProjectController.class
 com\dan\repository\impl\PersonnelRepositoryImpl.class
+com\dan\repository\ParticipationRepository.class
 com\dan\controller\ApiPositionController.class
 com\dan\repository\impl\DepartmentRepositoryImpl.class
 com\dan\formatter\PositionFormatter.class

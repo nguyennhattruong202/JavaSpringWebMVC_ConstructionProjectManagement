@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Participation.findById", query = "SELECT p FROM Participation p WHERE p.id = :id"),
     @NamedQuery(name = "Participation.findByStartDate", query = "SELECT p FROM Participation p WHERE p.startDate = :startDate"),
     @NamedQuery(name = "Participation.findByEndDate", query = "SELECT p FROM Participation p WHERE p.endDate = :endDate"),
-    @NamedQuery(name = "Participation.findByPosition", query = "SELECT p FROM Participation p WHERE p.position = :position")})
+    @NamedQuery(name = "Participation.findByPosition", query = "SELECT p FROM Participation p WHERE p.position = :position"),
+    @NamedQuery(name = "Participation.findByActive", query = "SELECT p FROM Participation p WHERE p.active = :active")})
 public class Participation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,6 +53,8 @@ public class Participation implements Serializable {
     @Size(max = 255)
     @Column(name = "position")
     private String position;
+    @Column(name = "active")
+    private Boolean active;
     @JoinColumn(name = "id_personnel", referencedColumnName = "id")
     @ManyToOne
     private Personnel idPersonnel;
@@ -96,6 +99,14 @@ public class Participation implements Serializable {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Personnel getIdPersonnel() {
