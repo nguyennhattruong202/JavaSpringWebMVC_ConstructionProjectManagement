@@ -6,6 +6,7 @@ package com.dan.repository.impl;
 
 import com.dan.pojo.Department;
 import com.dan.repository.DepartmentRepository;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -30,9 +31,48 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Department> criteriaQuery = criteriaBuilder.createQuery(Department.class);
         Root root = criteriaQuery.from(Department.class);
-        criteriaQuery.select(root);
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("active"), true));
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
+    }
+
+    @Override
+    public boolean updateDepartment(Department department) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            department.setActive(true);
+            department.setCreatedDate(new Date());
+            session.update(department);
+            return true;
+        } catch (Exception e) {
+            System.err.println("===Update failed===" + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addDepartment(Department department) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            department.setActive(true);
+            department.setCreatedDate(new Date());
+            session.save(department);
+            return true;
+        } catch (Exception e) {
+            System.err.println("===Add faile===" + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public Department findDepartmentById(int departmentId) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Department> criteriaQuery = criteriaBuilder.createQuery(Department.class);
+        Root root = criteriaQuery.from(Department.class);
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("id"), departmentId));
+        Query query = session.createQuery(criteriaQuery);
+        return (Department) query.getSingleResult();
     }
 
 }

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `duanxaydungdb2` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `duanxaydungdb2`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: localhost    Database: duanxaydungdb2
@@ -100,8 +98,10 @@ CREATE TABLE `department` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'Phòng kế toán - tài chính',NULL),(2,'Phòng ý tưởng và cung ứng',NULL),(3,'Phòng tổ chức hành chính',NULL),(4,'Phòng quản lý kỹ thuật sản xuất và thi công',NULL),(5,'Phòng đầu tư',NULL);
+INSERT INTO `department` VALUES (1,'Phòng kế toán - tài chính','Demo','2022-10-15 16:54:53',_binary ''),(2,'Phòng ý tưởng và cung ứng','Demo','2022-05-01 00:00:00',_binary ''),(3,'Phòng tổ chức hành chính','Demo','2022-05-01 00:00:00',_binary ''),(4,'Phòng quản lý kỹ thuật sản xuất và thi công','Demo','2022-05-01 00:00:00',_binary ''),(5,'Phòng đầu tư','Demo','2022-05-01 00:00:00',_binary ''),(13,'Phong ban','Demo','2022-10-15 16:48:41',_binary '');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +273,7 @@ CREATE TABLE `partner` (
   `note` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,7 +282,7 @@ CREATE TABLE `partner` (
 
 LOCK TABLES `partner` WRITE;
 /*!40000 ALTER TABLE `partner` DISABLE KEYS */;
-INSERT INTO `partner` VALUES (1,'Công ty TNHH Thương Mại Green Tech','0972699926','partner@greentechco.com.vn','https://www.greentechco.com.vn','Việt Nam','B2, đường số 3, khu phố 4, phường An Khánh, Tp Thủ Đức, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(2,'CÃ´ng ty TNHH Adal Home 123','0901189896','partner@adalhome.com.vn','https://www.adalhome.com.vn','Viá»t Nam','Sá» 2, ÄÆ°á»ng sá» 7, khu phá» 4, phÆ°á»ng An PhÃº, Tp Thá»§ Äá»©c, Tp Há» ChÃ­ Minh','Tá» chá»©c','Demo update',_binary ''),(3,'Công ty TNHH MTV Vina Built','0987447766','vinbuilt7777@gmail.com','https://www.vinbuilt.bizz.vn','Việt Nam','394/35, Âu Cơ, phường 10, quận Tân Bình, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(4,'Công ty TNHH vật liệu xây dựng An Nhiên Phát','0868697082','sanvachtran@gmail.com','https://www.sanvachtran.com','Việt Nam','52, Lê Hoàng Phái, phường 17, quận Gò Vấp, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary ''),(5,'Công ty TNHH MTV vật liệu xây dựng Hiệp Hà','0909672222','ctyhiepha@gmail.com','https://www.vlxdhiepha.com','Việt Nam','33/2, Cao Lỗ, phường 4, quận 8, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary '\0');
+INSERT INTO `partner` VALUES (1,'Công ty TNHH Thương Mại Green Tech','0972699926','partner@greentechco.com.vn','https://www.greentechco.com.vn','Việt Nam','B2, đường số 3, khu phố 4, phường An Khánh, Tp Thủ Đức, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(2,'CÃ´ng ty TNHH Adal Home 123','0901189896','partner@adalhome.com.vn','https://www.adalhome.com.vn','Viá»t Nam','Sá» 2, ÄÆ°á»ng sá» 7, khu phá» 4, phÆ°á»ng An PhÃº, Tp Thá»§ Äá»©c, Tp Há» ChÃ­ Minh','Tá» chá»©c','Demo update',_binary ''),(3,'Công ty TNHH MTV Vina Built','0987447766','vinbuilt7777@gmail.com','https://www.vinbuilt.bizz.vn','Việt Nam','394/35, Âu Cơ, phường 10, quận Tân Bình, Tp Hồ Chí Minh','Tổ chức','Công ty vật liệu xây dựng',_binary ''),(4,'Công ty TNHH vật liệu xây dựng An Nhiên Phát','0868697082','sanvachtran@gmail.com','https://www.sanvachtran.com','Việt Nam','52, Lê Hoàng Phái, phường 17, quận Gò Vấp, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary ''),(5,'Công ty TNHH MTV vật liệu xây dựng Hiệp Hà','0909672222','ctyhiepha@gmail.com','https://www.vlxdhiepha.com','Việt Nam','33/2, Cao Lỗ, phường 4, quận 8, Tp Hồ Chí Minh','Tổ chức','Công ty cung cấp vật liệu xây dựng',_binary '\0'),(15,'','','','','','',NULL,'',_binary '\0');
 /*!40000 ALTER TABLE `partner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,4 +465,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-14 19:13:52
+-- Dump completed on 2022-10-15 19:05:48

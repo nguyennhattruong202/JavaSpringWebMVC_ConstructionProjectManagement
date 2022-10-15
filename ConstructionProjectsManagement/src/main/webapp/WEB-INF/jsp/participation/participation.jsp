@@ -86,6 +86,50 @@
                         </div>
                     </div>
                 </div>
+                <!--
+                <div class="modal fade" id="modalUpdateParticipation${per[7]}">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-white text-uppercase">Cập nhật thông tin</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control bg-body" id="inputIdParticipation" readonly="true"/>
+                                            <label for="inputIdParticipation">Mã tham gia</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="inputStartDateParticipation"/>
+                                            <label for="inputStartDateParticipation">Ngày bắt đầu</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="inputPositionParticipation""/>
+                                            <label for="inputPositionParticipation">Vai trò</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-outline-danger my-wpx-100">Cập nhật</button>
+                                <button type="button" class="btn btn-outline-primary my-wpx-100" data-bs-dismiss="modal">
+                                    Đóng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
             </c:forEach>
             </tbody>
         </table>

@@ -34,8 +34,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {
     "com.dan.controller",
     "com.dan.repository",
-    "com.dan.service",
-    "com.dan.validator"
+    "com.dan.service"
 })
 public class WebApplicationContextConfig implements WebMvcConfigurer {
 
@@ -68,11 +67,16 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         return m;
     }
 
-    @Bean
-    public Validator validator() {
+    @Bean(name = "validator")
+    public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean v = new LocalValidatorFactoryBean();
         v.setValidationMessageSource(messageSource());
         return v;
+    }
+
+    @Override
+    public Validator getValidator() {
+        return validator();
     }
 
     @Bean
@@ -85,11 +89,6 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang");
         registry.addInterceptor(localeChangeInterceptor);
-    }
-
-    @Override
-    public Validator getValidator() {
-        return validator();
     }
 
     @Override

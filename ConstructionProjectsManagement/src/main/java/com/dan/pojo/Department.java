@@ -5,6 +5,7 @@
 package com.dan.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,6 +17,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -31,7 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
     @NamedQuery(name = "Department.findById", query = "SELECT d FROM Department d WHERE d.id = :id"),
     @NamedQuery(name = "Department.findByName", query = "SELECT d FROM Department d WHERE d.name = :name"),
-    @NamedQuery(name = "Department.findByDescription", query = "SELECT d FROM Department d WHERE d.description = :description")})
+    @NamedQuery(name = "Department.findByDescription", query = "SELECT d FROM Department d WHERE d.description = :description"),
+    @NamedQuery(name = "Department.findByCreatedDate", query = "SELECT d FROM Department d WHERE d.createdDate = :createdDate"),
+    @NamedQuery(name = "Department.findByActive", query = "SELECT d FROM Department d WHERE d.active = :active")})
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,12 +46,19 @@ public class Department implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @NotNull
     @Size(max = 255)
     @Column(name = "name")
     private String name;
+    @NotNull
     @Size(max = 255)
     @Column(name = "description")
     private String description;
+    @Column(name = "created_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+    @Column(name = "active")
+    private Boolean active;
     @OneToMany(mappedBy = "idDepartment")
     private Set<Personnel> personnelSet;
 
@@ -78,6 +91,22 @@ public class Department implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @XmlTransient
@@ -113,5 +142,5 @@ public class Department implements Serializable {
     public String toString() {
         return "com.dan.pojo.Department[ id=" + id + " ]";
     }
-    
+
 }

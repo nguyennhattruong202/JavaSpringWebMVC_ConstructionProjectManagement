@@ -33,8 +33,8 @@ public class ParticipationServiceImpl implements ParticipationService {
     }
 
     @Override
-    public boolean updateParticipation(Participation participation) {
-        return this.participationRepository.updateParticipation(participation);
+    public boolean updateParticipation(Participation oldParticipation, Participation newParticipation) {
+        return this.participationRepository.updateParticipation(oldParticipation, newParticipation);
     }
 
 }

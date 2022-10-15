@@ -21,79 +21,83 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     </definition>
     <definition name="personnel" extends="baseLayout">
         <put-attribute name="title" value="Nhân sự"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/personnel.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnel/personnel.jsp"/>
     </definition>
     <definition name="personnelAdd" extends="baseLayout">
         <put-attribute name="title" value="Thêm nhân sự mới"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/personnelAdd.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnel/personnelAdd.jsp"/>
     </definition>
     <definition name="personnelUpdate" extends="baseLayout">
         <put-attribute name="title" value="Cập nhật thông tin nhân sự"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/personnelUpdate.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/personnel/personnelUpdate.jsp"/>
     </definition>
     <definition name="project" extends="baseLayout">
         <put-attribute name="title" value="Quản lý dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/project.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/project/project.jsp"/>
     </definition>
     <definition name="projectAdd" extends="baseLayout">
         <put-attribute name="title" value="Thêm dự án mới"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/projectAdd.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/project/projectAdd.jsp"/>
     </definition>
     <definition name="projectUpdate" extends="baseLayout">
         <put-attribute name="title" value="Chi tiết dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/projectUpdate.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/project/projectUpdate.jsp"/>
     </definition>
     <definition name="participation" extends="baseLayout">
         <put-attribute name="title" value="Nhân sự tham gia dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/participation.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/participation/participation.jsp"/>
     </definition>
     <definition name="participationUpdate" extends="baseLayout">
         <put-attribute name="title" value="Nhân sự tham gia dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/participationUpdate.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/participation/participationUpdate.jsp"/>
     </definition>
     <definition name="partner" extends="baseLayout">
         <put-attribute name="title" value="Danh sách các đối tác"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/partner.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/partner/partner.jsp"/>
     </definition>
     <definition name="partnerUpdate" extends="baseLayout">
         <put-attribute name="title" value="Chỉnh sửa thông tin đối tác"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/partnerUpdate.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/partner/partnerUpdate.jsp"/>
     </definition>
     <definition name="partnerAdd" extends="baseLayout">
         <put-attribute name="title" value="Thêm đối tác mới"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/partnerAdd.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/partner/partnerAdd.jsp"/>
     </definition>
     <definition name="position" extends="baseLayout">
         <put-attribute name="title" value="Danh sách chức vụ"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/position.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/position/position.jsp"/>
     </definition>
     <definition name="positionDetail" extends="baseLayout">
         <put-attribute name="title" value="Sửa chức vụ"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/positionDetail.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/position/positionDetail.jsp"/>
     </definition>
     <definition name="task" extends="baseLayout">
         <put-attribute name="title" value="Công việc"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/task.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/task/task.jsp"/>
     </definition>
     <definition name="taskAdd" extends="baseLayout">
         <put-attribute name="title" value="Thêm công việc"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/taskAdd.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/task/taskAdd.jsp"/>
     </definition>
     <definition name="category" extends="baseLayout">
         <put-attribute name="title" value="Hạng mục thi công"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/category.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/category/category.jsp"/>
     </definition>
     <definition name="categoryAdd" extends="baseLayout">
         <put-attribute name="title" value="Thêm dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/categoryAdd.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/category/categoryAdd.jsp"/>
     </definition>
     <definition name="categoryUpdate" extends="baseLayout">
         <put-attribute name="title" value="Sửa dự án"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/categoryUpdate.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/category/categoryUpdate.jsp"/>
     </definition>
     <definition name="department" extends="baseLayout">
         <put-attribute name="title" value="Quản lý phòng ban"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/department.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/department/department.jsp"/>
+    </definition>
+    <definition name="departmentAdd" extends="baseLayout">
+        <put-attribute name="title" value="Thêm phòng ban mới"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/department/departmentAdd.jsp"/>
     </definition>
     <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Đăng nhập"/>

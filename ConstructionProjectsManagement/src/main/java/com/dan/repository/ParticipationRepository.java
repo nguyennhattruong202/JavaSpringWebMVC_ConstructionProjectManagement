@@ -15,5 +15,5 @@ public interface ParticipationRepository {
 
     Participation findParticipationById(int id);
 
-    boolean updateParticipation(Participation participation);
+    boolean updateParticipation(Participation oldParticipation, Participation newParticipation);
 }

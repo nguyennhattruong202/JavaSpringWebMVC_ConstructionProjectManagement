@@ -10,4 +10,10 @@ import java.util.List;
 public interface DepartmentRepository {
 
     List<Department> getDepartment();
+
+    boolean updateDepartment(Department department);
+
+    boolean addDepartment(Department department);
+
+    Department findDepartmentById(int departmentId);
 }

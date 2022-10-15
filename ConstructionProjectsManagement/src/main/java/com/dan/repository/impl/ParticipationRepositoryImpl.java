@@ -71,10 +71,12 @@ public class ParticipationRepositoryImpl implements ParticipationRepository {
     }
 
     @Override
-    public boolean updateParticipation(Participation participation) {
+    public boolean updateParticipation(Participation oldParticipation, Participation newParticipation) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        oldParticipation.setIdProject(newParticipation.getIdProject());
+        oldParticipation.setIdPersonnel(newParticipation.getIdPersonnel());
         try {
-            session.update(participation);
+            session.update(oldParticipation);
             return true;
         } catch (Exception e) {
             System.err.println(e.getMessage());

@@ -91,9 +91,7 @@ public class ProjectController {
     public String updateParticipation(Model model, @PathVariable(value = "participationId") int participationId,
             @ModelAttribute(value = "newParticipation") Participation newParticipation) {
         Participation oldParticipation = this.participationService.findParticipationById(participationId);
-        oldParticipation.setPosition(newParticipation.getPosition());
-        oldParticipation.setEndDate(newParticipation.getEndDate());
-        model.addAttribute("updateParticipation", this.participationService.updateParticipation(oldParticipation));
+        model.addAttribute("updateParticipation", this.participationService.updateParticipation(oldParticipation, newParticipation));
         return "participationUpdate";
     }
 }

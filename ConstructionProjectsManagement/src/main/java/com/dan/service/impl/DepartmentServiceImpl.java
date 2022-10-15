@@ -21,4 +21,19 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> getDepartment() {
         return this.departmentRepository.getDepartment();
     }
+
+    @Override
+    public boolean updateDepartment(Department department) {
+        return this.departmentRepository.updateDepartment(department);
+    }
+
+    @Override
+    public boolean addDepartment(Department department) {
+        return this.departmentRepository.addDepartment(department);
+    }
+
+    @Override
+    public Department findDepartmentById(int departmentId) {
+        return this.departmentRepository.findDepartmentById(departmentId);
+    }
 }
