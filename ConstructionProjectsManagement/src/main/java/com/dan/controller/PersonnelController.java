@@ -10,9 +10,11 @@ import com.dan.service.PersonnelService;
 import com.dan.service.PositionService;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,19 +51,19 @@ public class PersonnelController {
 
     @GetMapping("/admin/personnel/add")
     public String showPersonnelAdd(Model model) {
-        Set<String> roleSet = new HashSet<>();
-        this.personnelService.getPersonnelRole().forEach(roleValue -> {
-            roleSet.add(roleValue);
-        });
         model.addAttribute("personnel", new Personnel());
-        model.addAttribute("getRole", roleSet);
         model.addAttribute("getPosition", this.positionService.getPosition(true));
         model.addAttribute("getDepartment", this.departmentService.getDepartment());
         return "personnelAdd";
     }
 
     @PostMapping("/admin/personnel/add")
-    public String addPersonnel(@ModelAttribute(value = "personnel") Personnel personnel) {
+    public String addPersonnel(Model model, @ModelAttribute(value = "personnel") @Valid Personnel personnel, BindingResult result) {
+        model.addAttribute("getPosition", this.positionService.getPosition(true));
+        model.addAttribute("getDepartment", this.departmentService.getDepartment());
+        if (result.hasErrors()) {
+            return "personnelAdd";
+        }
         if (this.personnelService.addPersonnel(personnel) == true) {
             return "redirect:/admin/personnel";
         }

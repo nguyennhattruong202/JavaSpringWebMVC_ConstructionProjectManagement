@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<c:url value="/admin" var="action"/>
 <div class="shadow rounded bg-body mt-3 mb-3">
     <div class="p-2 h5 bg-primary text-uppercase text-white rounded-top fw-bold">Danh sach cong viec</div>
     <div class="p-3">
@@ -19,7 +20,7 @@
                     </button>
                 </div>
             </form>
-            <a id="buttonAddTask" class="btn btn-outline-primary me-1">
+            <a href="${action}/project/category/${category.id}/task/add" id="buttonTaskAdd" class="btn btn-outline-primary me-1">
                 <i class="fas fa-plus"></i>
             </a>
             <a id="buttonPrintTask" class="btn btn-outline-primary">

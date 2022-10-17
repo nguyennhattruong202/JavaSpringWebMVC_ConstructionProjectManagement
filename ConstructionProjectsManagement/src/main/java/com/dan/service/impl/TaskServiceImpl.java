@@ -4,6 +4,7 @@
  */
 package com.dan.service.impl;
 
+import com.dan.pojo.Task;
 import com.dan.repository.TaskRepository;
 import com.dan.service.TaskService;
 import java.util.List;
@@ -19,5 +20,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Object[]> getTask(int categoryId, boolean active) {
         return this.taskRepository.getTask(categoryId, active);
+    }
+
+    @Override
+    public boolean addTask(Task task) {
+        return this.taskRepository.addTask(task);
     }
 }

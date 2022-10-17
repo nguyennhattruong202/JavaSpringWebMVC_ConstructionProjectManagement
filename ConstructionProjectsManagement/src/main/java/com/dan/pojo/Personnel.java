@@ -21,9 +21,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -55,12 +59,18 @@ public class Personnel implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @NotNull
+    @NotBlank
     @Size(max = 255)
     @Column(name = "avatar")
     private String avatar;
+    @NotNull
+    @NotBlank
     @Size(max = 255)
     @Column(name = "last_name")
     private String lastName;
+    @NotNull
+    @NotBlank
     @Size(max = 255)
     @Column(name = "first_name")
     private String firstName;
@@ -78,6 +88,8 @@ public class Personnel implements Serializable {
     @Column(name = "phone")
     private String phone;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @NotNull
+    @NotBlank
     @Size(max = 255)
     @Column(name = "email")
     private String email;
@@ -114,6 +126,10 @@ public class Personnel implements Serializable {
     private Set<Category> categorySet;
     @OneToMany(mappedBy = "personCreated")
     private Set<Discuss> discussSet;
+    @NotNull
+    @NotBlank
+    @Transient
+    private MultipartFile imageUser;
 
     public Personnel() {
     }
@@ -337,6 +353,20 @@ public class Personnel implements Serializable {
     @Override
     public String toString() {
         return "com.dan.pojo.Personnel[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the imageUser
+     */
+    public MultipartFile getImageUser() {
+        return imageUser;
+    }
+
+    /**
+     * @param imageUser the imageUser to set
+     */
+    public void setImageUser(MultipartFile imageUser) {
+        this.imageUser = imageUser;
     }
     
 }

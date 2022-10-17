@@ -4,9 +4,12 @@
  */
 package com.dan.repository;
 
+import com.dan.pojo.Task;
 import java.util.List;
 
 public interface TaskRepository {
 
     List<Object[]> getTask(int categoryId, boolean active);
+
+    boolean addTask(Task task);
 }

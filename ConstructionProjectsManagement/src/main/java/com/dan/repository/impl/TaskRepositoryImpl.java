@@ -48,4 +48,16 @@ public class TaskRepositoryImpl implements TaskRepository {
         return query.getResultList();
     }
 
+    @Override
+    public boolean addTask(Task task) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            session.save(task);
+            return true;
+        } catch (Exception e) {
+            System.err.println("===Add task failed===" + e.getMessage());
+            return false;
+        }
+    }
+
 }
