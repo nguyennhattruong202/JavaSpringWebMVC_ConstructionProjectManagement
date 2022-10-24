@@ -23,15 +23,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height: 200px;
 }
 /* Begin 'index' css */
-#aLoginIndex{
-    background-color: #00C851;
-    color: white;
-    width: 50%;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 50px;
+.my-button {
+    background-color: #026aa7;
+    color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+    margin-left: 3px;
 }
-#aLoginIndex:hover{
-    text-decoration: underline;
+.my-button:hover{
+    color: #ffffff;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .175);
+}
+.my-main-content-container{
+    margin-left: 15%;
+    padding: 10px;
+}
+.my-container{
+    background-color: #ffffff;
+    border: 1px solid #DEE2E6;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.my-titile-container{
+    background-color: #026aa7;
+    color: #ffffff;
+    padding: 5px 5px;
+    border: 1px solid #026aa7;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 /* End 'index' css */

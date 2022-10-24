@@ -7,124 +7,113 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="shadow rounded bg-body mt-3 mb-3">
-    <div class="p-2 bg-primary d-flex align-items-center text-white text-uppercase fw-bold h5 rounded-top">
-        Cập nhật thông tin nhân sự
+<c:url value="/admin" var="adminAction"/>
+<div style="margin-left: 15%; padding: 10px;">
+    <div class="d-flex justify-content-end">
+        <a href="${adminAction}/personnel" id="aCancelPersonnelUpdate" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thoát">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <button id="buttonSavePersonnelUpdate" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lưu">
+            <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+        <button id="buttonResetPersonnelUpdate" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Làm lại">
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+        </button>
     </div>
-    <div class="p-3">
-        <div class="row">
-            <div class="col-2">
-                <img class="img-fluid my-img-200 rounded" src="${personnelById.avatar}" alt="imgAvatarPersonnelUpdate">
-            </div>
-            <div class="col-10">
-                <div class="row mb-2">
-                    <div class="col-8">
-                        <div class="form-floating">
-                            <input id="inputLastNamePersonnelUpdate" type="text" class="form-control" value="${personnelById.lastName}">
-                            <label for="inputLastNamePersonnelUpdate">Họ và tên lót</label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input id="inputFirstNamePersonnelUpdate" type="text" class="form-control" value="${personnelById.firstName}">
-                            <label for="inputFirstNamePersonnelUpdate">Tên</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col">
-                        <div class="form-floating">
-                            <select id="selectGenderPersonnelUpdate" class="form-select">
-                                <option value="0" selected="true" disabled="true">Chọn...</option>
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
-                            </select>
-                            <label for="selectGenderPersonnelUpdate">Giới tính</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-floating">
-                            <input id="inputBirthdayPersonnelUpdate" type="date" class="form-control" value="${personnelById.birthday}">
-                            <label for="inputBirthdayPersonnelUpdate">Ngày sinh</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-floating">
-                            <input id="inputIdentityPersonnelUpdate" type="text" class="form-control" value="${personnelById.identity}">
-                            <label for="inputIdentityPersonnelUpdate">CMND/CCCD</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-8">
-                        <div class="form-floating">
-                            <input id="inputEmailPersonnelUpdate" type="email" class="form-control" value="${personnelById.email}">
-                            <label for="inputEmailPersonnelUpdate">Email</label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input id="inputPhonePersonnelUpdate" type="tel" class="form-control" value="${personnelById.phone}">
-                            <label for="inputPhonePersonnelUpdate">Số điện thoại</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col">
-                        <div class="form-floating">
-                            <input id="inputAddressPersonnelUpdate" type="text" class="form-control" value="${personnelById.address}">
-                            <label for="inputAddressPersonnelUpdate">Địa chỉ</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col">
-                        <div class="form-floating">
-                            <select id="selectPositionPersonnelUpdate" class="form-select">
-                                <option value="0" selected="true" disabled="true">Chọn...</option>
-                                <c:forEach items="${getPosition}" var="position">
-                                    <option value="${position.id}">${position.name}</option>
-                                </c:forEach>
-                            </select>
-                            <label for="selectPositionPersonnelUpdate">Chức vụ</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-floating">
-                            <select id="selectDepartmentPersonnelUpdate" class="form-select">
-                                <option value="0" selected="true" disabled="true">Chọn...</option>
-                                <c:forEach items="${getDepartment}" var="department">
-                                    <option value="${department.id}">${department.name}</option>
-                                </c:forEach>
-                            </select>
-                            <label for="selectDepartmentPersonnelUpdate">Phòng ban</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col">
-                        <div class="form-floating">
-                            <select id="selectRolePersonnelUpdate"class="form-select">
-                                <option value="0" selected="true" disabled="true">Chọn...</option>
-                                <c:forEach items="${getRole}" var="i">
-                                    <option value="${i}">${i}</option>
-                                </c:forEach>
-                            </select>
-                            <label for="selectRolePersonnelUpdate">Role</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="inputAvatarPersonnelUpdate" class="form-label">Hình ảnh</label>
-                        <input id="inputAvatarPersonnelUpdate"class="form-control" type="file">
-                    </div>
+    <div class="my-container">
+        <div class="my-titile-container">Cập nhật thông tin nhân sự</div>
+        <div class="pe-2 ps-2">
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Họ và tên lót:</div>
+                <div class="col">
+                    <input type="text" class="form-control" style="border-radius: 0px;" value="${personnelById.lastName}">
                 </div>
             </div>
-        </div>
-        <div class="text-end">
-            <a href="#" class="btn btn-outline-primary my-wpx-100 fw-bold">Quay lại</a>
-            <input type="button" class="btn btn-outline-danger my-wpx-100 fw-bold" value="Lưu">
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Tên:</div>
+                <div class="col">
+                    <input type="text" class="form-control" style="border-radius: 0px;" value="${personnelById.firstName}">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Giới tính:</div>
+                <div class="col">
+                    <select class="form-select" style="border-radius: 0px;">
+                        <option selected="true" disabled="true">---Chọn---</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Ngày sinh:</div>
+                <div class="col">
+                    <input type="date" class="form-control" style="border-radius: 0px;" value="${personnelById.birthday}">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">CCCD/CMND:</div>
+                <div class="col">
+                    <input type="text" class="form-control" style="border-radius: 0px;" value="${personnelById.identity}">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Email:</div>
+                <div class="col">
+                    <input type="email" class="form-control" style="border-radius: 0px;" value="${personnelById.email}">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Số điện thoại:</div>
+                <div class="col">
+                    <input type="tel" class="form-control" style="border-radius: 0px;" value="${personnelById.phone}">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Địa chỉ:</div>
+                <div class="col">
+                    <input type="text" class="form-control" style="border-radius: 0px;" value="${personnelById.address}">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Chức vụ:</div>
+                <div class="col">
+                    <select class="form-select" style="border-radius: 0px;">
+                        <option selected="true" disabled="true">---Chọn---</option>
+                        <c:forEach items="${getPosition}" var="position">
+                            <option value="${position.id}">${position.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Phòng ban:</div>
+                <div class="col">
+                    <select class="form-select" style="border-radius: 0px;">
+                        <option selected="true" disabled="true">---Chọn---</option>
+                        <c:forEach items="${getDepartment}" var="department">
+                            <option value="${department.id}">${department.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Role:</div>
+                <div class="col">
+                    <select class="form-select" style="border-radius: 0px;">
+                        <option selected="true" disabled="true">---Chọn---</option>
+                        <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                        <option value="ROLE_MANAGER">ROLE_MANAGER</option>
+                        <option value="ROLE_STAFF">ROLE_STAFF</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-2 d-flex align-items-center fw-bold">Hình ảnh:</div>
+                <div class="col">
+                    <input type="file" class="form-control" style="border-radius: 0px;">
+                </div>
+            </div>
         </div>
     </div>
 </div>

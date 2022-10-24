@@ -4,8 +4,9 @@
     Author     : ACER
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,9 +26,15 @@
         <!-- End Bootstrap 5 cdn -->
 
         <!-- Begin font and icon cdn -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css"
+              integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+              integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- End font and icon cdn -->
 
         <!-- Begin java script of this project -->
@@ -38,11 +45,10 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/commonStyle.css"/>"/>
         <!-- End css of this project -->
     </head>
-    <body>
-        <div class="container-fluid bg-light">
-            <tiles:insertAttribute name="headerLayout"/>
-            <tiles:insertAttribute name="content"/>
-            <tiles:insertAttribute name="footerLayout"/>
-        </div>
+    <body style="background-color: #F1F5F9; font-size: 14px;">
+        <tiles:insertAttribute name="leftSideBar"/>
+        <tiles:insertAttribute name="headerLayout"/>
+        <tiles:insertAttribute name="content"/>
+        <tiles:insertAttribute name="footerLayout"/>
     </body>
 </html>

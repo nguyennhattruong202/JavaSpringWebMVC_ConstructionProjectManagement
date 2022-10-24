@@ -4,11 +4,27 @@
     Author     : ACER
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<footer class="bg-light text-center text-lg-start shadow p-3 rounded">
-    <div class="text-center p-3">
-        &copy; 2022 Copyright 
-        <a class="text-dark" href="#">ConstructionProjectsManagement.com</a>
-    </div>
-</footer>
+<style>
+    #divFooterLayout{
+        background-color: #026aa7;
+        text-align: center;
+        color: #ffffff;
+        padding: 15px 0px;
+        margin-left: 15%;
+    }
+    #divFooterLayout a{
+        text-decoration: none;
+        color: #ffffff;
+    }
+    #divFooterLayout a:hover{
+        text-decoration: underline;
+    }
+</style>
+<c:url value="/admin" var="adminAction"/>
+<div id="divFooterLayout">
+    &copy; 2022 Copyright
+    <a href="${adminAction}/home">ConstructionProjectsManagement.com</a>
+</div>

@@ -5,6 +5,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
 <tiles-definitions>
     <definition name="baseLayout" template="/WEB-INF/layout/baseLayout.jsp">
         <put-attribute name="title" value="BaseLayout"/>
+        <put-attribute name="leftSideBar" value="/WEB-INF/layout/leftSideBar.jsp"/>
         <put-attribute name="headerLayout" value="/WEB-INF/layout/headerLayout.jsp"/>
         <put-attribute name="content" value="BaseLayout"/>
         <put-attribute name="footerLayout" value="/WEB-INF/layout/footerLayout.jsp"/>
@@ -13,6 +14,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Trang chủ"/>
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"/>
         <put-attribute name="headerLayout" value=""/>
+        <put-attribute name="leftSideBar" value=""/>
         <put-attribute name="footerLayout" value=""/>
     </definition>
     <definition name="home" extends="baseLayout">
@@ -102,6 +104,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="login" extends="baseLayout">
         <put-attribute name="title" value="Đăng nhập"/>
         <put-attribute name="headerLayout" value=""/>
+        <put-attribute name="leftSideBar" value=""/>
         <put-attribute name="content" value="/WEB-INF/jsp/login.jsp"/>
         <put-attribute name="footerLayout" value=""/>
     </definition>
