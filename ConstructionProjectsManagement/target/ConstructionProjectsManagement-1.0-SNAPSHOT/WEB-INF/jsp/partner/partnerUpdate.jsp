@@ -8,100 +8,102 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<style>
+    #divContentPartnerUpdate{
+        padding: 10px;
+        margin-left: 15%;
+    }
+    #divTitlePartnerUpdate{
+        background-color: #026aa7;
+        text-transform: uppercase;
+        color: #ffffff;
+        padding:5px;
+        font-weight: bold;
+        border: 1px solid #026aa7;
+    }
+    #divToolPartnerUpdate{
+        margin-bottom: 10px;
+    }
+    #name, #phone, #email, #website, #country, #type, #address, #note, #id{
+        border-radius: 0px;
+    }
+    .form-label{
+        font-weight: bold;
+    }
+    .row{
+        margin-bottom: 10px;
+    }
+</style>
 <c:url value="/admin" var="adminAction"/>
-<div class="shadow rounded bg-body mt-3 mb-3">
-    <div class="p-2 bg-primary d-flex align-items-center text-white fw-bold h5 rounded-top">
-        Chỉnh sửa thông tin đối tác
-    </div>
-    <div class="p-3">
-        <form:form method="post" action="${adminAction}/partner/${partnerById.id}/update" modelAttribute="partner">
-            <div class="row mb-3">
+<div id="divContentPartnerUpdate">
+    <form:form method="post" action="${adminAction}/partner/edit" modelAttribute="partner">
+        <div id="divToolPartnerUpdate" class="d-flex justify-content-end">
+            <a href="${adminAction}/partner/list" id="aCancelPartnerUpdate" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thoát">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <button type="submit" class="my-button" id="buttonPartnerUpdate" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thêm mới">
+                <i class="fa-solid fa-floppy-disk"></i>
+            </button>
+            <a href="#" id="aResetPartnerUpdate" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Làm lại">
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+            </a>
+        </div>
+        <div id="divTitlePartnerUpdate">Chỉnh sửa thông tin đối tác</div>
+        <div class="p-2 bg-body">
+            <div class="row">
                 <div class="col">
-                    <div class="form-floating">   
-                        <form:input path="name" id="inputNamePartnerUpdate" type="text" 
-                                    cssClass="form-control" placeholder="inputNamePartnerUpdate"
-                                    value="${partnerById.name}"/>
-                        <label for="inputNamePartnerUpdate">Tên đối tác</label>
-                        <form:errors path="name" cssClass="text-danger"/>
-                    </div>
+                    <label for="id" class="form-label">ID</label>
+                    <form:input path="id" id="id" type="text" cssClass="form-control" disabled="true"/>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row">
                 <div class="col">
-                    <div class="form-floating">
-                        <form:input path="phone" id="inputPhonePartnerUpdate" type="tel" 
-                                    cssClass="form-control" placeholder="inputPhonePartnerUpdate"
-                                    value="${partnerById.phone}"/>
-                        <label for="inputPhonePartnerUpdate">Số điện thoại</label>
-                        <form:errors path="phone" cssClass="text-danger"/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-floating"> 
-                        <form:input path="email" id="inputEmailPartnerUpdate" type="email" 
-                                    cssClass="form-control" placeholder="inputEmailPartnerUpdate"
-                                    value="${partnerById.email}"/>
-                        <label for="inputEmailPartnerUpdate">Email</label>
-                        <form:errors path="email" cssClass="text-danger"/>
-                    </div>
+                    <label for="name" class="form-label">Tên đối tác</label>
+                    <form:input path="name" id="name" type="text" cssClass="form-control"/>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row">
                 <div class="col">
-                    <div class="form-floating">
-                        <form:input path="website" id="inputWebsitePartnerUpdate" type="url" 
-                                    cssClass="form-control" placeholder="inputWebsitePartnerUpdate"
-                                    value="${partnerById.website}"/>
-                        <label for="inputWebsitePartnerUpdate">Website</label>
-                        <form:errors path="website" cssClass="text-danger"/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-floating">
-                        <form:input path="country" id="inputCountryPartnerUpdate" type="text" 
-                                    cssClass="form-control" placeholder="inputCountryPartnerUpdate"
-                                    value="${partnerById.country}"/>
-                        <label for="inputCountryPartnerUpdate">Quốc gia</label>
-                        <form:errors path="country" cssClass="text-danger"/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-floating">
-                        <form:select path="type" id="selectTypePartnerUpdate" cssClass="form-select">
-                            <option selected="true" value="0" disabled="true">Chọn:</option>
-                            <option value="Tổ chức">Tổ chức</option>
-                            <option value="Cá nhân">Cá nhân</option>
-                        </form:select>
-                        <label for="selectTypePartnerUpdate">Loại</label>
-                        <form:errors path="type" cssClass="text-danger"/>
-                    </div>
+                    <label for="phone" class="form-label">Số điện thoại</label>
+                    <form:input path="phone" id="phone" type="tel" cssClass="form-control"/>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row">
                 <div class="col">
-                    <div class="form-floating">
-                        <form:input path="address" id="inputAddressPartnerUpdate" type="text" 
-                                    cssClass="form-control" placeholder="inputAddressPartnerUpdate"
-                                    value="${partnerById.address}"/>
-                        <label for="inputAddressPartnerUpdate">Địa chỉ</label>
-                        <form:errors path="address" cssClass="text-danger"/>
-                    </div>
+                    <label for="email" class="form-label">Email</label>
+                    <form:input path="email" id="email" type="email" cssClass="form-control"/>
+                </div>
+                <div class="col">
+                    <label for="website" class="form-label">Website</label>
+                    <form:input path="website" id="website" type="url" cssClass="form-control"/>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row">
                 <div class="col">
-                    <div class="form-floating">
-                        <form:textarea path="note" id="textareaNotePartnerUpdate" type="text" 
-                                       cssClass="form-control" placeholder="textareaNotePartnerUpdate"/>
-                        <label for="textareaNotePartnerUpdate">Ghi chú</label>
-                        <form:errors path="note" cssClass="text-danger"/>
-                    </div>
+                    <label for="country" class="form-label">Quốc gia</label>
+                    <form:input path="country" id="country" type="text" cssClass="form-control"/>
+                </div>
+                <div class="col">
+                    <label for="type" class="form-label">Loại</label>
+                    <form:select path="type" id="type" cssClass="form-select">
+                        <form:option value="" disabled="true" label="---Chọn---"/>
+                        <form:option value="Tổ chức" label="Tổ chức"/>
+                        <form:option value="Cá nhân" label="Cá nhân"/>
+                    </form:select>
                 </div>
             </div>
-            <div class="text-end">
-                <a href="${adminAction}/partner/list" class="btn btn-outline-primary my-wpx-100">Quay lại</a>
-                <button type="submit" class="btn btn-outline-danger my-wpx-100">Lưu</button>
+            <div class="row">
+                <div class="col">
+                    <label for="address" class="form-label">Địa chỉ</label>
+                    <form:input path="address" id="address" type="text" cssClass="form-control"/>
+                </div>
             </div>
-        </form:form>
-    </div>
+            <div class="row">
+                <div class="col">
+                    <label for="note" class="form-label">Ghi chú</label>
+                    <form:textarea path="note" id="note" type="text" cssClass="form-control"/>
+                </div>
+            </div>
+        </div>
+    </form:form>
 </div>

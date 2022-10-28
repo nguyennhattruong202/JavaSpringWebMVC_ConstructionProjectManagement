@@ -30,10 +30,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding: 5px 15px;
     margin-left: 3px;
 }
-.my-button:hover{
-    color: #ffffff;
-    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .175);
-}
 .my-main-content-container{
     margin-left: 15%;
     padding: 10px;
@@ -41,15 +37,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .my-container{
     background-color: #ffffff;
     border: 1px solid #DEE2E6;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0px 10px 0px;
 }
 .my-titile-container{
     background-color: #026aa7;
     color: #ffffff;
-    padding: 5px 5px;
-    border: 1px solid #026aa7;
+    padding: 5px;
+    border: none;
     text-transform: uppercase;
     font-weight: bold;
+}
+.my-tool-container{
+    margin-bottom: 10px;
+}
+.my-button-action{
+    background-color: #026aa7;
+    color: #ffffff;
+    border: none;
+    padding: 5px 0px;
+    width: 100px;
+}
+.my-button:hover, .my-button-action:hover{
+    color: #ffffff;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .175);
 }
 /* End 'index' css */

@@ -66,4 +66,19 @@ public class PersonnelServiceImpl implements PersonnelService {
         return new org.springframework.security.core.userdetails.User(
                 personnel.getEmail(), personnel.getPassword(), authorities);
     }
+
+    @Override
+    public List<Personnel> getAll(int page, boolean active) {
+        return this.personnelRepository.getAll(page, active);
+    }
+
+    @Override
+    public int countPersonnel() {
+        return this.personnelRepository.countPersonnel();
+    }
+
+    @Override
+    public boolean updatePersonnel(Personnel personnel) {
+        return this.personnelRepository.updatePersonnel(personnel);
+    }
 }

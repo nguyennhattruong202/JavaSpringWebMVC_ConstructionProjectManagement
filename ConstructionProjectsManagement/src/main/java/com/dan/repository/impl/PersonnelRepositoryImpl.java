@@ -10,6 +10,7 @@ import com.dan.pojo.Position;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.dan.repository.PersonnelRepository;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,14 +19,19 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @Repository
 @Transactional
+@PropertySource("classpath:databases.properties")
 public class PersonnelRepositoryImpl implements PersonnelRepository {
 
     @Autowired
     private LocalSessionFactoryBean sessionFactoryBean;
+    @Autowired
+    private Environment env;
 
     @Override
     public List<Object[]> getPersonnel(boolean active) {
@@ -113,5 +119,44 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
         criteriaQuery.select(root).where(pEmail, pActive);
         Query query = session.createQuery(criteriaQuery);
         return (Personnel) query.getSingleResult();
+    }
+
+    @Override
+    public List<Personnel> getAll(int page, boolean active) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Personnel> criteriaQuery = criteriaBuilder.createQuery(Personnel.class);
+        Root root = criteriaQuery.from(Personnel.class);
+        Predicate pActive = criteriaBuilder.equal(root.get("active"), active);
+        criteriaQuery.select(root).where(pActive);
+        Query query = session.createQuery(criteriaQuery);
+        if (page > 0) {
+            int size = Integer.parseInt(env.getProperty("page.size").toString());
+            int start = (page - 1) * size;
+            query.setFirstResult(start);
+            query.setMaxResults(size);
+        }
+        return query.getResultList();
+    }
+
+    @Override
+    public int countPersonnel() {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        Query query = session.createQuery("SELECT COUNT(*) FROM Personnel");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public boolean updatePersonnel(Personnel personnel) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            personnel.setAvatar("hjkl");
+            personnel.setPassword("sdfgh");
+            session.update(personnel);
+            return true;
+        } catch (Exception e) {
+            System.err.println("===Update failed repo===" + e.getMessage());
+            return false;
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.dan.pojo.Department;
 import com.dan.repository.DepartmentRepository;
 import com.dan.service.DepartmentService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +36,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department findDepartmentById(int departmentId) {
         return this.departmentRepository.findDepartmentById(departmentId);
+    }
+
+    @Override
+    public Map<String, String> getMapDepartment() {
+        return this.departmentRepository.getMapDepartment();
     }
 }

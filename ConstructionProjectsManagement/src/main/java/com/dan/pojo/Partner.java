@@ -74,7 +74,7 @@ public class Partner implements Serializable {
     @Column(name = "note")
     private String note;
     @Column(name = "active")
-    private Boolean active;
+    private Boolean active = true;
     @OneToMany(mappedBy = "idPartner")
     private Set<Invest> investSet;
 

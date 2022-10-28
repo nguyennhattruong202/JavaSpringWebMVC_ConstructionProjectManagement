@@ -8,6 +8,7 @@ import com.dan.pojo.Position;
 import com.dan.repository.PositionRepository;
 import com.dan.service.PositionService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,4 +43,8 @@ public class PositionServiceImpl implements PositionService {
         return this.positionRepository.addPosition(name, description);
     }
 
+    @Override
+    public Map<String, String> getPosition() {
+        return this.positionRepository.getPosition();
+    }
 }

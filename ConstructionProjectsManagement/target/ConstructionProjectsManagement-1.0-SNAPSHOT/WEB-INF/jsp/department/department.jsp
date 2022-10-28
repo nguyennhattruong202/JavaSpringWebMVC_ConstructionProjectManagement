@@ -146,3 +146,39 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modalAddDepartment">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Thêm phòng ban mới
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form:form method="post" action="${adminAction}/department" modelAttribute="updateDepartment">
+                                    <div class="modal-body">
+                                        <div class="row mb-3">
+                                            <div class="col-3 d-flex align-items-center fw-bold">Mã phòng ban:</div>
+                                            <div class="col">
+                                                <form:input path="id" id="id" type="number" cssStyle="border-radius: 0px;" cssClass="form-control" readonly="true" value="${d.id}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-3 d-flex align-items-center fw-bold">Tên phòng ban:</div>
+                                            <div class="col">
+                                                <form:input path="name" id="name" type="text" cssStyle="border-radius: 0px;" cssClass="form-control" value="${d.name}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-3 d-flex align-items-center fw-bold">Mô tả phòng ban:</div>
+                                            <div class="col">
+                                                <form:textarea path="description" id="description" cssStyle="border-radius: 0px;" cssClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button>Cập nhật</button>
+                                        <button type="submit" data-bs-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </form:form>
+                        </div>
+                    </div>

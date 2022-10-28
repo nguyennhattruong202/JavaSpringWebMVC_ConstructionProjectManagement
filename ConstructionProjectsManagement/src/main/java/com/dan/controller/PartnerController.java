@@ -49,22 +49,26 @@ public class PartnerController {
         return "partnerAdd";
     }
 
-    @GetMapping("/admin/partner/{partnerId}/update")
-    public String getPartnerToUpdate(Model model, @PathVariable(value = "partnerId") int id) {
+    @GetMapping("/admin/partner/edit")
+    public String showFormPartnerUpdate(Model model, @RequestParam(value = "id", required = false) String id) {
+        if (id != null && !id.isEmpty()) {
+            model.addAttribute("partner", this.partnerService.findPartnerById(Integer.parseInt(id), true));
+        }
         model.addAttribute("partner", new Partner());
-        model.addAttribute("partnerById", this.partnerService.findPartnerById(id, true));
         return "partnerUpdate";
     }
 
-    @PostMapping("/admin/partner/{partnerId}/update")
-    public String updatePartner(@ModelAttribute(value = "partnerById") @Valid Partner partner, Model model,
-            @PathVariable(value = "partnerId") int partnerId, BindingResult result) {
-        if (result.hasErrors()) {
-            return "partnerUpdate";
-        }
-        if (this.partnerService.updatePartner(partnerId, partner) == true) {
-            return "redirect:/admin/partner/list";
-        }
-        return "partnerUpdate";
-    }
+//    @GetMapping("/admin/partner/{partnerId}/update")
+//    public String getPartnerToUpdate(Model model, @PathVariable(value = "partnerId") int id) {
+//        model.addAttribute("partnerById", this.partnerService.findPartnerById(id, true));
+//        return "partnerUpdate";
+//    }
+//
+//    @PostMapping("/admin/partner/{partnerId}/update")
+//    public String updatePartner(@ModelAttribute(value = "partnerById") Partner partner, Model model) {
+//        if (this.partnerService.update(partner) == true) {
+//            return "redirect:/admin/partner/list";
+//        }
+//        return "partnerUpdate";
+//    }
 }

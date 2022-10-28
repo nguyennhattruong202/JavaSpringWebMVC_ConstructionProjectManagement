@@ -6,6 +6,7 @@ package com.dan.service;
 
 import com.dan.pojo.Position;
 import java.util.List;
+import java.util.Map;
 
 public interface PositionService {
 
@@ -16,6 +17,8 @@ public interface PositionService {
     boolean removePosition(int id);
 
     boolean updatePosition(int id, String name, String description);
-    
+
     Position addPosition(String name, String description);
+
+    Map<String, String> getPosition();
 }

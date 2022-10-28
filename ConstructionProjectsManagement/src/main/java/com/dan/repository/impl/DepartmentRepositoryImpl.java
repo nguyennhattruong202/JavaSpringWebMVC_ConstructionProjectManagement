@@ -5,9 +5,12 @@
 package com.dan.repository.impl;
 
 import com.dan.pojo.Department;
+import com.dan.pojo.Position;
 import com.dan.repository.DepartmentRepository;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -73,6 +76,16 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("id"), departmentId));
         Query query = session.createQuery(criteriaQuery);
         return (Department) query.getSingleResult();
+    }
+
+    @Override
+    public Map<String, String> getMapDepartment() {
+        Map<String, String> result = new HashMap<>();
+        List<Department> department = this.getDepartment();
+        for (Department item : department) {
+            result.put(item.getId().toString(), item.getName());
+        }
+        return result;
     }
 
 }

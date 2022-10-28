@@ -6,6 +6,7 @@ package com.dan.service;
 
 import com.dan.pojo.Department;
 import java.util.List;
+import java.util.Map;
 
 public interface DepartmentService {
 
@@ -16,4 +17,6 @@ public interface DepartmentService {
     boolean addDepartment(Department department);
 
     Department findDepartmentById(int departmentId);
+
+    Map<String, String> getMapDepartment();
 }

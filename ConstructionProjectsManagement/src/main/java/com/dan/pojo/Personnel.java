@@ -103,7 +103,7 @@ public class Personnel implements Serializable {
     @Column(name = "role")
     private String role;
     @Column(name = "active")
-    private Boolean active;
+    private Boolean active = true;
     @OneToMany(mappedBy = "idPersonnel")
     private Set<Participation> participationSet;
     @OneToMany(mappedBy = "idPersonnel")
@@ -126,10 +126,6 @@ public class Personnel implements Serializable {
     private Set<Category> categorySet;
     @OneToMany(mappedBy = "personCreated")
     private Set<Discuss> discussSet;
-    @NotNull
-    @NotBlank
-    @Transient
-    private MultipartFile imageUser;
 
     public Personnel() {
     }
@@ -354,19 +350,4 @@ public class Personnel implements Serializable {
     public String toString() {
         return "com.dan.pojo.Personnel[ id=" + id + " ]";
     }
-
-    /**
-     * @return the imageUser
-     */
-    public MultipartFile getImageUser() {
-        return imageUser;
-    }
-
-    /**
-     * @param imageUser the imageUser to set
-     */
-    public void setImageUser(MultipartFile imageUser) {
-        this.imageUser = imageUser;
-    }
-    
 }

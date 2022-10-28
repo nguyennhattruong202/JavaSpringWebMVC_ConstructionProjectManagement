@@ -18,4 +18,6 @@ public interface PartnerService {
     Partner findPartnerById(int id, boolean active);
 
     boolean addPartner(Partner partner);
+
+    boolean update(Partner partner);
 }

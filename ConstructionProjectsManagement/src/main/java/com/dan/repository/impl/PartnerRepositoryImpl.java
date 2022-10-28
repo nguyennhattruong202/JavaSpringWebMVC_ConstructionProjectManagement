@@ -106,4 +106,16 @@ public class PartnerRepositoryImpl implements PartnerRepository {
             return false;
         }
     }
+
+    @Override
+    public boolean update(Partner partner) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.update(partner);
+            return true;
+        } catch (Exception e) {
+            System.err.println("===Update failed repo===" + e.getMessage());
+            return false;
+        }
+    }
 }

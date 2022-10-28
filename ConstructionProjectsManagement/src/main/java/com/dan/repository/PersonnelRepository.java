@@ -20,4 +20,10 @@ public interface PersonnelRepository {
     boolean addPersonnel(Personnel personnel);
 
     Personnel getPersonnelByEmail(String email);
+
+    List<Personnel> getAll(int page, boolean active);
+
+    int countPersonnel();
+
+    boolean updatePersonnel(Personnel personnel);
 }

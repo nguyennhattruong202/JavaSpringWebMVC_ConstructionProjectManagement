@@ -6,7 +6,9 @@ package com.dan.repository.impl;
 
 import com.dan.pojo.Position;
 import com.dan.repository.PositionRepository;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
@@ -91,6 +93,16 @@ public class PositionRepositoryImpl implements PositionRepository {
         position.setActive(true);
         session.save(position);
         return position;
+    }
+
+    @Override
+    public Map<String, String> getPosition() {
+        Map<String, String> result = new HashMap<>();
+        List<Position> position = this.getPosition(true);
+        for (Position item : position) {
+            result.put(item.getId().toString(), item.getName());
+        }
+        return result;
     }
 
 }

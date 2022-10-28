@@ -9,6 +9,7 @@ import com.dan.service.DepartmentService;
 import com.dan.service.PersonnelService;
 import com.dan.service.PositionService;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PersonnelController {
@@ -31,22 +33,27 @@ public class PersonnelController {
     private DepartmentService departmentService;
 
     @GetMapping("/admin/personnel")
-    public String showPersonnelList(Model model) {
-        model.addAttribute("listPersonnel", this.personnelService.getPersonnel(true));
+    public String showPersonnelList(Model model, @RequestParam Map<String, String> params) {
+        int page = Integer.parseInt(params.getOrDefault("page", "1"));
+        model.addAttribute("listPersonnel", this.personnelService.getAll(page, true));
+        model.addAttribute("personnelCounter", this.personnelService.countPersonnel());
         return "personnel";
     }
 
     @GetMapping("/admin/personnel/{personnelId}/update")
     public String showPersonnelUpdate(Model model, @PathVariable(value = "personnelId") int personnelId) {
-        Set<String> roleSet = new HashSet<>();
-        this.personnelService.getPersonnelRole().forEach(roleValue -> {
-            roleSet.add(roleValue);
-        });
-        model.addAttribute("getRole", roleSet);
         model.addAttribute("personnelById", this.personnelService.findPersonnelById(personnelId, true));
-        model.addAttribute("getPosition", this.positionService.getPosition(true));
-        model.addAttribute("getDepartment", this.departmentService.getDepartment());
+        model.addAttribute("getPosition", this.positionService.getPosition());
+        model.addAttribute("getDepartment", this.departmentService.getMapDepartment());
         return "personnelUpdate";
+    }
+
+    @PostMapping("/admin/personnel/{personnelId}/update")
+    public String updatePersonnel(@ModelAttribute(value = "personnelById") Personnel personnel) {
+        if (this.personnelService.updatePersonnel(personnel) == true) {
+            return "redirect:/admin/personnel";
+        }
+        return "personnelAdd";
     }
 
     @GetMapping("/admin/personnel/add")
