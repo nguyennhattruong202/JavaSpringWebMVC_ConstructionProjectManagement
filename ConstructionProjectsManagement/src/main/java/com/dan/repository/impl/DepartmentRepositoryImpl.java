@@ -54,17 +54,12 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     }
 
     @Override
-    public boolean addDepartment(Department department) {
+    public Department add(Department department) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
-        try {
-            department.setActive(true);
-            department.setCreatedDate(new Date());
-            session.save(department);
-            return true;
-        } catch (Exception e) {
-            System.err.println("===Add faile===" + e.getMessage());
-            return false;
-        }
+        department.setActive(Boolean.TRUE);
+        department.setCreatedDate(new Date());
+        session.save(department);
+        return department;
     }
 
     @Override
@@ -88,4 +83,25 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return result;
     }
 
+    @Override
+    public void removed(int id) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            Query query = session.createQuery("UPDATE Department SET active=false WHERE id=:id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("===Remove failed repo===" + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Department> getDepartmentWithKey(String keyword) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        if (keyword != null && !keyword.isEmpty()) {
+            return session.createQuery("FROM Department WHERE active = true AND name LIKE :keyword OR description LIKE :keyword", Department.class).setParameter("keyword", String.format("%%%s%%", keyword)).list();
+        } else {
+            return session.createQuery("FROM Department WHERE active = true", Department.class).list();
+        }
+    }
 }

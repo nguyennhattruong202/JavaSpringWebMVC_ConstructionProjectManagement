@@ -7,6 +7,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<script src="<c:url value="/js/position.js"/>"></script>
+<div id="divMainContainer" class="my-main-content-container">
+    <div id="divToolContainer"></div>
+    <div id="divTitleContainer"></div>
+    <div id="divContentContainer"></div>
+</div>
+<!-- 
 <c:url value="/admin/position" var="action"/>
 <c:url value="/admin/api/position" var="endpoint"/>
 
@@ -95,4 +102,4 @@
         </div>
     </div>
 </div>
-<script src="<c:url value="/js/position.js"/>"></script>
+-->

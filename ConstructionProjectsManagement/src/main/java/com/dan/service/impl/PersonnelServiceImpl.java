@@ -29,11 +29,6 @@ public class PersonnelServiceImpl implements PersonnelService {
     }
 
     @Override
-    public List<Object[]> constructionSupervisonList() {
-        return this.personnelRepository.constructionSupervisonList();
-    }
-
-    @Override
     public Personnel findPersonnelById(int id, boolean active) {
         return this.personnelRepository.findPersonnelById(id, active);
     }
@@ -80,5 +75,10 @@ public class PersonnelServiceImpl implements PersonnelService {
     @Override
     public boolean updatePersonnel(Personnel personnel) {
         return this.personnelRepository.updatePersonnel(personnel);
+    }
+
+    @Override
+    public void removedPersonnel(int id) {
+        this.personnelRepository.removedPersonnel(id);
     }
 }

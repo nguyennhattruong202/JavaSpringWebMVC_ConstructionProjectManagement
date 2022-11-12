@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,23 +25,24 @@ public class ApiPositionController {
     @Autowired
     private PositionService positionService;
 
-    @GetMapping("/removed/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void removePositionApi(@PathVariable(value = "id") int id) {
-        this.positionService.removePosition(id);
-    }
-
-    @PutMapping(path = "/update/{id}", produces = {
+    @PutMapping(path = "/update", produces = {
         MediaType.APPLICATION_JSON_VALUE
     })
     @ResponseStatus(HttpStatus.OK)
-    public void updatePositionApi(@RequestBody Map<String, String> params) {
-        int id = Integer.parseInt(params.get("id"));
-        String name = params.get("name");
-        String description = params.get("description");
-        this.positionService.updatePosition(id, name, description);
+    public void updatePositionApi(@RequestBody Position position) {
+        this.positionService.update(position);
     }
 
+//    @PutMapping(path = "/update/{id}", produces = {
+//        MediaType.APPLICATION_JSON_VALUE
+//    })
+//    @ResponseStatus(HttpStatus.OK)
+//    public void updatePositionApi(@RequestBody Map<String, String> params) {
+//        int id = Integer.parseInt(params.get("id"));
+//        String name = params.get("name");
+//        String description = params.get("description");
+//        this.positionService.updatePosition(id, name, description);
+//    }
     @PostMapping(path = "/add", produces = {
         MediaType.APPLICATION_JSON_VALUE
     })

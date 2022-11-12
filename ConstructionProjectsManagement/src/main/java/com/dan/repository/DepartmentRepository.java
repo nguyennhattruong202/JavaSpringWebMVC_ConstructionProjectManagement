@@ -14,9 +14,13 @@ public interface DepartmentRepository {
 
     boolean updateDepartment(Department department);
 
-    boolean addDepartment(Department department);
+    Department add(Department department);
 
     Department findDepartmentById(int departmentId);
 
     Map<String, String> getMapDepartment();
+
+    void removed(int id);
+
+    List<Department> getDepartmentWithKey(String keyword);
 }

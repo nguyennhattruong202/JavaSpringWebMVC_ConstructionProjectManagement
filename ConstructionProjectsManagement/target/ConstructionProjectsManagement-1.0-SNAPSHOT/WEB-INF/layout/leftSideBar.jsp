@@ -59,7 +59,7 @@
     <a href="#"><i class="fa-solid fa-calendar-days me-2"></i>Lịch</a>
     <a href="<c:url value="/admin/project"/>"><i class="fa-solid fa-building me-2"></i>Dự án</a>
     <a href="<c:url value="/admin/personnel"/>"><i class="fa-solid fa-users me-2"></i>Nhân sự</a>
-    <a href="<c:url value="/admin/partner/list"/>"><i class="fa-solid fa-handshake me-2"></i>Đối tác</a>
+    <a href="<c:url value="/admin/partners"/>"><i class="fa-solid fa-handshake me-2"></i>Đối tác</a>
     <a href="<c:url value="/admin/position"/>"><i class="fa-solid fa-user-tie me-2"></i>Chức vụ</a>
     <a href="<c:url value="/admin/department"/>"><i class="fa-solid fa-building-user me-2"></i>Phòng ban</a>
 </div>

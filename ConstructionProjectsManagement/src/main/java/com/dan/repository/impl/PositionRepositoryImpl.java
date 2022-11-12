@@ -54,18 +54,15 @@ public class PositionRepositoryImpl implements PositionRepository {
     }
 
     @Override
-    public boolean removePosition(int id) {
+    public void removed(int id) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaUpdate<Position> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Position.class);
-        Root root = criteriaUpdate.from(Position.class);
-        criteriaUpdate.set("active", false);
-        criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), id));
-        int result = session.createQuery(criteriaUpdate).executeUpdate();
-        if (result > 0) {
-            return true;
+        try {
+            Query query = session.createQuery("UPDATE Position SET active=false WHERE id=:id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("===Remove failed repo===" + e.getMessage());
         }
-        return false;
     }
 
     @Override
@@ -103,6 +100,16 @@ public class PositionRepositoryImpl implements PositionRepository {
             result.put(item.getId().toString(), item.getName());
         }
         return result;
+    }
+
+    @Override
+    public void update(Position position) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            session.update(position);
+        } catch (Exception e) {
+            System.err.println("===Remove failed repo===" + e.getMessage());
+        }
     }
 
 }

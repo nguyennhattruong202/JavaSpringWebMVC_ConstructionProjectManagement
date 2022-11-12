@@ -8,6 +8,7 @@ import com.dan.pojo.Status;
 import com.dan.repository.StatusRepository;
 import com.dan.service.StatusService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,11 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public List<Status> getStatus() {
         return this.statusRepository.getStatus();
+    }
+
+    @Override
+    public Map<String, String> getMapStatus() {
+        return this.statusRepository.getMapStatus();
     }
 
 }

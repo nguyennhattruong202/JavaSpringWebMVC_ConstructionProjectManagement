@@ -60,3 +60,29 @@ function addPosition(endpoint, url) {
     });
 }
 ;
+function updatePosition2(endpoint, url) {
+    event.preventDefault();
+    var data = {};
+    $.each($('#formSubmit').serializeArray(), function (i, v) {
+        data["" + v.name + ""] = v.value;
+    });
+    ajaxUpdate(data, endpoint, url);
+    console.log($('#formSubmit').serializeArray());
+}
+;
+function ajaxUpdate(data, endpoint, url) {
+    $.ajax({
+        url: endpoint,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) {
+            window.location = url;
+        },
+        error: function (error) {
+            window.location = url;
+        }
+    });
+}
+;

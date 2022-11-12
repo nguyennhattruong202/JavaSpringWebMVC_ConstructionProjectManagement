@@ -10,7 +10,6 @@ import com.dan.pojo.Position;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.dan.repository.PersonnelRepository;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -50,23 +49,6 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
                 rootPersonnel.get("birthday"), rootPersonnel.get("identity"), rootPersonnel.get("phone"),
                 rootPersonnel.get("email"), rootPersonnel.get("address"), rootPersonnel.get("role"),
                 rootPosition.get("name"), rootDepartment.get("name"));
-        Query query = session.createQuery(criteriaQuery);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Object[]> constructionSupervisonList() {
-        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> criteriaQuery = criteriaBuilder.createQuery(Object[].class);
-        Root rPersonnel = criteriaQuery.from(Personnel.class);
-        Root rPosition = criteriaQuery.from(Position.class);
-        Predicate pPerPos = criteriaBuilder.equal(rPersonnel.get("idPosition"), rPosition.get("id"));
-        Predicate pPersonnelActive = criteriaBuilder.equal(rPersonnel.get("active"), true);
-        Predicate pPositionActive = criteriaBuilder.equal(rPosition.get("active"), true);
-        Predicate pPositionName = criteriaBuilder.like(rPosition.get("name"), String.format("%%%s%%", "giám sát xây dựng"));
-        criteriaQuery.where(pPersonnelActive, pPositionActive, pPositionName, pPerPos);
-        criteriaQuery.multiselect(rPersonnel.get("id"), rPersonnel.get("lastName"), rPersonnel.get("firstName"), rPosition.get("name"));
         Query query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }
@@ -150,13 +132,23 @@ public class PersonnelRepositoryImpl implements PersonnelRepository {
     public boolean updatePersonnel(Personnel personnel) {
         Session session = this.sessionFactoryBean.getObject().getCurrentSession();
         try {
-            personnel.setAvatar("hjkl");
-            personnel.setPassword("sdfgh");
             session.update(personnel);
             return true;
         } catch (Exception e) {
             System.err.println("===Update failed repo===" + e.getMessage());
             return false;
+        }
+    }
+
+    @Override
+    public void removedPersonnel(int id) {
+        Session session = this.sessionFactoryBean.getObject().getCurrentSession();
+        try {
+            Query query = session.createQuery("UPDATE Personnel SET active=false WHERE id=:id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("===Remove failed repo===" + e.getMessage());
         }
     }
 }

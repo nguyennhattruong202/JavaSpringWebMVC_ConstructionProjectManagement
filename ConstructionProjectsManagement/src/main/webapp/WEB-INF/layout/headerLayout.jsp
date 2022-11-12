@@ -8,6 +8,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<c:url value="/user" var="action"/>
 <style>
     #headerLayout {
         margin-left: 15%;
@@ -34,7 +35,7 @@
     <a href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ngôn ngữ">
         <i class="fa-solid fa-globe"></i>
     </a>
-    <a href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tài khoản của tôi">
+    <a href="${action}?id=${pageContext.session.getAttribute("currentUser").id}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tài khoản của tôi">
         <i class="fa-solid fa-user"></i>
     </a>
     <a href="<c:url value="/logout"/>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Đăng xuất">

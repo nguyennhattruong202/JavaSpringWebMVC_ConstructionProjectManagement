@@ -4,8 +4,7 @@
  */
 package com.dan.controller;
 
-import com.dan.service.PartnerService;
-import java.util.Map;
+import com.dan.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class PartnerController {
+public class UserController {
 
     @Autowired
-    private PartnerService partnerService;
+    private PersonnelService personnelService;
 
-    @GetMapping("/admin/partners")
-    public String listPartnerIndex(Model model, @RequestParam Map<String, String> params) {
-        String kw = params.get("kw");
-        model.addAttribute("partnerList", this.partnerService.searchAll(kw));
-        model.addAttribute("keyword", kw);
-        return "partner";
+    @GetMapping("/user")
+    public String showUser(Model model, @RequestParam(value = "id") int id) {
+        model.addAttribute("authentication", this.personnelService.findPersonnelById(id, true));
+        return "user";
     }
 }

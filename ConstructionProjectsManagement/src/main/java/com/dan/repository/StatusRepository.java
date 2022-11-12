@@ -6,8 +6,11 @@ package com.dan.repository;
 
 import com.dan.pojo.Status;
 import java.util.List;
+import java.util.Map;
 
 public interface StatusRepository {
 
     List<Status> getStatus();
+
+    Map<String, String> getMapStatus();
 }

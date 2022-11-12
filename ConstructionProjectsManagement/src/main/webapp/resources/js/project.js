@@ -14,14 +14,3 @@ function removeProject(endpoint) {
     });
 }
 ;
-function remove(endpoint) {
-    fetch(endpoint, {
-        method: "get"
-    }).then(function (res) {
-        if (res.status === 200)
-            location.reload();
-    }).catch(function (err) {
-        console.error(err);
-    });
-}
-;

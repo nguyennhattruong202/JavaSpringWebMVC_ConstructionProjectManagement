@@ -6,7 +6,9 @@ package com.dan.repository.impl;
 
 import com.dan.pojo.Status;
 import com.dan.repository.StatusRepository;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -35,4 +37,13 @@ public class StatusRepositoryImpl implements StatusRepository {
         return query.getResultList();
     }
 
+    @Override
+    public Map<String, String> getMapStatus() {
+        Map<String, String> result = new HashMap<>();
+        List<Status> status = this.getStatus();
+        for (Status item : status) {
+            result.put(item.getId().toString(), item.getName());
+        }
+        return result;
+    }
 }

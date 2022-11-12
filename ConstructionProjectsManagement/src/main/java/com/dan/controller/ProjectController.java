@@ -7,7 +7,6 @@ package com.dan.controller;
 import com.dan.pojo.Participation;
 import com.dan.pojo.Project;
 import com.dan.service.ParticipationService;
-import com.dan.service.PersonnelService;
 import com.dan.service.ProjectService;
 import com.dan.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,6 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private PersonnelService personnelService;
-    @Autowired
     private StatusService statusService;
     @Autowired
     private ParticipationService participationService;
@@ -37,37 +34,19 @@ public class ProjectController {
     }
 
     @GetMapping("/admin/project/add")
-    public String loadAddProjectForm(Model model) {
-        model.addAttribute("CSListForProjectAdd", this.personnelService.constructionSupervisonList());
-        model.addAttribute("statusListForProjectAdd", this.statusService.getStatus());
-        model.addAttribute("newProject", new Project());
+    public String showFormAddProject() {
         return "projectAdd";
     }
 
-    @PostMapping("/admin/project/add")
-    public String addProject(@ModelAttribute(value = "newProject") Project project) {
-        project.setImage(null);
-        project.setActive(true);
-        if (this.projectService.addProject(project) == true) {
-            return "redirect:/admin/project";
-        }
-        return "projectAdd";
-    }
-
-    @GetMapping("/admin/project/{id}/update")
+    @GetMapping("/admin/project/{id}")
     public String loadUpdateProjectForm(@PathVariable(value = "id") int id, Model model) {
         model.addAttribute("projectById", this.projectService.findProjectById(id));
-        model.addAttribute("csListForUpdate", this.personnelService.constructionSupervisonList());
-        model.addAttribute("statusListForUpdate", this.statusService.getStatus());
-        model.addAttribute("projectUpdate", new Project());
+        model.addAttribute("status", this.statusService.getMapStatus());
         return "projectUpdate";
     }
 
-    @PostMapping("/admin/project/{id}/update")
-    public String updateProject(@ModelAttribute(value = "projectUpdate") Project projectUpdate) {
-        if (this.projectService.updateProject(projectUpdate) == true) {
-            return "redirect:/admin/project";
-        }
+    @PostMapping("/admin/project/{id}")
+    public String updateProject(@ModelAttribute(value = "projectById") Project projectUpdate) {
         return "projectUpdate";
     }
 

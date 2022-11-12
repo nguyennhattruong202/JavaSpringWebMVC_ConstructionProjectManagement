@@ -14,11 +14,13 @@ public interface PositionRepository {
 
     Position findPositionById(int id, boolean active);
 
-    boolean removePosition(int id);
+    void removed(int id);
 
     boolean updatePosition(int id, String name, String description);
 
     Position addPosition(String name, String description);
 
     Map<String, String> getPosition();
+
+    void update(Position position);
 }

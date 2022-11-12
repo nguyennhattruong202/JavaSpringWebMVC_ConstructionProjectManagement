@@ -28,8 +28,21 @@
     #aAddPersonnel:hover{
         color: #ffffff;
     }
+    .modal-content{
+        border-radius: 0px;
+    }
+    .modal-header{
+        background-color: #026aa7;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 0px;
+    }
 </style>
 <c:url value="/admin" var="adminAction"/>
+<c:url value="/admin/api/personnel/removed" var="removedEndpoint"/>
+<c:url value="/admin/personnel" var="listPersonnelUrl"/>
+
 <div style="margin-left: 15%; padding: 10px;">
     <div class="d-flex justify-content-end mb-2">
         <form class="w-100 d-flex">
@@ -77,11 +90,28 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="${adminAction}/personnel/${personnel.id}/update">Xem và cập nhật</a></li>
-                                    <li><a class="dropdown-item">Xóa nhân sự</a></li>
+                                    <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalConfirmRemovePersonnel${personnel.id}">Xóa nhân sự</a></li>
                                 </ul>
                             </td>
                         </tr>
-                    </c:forEach>
+                    <div class="modal fade" id="modalConfirmRemovePersonnel${personnel.id}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    Lưu ý
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc muốn xóa ${personnel.lastName} ${personnel.firstName}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button onclick="remove('${removedEndpoint}?id=${personnel.id}', '${listPersonnelUrl}')" type="button" class="my-button-action" data-bs-dismiss="modal">Xóa</button>
+                                    <button class="my-button-action" type="button" data-bs-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
                 </tbody>
             </table>
             <div class="d-flex justify-content-end">

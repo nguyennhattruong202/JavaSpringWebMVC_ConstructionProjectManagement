@@ -29,11 +29,4 @@ public class CategoryController {
         model.addAttribute("projectById", this.projectService.findProjectById(projectId));
         return "category";
     }
-
-    @GetMapping("/admin/project/{projectId}/category/{categoryId}/update")
-    public String showUpdateCategory(Model model, @PathVariable(value = "projectId") int projectId) {
-        model.addAttribute("projectById", this.projectService.findProjectById(projectId));
-        model.addAttribute("status", this.statusService.getStatus());
-        return "categoryUpdate";
-    }
 }

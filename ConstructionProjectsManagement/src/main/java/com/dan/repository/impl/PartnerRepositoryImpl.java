@@ -7,7 +7,6 @@ package com.dan.repository.impl;
 import com.dan.pojo.Partner;
 import com.dan.repository.PartnerRepository;
 import java.util.List;
-import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
@@ -30,12 +29,13 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     @Override
     public void removePartner(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaUpdate<Partner> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Partner.class);
-        Root root = criteriaUpdate.from(Partner.class);
-        criteriaUpdate.set("active", false);
-        criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), id));
-        session.createQuery(criteriaUpdate).executeUpdate();
+        try {
+            Query query = session.createQuery("UPDATE Partner SET active=false WHERE id=:id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("===Remove failed repo===" + e.getMessage());
+        }
     }
 
     @Override

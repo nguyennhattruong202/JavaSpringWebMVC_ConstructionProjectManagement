@@ -8,30 +8,33 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <c:url value="/admin/api/project" var="endpoint" />
 <c:url value="/admin" var="adminAction" />
+<c:url value="/admin/project/add" var="addProjectUrl" />
+
 <div class="my-main-content-container">
     <div class="d-flex justify-content-end mb-2">
         <input type="text" id="inputSearchProject" style="border-radius: 0px;" class="form-control">
         <button id="buttonSearchProject" type="button" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tìm kiếm">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-        <a href="#"class="my-button" id="aAddProject" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thêm mới">
+        <a href="${addProjectUrl}" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thêm mới">
             <i class="fa-solid fa-plus"></i>
         </a>
-        <button id="buttonFilterProject" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lọc dữ liệu">
+        <button class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lọc dữ liệu">
             <i class="fa-solid fa-filter"></i>
         </button>
-        <button id="buttonRemoveProject" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Xóa">
+        <button class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Xóa">
             <i class="fa-solid fa-trash"></i>
         </button>
-        <button id="buttonPrintProject" class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In">
+        <button class="my-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In">
             <i class="fa-solid fa-print"></i>
         </button>
     </div>
     <div class="my-container">
         <div class="my-titile-container">Danh sách dự án</div>
-        <div class="pe-2 ps-2">
+        <div class="my-content-container">
             <table class="table table-hover table-striped">
                 <thead>
                 <th></th>
@@ -66,135 +69,24 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="${adminAction}/project/${iProjectList[0]}/categories">Xem hạng mục thi công</a></li>
                                     <li><a class="dropdown-item" href="${adminAction}/project/${iProjectList[0]}/personnel">Xem nhân sự tham gia dự án</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalViewProject${iProjectList[0]}">Chi tiết dự án</a></li>
-                                    <li><a class="dropdown-item" href="${adminAction}/project/${iProjectList[0]}/update">Sửa dự án</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalRemovedProject${iProjectList[0]}">Xóa</a></li>
+                                    <li><a class="dropdown-item" href="${adminAction}/project/${iProjectList[0]}">Xem & cập nhật</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalConfirmRemoveProject${iProjectList[0]}">Xóa dự án</a></li>
                                 </ul>
                             </td>
                         </tr>
-                    <div class="modal fade" id="modalViewProject${iProjectList[0]}">
-                        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header bg-primary">
-                                    <h5 class="modal-title text-white">Thông tin dự án</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-3 d-flex align-items-center">
-                                            <img class="img-fluid" src="${iProjectList[3]}" alt="imageProject">
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="number" class="form-control bg-body" id="inputIdProject" value="${iProjectList[0]}" readonly>
-                                                        <label for="inputIdProject">Mã dự án</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="text" class="form-control bg-body" id="inputNameProject" value="${iProjectList[1]}" readonly>
-                                                        <label for="inputNameProject">Tên dự án</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="text" class="form-control bg-body" id="inputLocationProject" value="${iProjectList[4]}" readonly>
-                                                        <label for="inputLocationProject">Địa chỉ dự án</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="date" class="form-control bg-body" id="inputStartDateProject" value="${iProjectList[5]}" readonly>
-                                                        <label for="inputStartDateProject">Ngày bắt đầu</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="date" class="form-control bg-body" id="inputFinishDateProject" value="${iProjectList[6]}" readonly>
-                                                        <label for="inputFinishDateProject">Ngày kết thúc</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="datetime" class="form-control bg-body" id="inputCreatedDateProject" value="${iProjectList[7]}" readonly>
-                                                        <label for="inputCreatedDateProject">Ngày tạo</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="text" class="form-control bg-body" id="inputLeaderProject" value="${iProjectList[11]} ${iProjectList[12]}" readonly>
-                                                        <label for="inputLeaderProject">Trưởng dự án</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="number" class="form-control bg-body" id="inputMaxPersonProject" value="${iProjectList[8]}" readonly>
-                                                        <label for="inputCreatedDateProject">Nhân công tối đa</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="text" class="form-control bg-body" id="inputPercentProject" value="${iProjectList[9]}" readonly>
-                                                        <label for="inputPercentProject">Tiến độ thực hiện</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <input type="text" class="form-control bg-body" id="inputStatusProject" value="${iProjectList[10]}" readonly>
-                                                        <label for="inputStatusProject">Trạng thái</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-floating">
-                                                        <textarea class="form-control bg-body" id="textareaDescriptionProject" readonly>${iProjectList[2]}</textarea>
-                                                        <label for="textareaDescriptionProject">Khái quát dự án</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary my-wpx-100 fw-bold" data-bs-dismiss="modal">
-                                        Đóng
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="modalRemovedProject${iProjectList[0]}">
+                    <div class="modal fade" id="modalConfirmRemoveProject${iProjectList[0]}">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header bg-danger">
-                                    <h5 class="modal-title text-white text-uppercase">Lưu ý</h5>
+                                <div class="modal-header">
+                                    Lưu ý
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Bạn có chắc muốn xóa dự án ${iProjectList[1]}?
+                                    Bạn có chắc muốn xóa ${iProjectList[1]}?
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-outline-danger my-wpx-100"
-                                            onclick="removeProject('${endpoint}/removed/${iProjectList[0]}')">
-                                        Xóa
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary my-wpx-100" 
-                                            data-bs-dismiss="modal">
-                                        Đóng
-                                    </button>
+                                    <button type="button" class="my-button-action" data-bs-dismiss="modal">Xóa</button>
+                                    <button class="my-button-action" type="button" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </div>
                         </div>

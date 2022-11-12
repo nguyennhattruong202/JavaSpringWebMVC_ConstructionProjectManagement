@@ -13,10 +13,7 @@
         text-align: center;
         color: #ffffff;
         padding: 15px 0px;
-        margin-left: 15%;
-        position: fixed;
-        bottom: 0px;
-        width: 85%;
+        margin-left: 15%;;
     }
     #divFooterLayout a{
         text-decoration: none;

@@ -29,8 +29,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public boolean addDepartment(Department department) {
-        return this.departmentRepository.addDepartment(department);
+    public Department add(Department department) {
+        return this.departmentRepository.add(department);
     }
 
     @Override
@@ -41,5 +41,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Map<String, String> getMapDepartment() {
         return this.departmentRepository.getMapDepartment();
+    }
+
+    @Override
+    public void removed(int id) {
+        this.departmentRepository.removed(id);
+    }
+
+    @Override
+    public List<Department> getDepartmentWithKey(String keyword) {
+        return this.departmentRepository.getDepartmentWithKey(keyword);
     }
 }

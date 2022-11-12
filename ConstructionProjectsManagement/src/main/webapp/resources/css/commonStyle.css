@@ -22,13 +22,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     width: 200px;
     height: 200px;
 }
-/* Begin 'index' css */
+
 .my-button {
     background-color: #026aa7;
     color: #ffffff;
     border: none;
     padding: 5px 15px;
     margin-left: 3px;
+    text-decoration: none;
 }
 .my-main-content-container{
     margin-left: 15%;
@@ -50,6 +51,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .my-tool-container{
     margin-bottom: 10px;
 }
+
+.modal-header{
+    background-color: #026aa7;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .my-button-action{
     background-color: #026aa7;
     color: #ffffff;
@@ -61,4 +70,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: #ffffff;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .175);
 }
-/* End 'index' css */
+.my-content-container{
+    padding: 5px;
+    background-color: #ffffff;
+}
+.form-control, .form-select{
+    border-radius: 0px;
+}

@@ -6,8 +6,11 @@ package com.dan.service;
 
 import com.dan.pojo.Status;
 import java.util.List;
+import java.util.Map;
 
 public interface StatusService {
 
     List<Status> getStatus();
+
+    Map<String, String> getMapStatus();
 }

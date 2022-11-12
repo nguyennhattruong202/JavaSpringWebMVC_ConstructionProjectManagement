@@ -11,8 +11,6 @@ public interface PersonnelRepository {
 
     List<Object[]> getPersonnel(boolean active);
 
-    List<Object[]> constructionSupervisonList();
-
     Personnel findPersonnelById(int id, boolean active);
 
     List<String> getPersonnelRole();
@@ -26,4 +24,6 @@ public interface PersonnelRepository {
     int countPersonnel();
 
     boolean updatePersonnel(Personnel personnel);
+
+    void removedPersonnel(int id);
 }

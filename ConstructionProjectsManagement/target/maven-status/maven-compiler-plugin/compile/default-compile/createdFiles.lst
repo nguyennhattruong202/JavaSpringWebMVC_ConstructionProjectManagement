@@ -54,8 +54,10 @@ com\dan\repository\impl\ProjectRepositoryImpl.class
 com\dan\formatter\StatusFormatter.class
 com\dan\service\impl\PersonnelServiceImpl.class
 com\dan\service\impl\TaskServiceImpl.class
+com\dan\controller\ApiController.class
 com\dan\controller\DepartmentController.class
 com\dan\pojo\Issue.class
+com\dan\controller\UserController.class
 com\dan\repository\impl\PartnerRepositoryImpl.class
 com\dan\pojo\Invest.class
 com\dan\pojo\Position.class
@@ -65,7 +67,6 @@ com\dan\service\impl\ProjectServiceImpl.class
 com\dan\service\StatusService.class
 com\dan\pojo\Category.class
 com\dan\repository\ProjectRepository.class
-com\dan\controller\ApiPartnerController.class
 com\dan\repository\PositionRepository.class
 com\dan\config\TilesConfig.class
 com\dan\handler\LogoutHandler.class

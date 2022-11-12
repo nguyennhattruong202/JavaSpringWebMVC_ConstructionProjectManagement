@@ -4,12 +4,14 @@
  */
 package com.dan.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -59,7 +61,8 @@ public class Department implements Serializable {
     private Date createdDate;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(mappedBy = "idDepartment")
+    @JsonIgnore
+    @OneToMany(mappedBy = "idDepartment", fetch = FetchType.LAZY)
     private Set<Personnel> personnelSet;
 
     public Department() {
