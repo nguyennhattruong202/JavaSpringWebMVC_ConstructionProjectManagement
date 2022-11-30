@@ -26,8 +26,8 @@ DROP TABLE IF EXISTS `category`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci,
   `start_date` date DEFAULT NULL,
   `finish_date` date DEFAULT NULL,
   `percent` float DEFAULT NULL,
@@ -64,12 +64,12 @@ DROP TABLE IF EXISTS `change`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `change` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8_unicode_ci,
-  `new_content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `old_content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci,
+  `new_content` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `old_content` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_date` datetime DEFAULT NULL,
-  `priority` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `priority` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_project` int DEFAULT NULL,
   `id_personnel` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -98,12 +98,12 @@ DROP TABLE IF EXISTS `department`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_date` datetime DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'Phòng kế toán - tài chính','Quản lý tài chính','2022-10-15 16:54:53',_binary ''),(2,'Phòng ý tưởng và cung ứng','Quản lý ý tưởng, thiết kế','2022-05-01 00:00:00',_binary ''),(3,'Phòng tổ chức hành chính','Quản lý hành chính','2022-05-01 00:00:00',_binary ''),(4,'Phòng quản lý kỹ thuật sản xuất và thi công','Quản lý kỹ thuật, thi công dự án','2022-05-01 00:00:00',_binary ''),(5,'Phòng đầu tư','Quản lý đầu tư','2022-05-01 00:00:00',_binary ''),(51,'Phòng ban mới','Phòng ban mới 1',NULL,_binary '\0'),(52,'Phòng ban mới 2','Phòng ban mới 2',NULL,_binary '\0'),(53,'Phòng ban demo','Phòng ban demo',NULL,_binary '\0'),(54,'Phòng ban demo','Phòng ban demo',NULL,_binary '\0'),(55,'Phòng ban demo','Phòng ban demo',NULL,_binary '\0'),(56,'Phòng kế hoạch đầu tư','Quản lý kế hoạch đầu tư','2022-11-05 09:44:10',_binary '\0');
+INSERT INTO `department` VALUES (1,'Phòng kế toán - tài chính','Quản lý tài chính','2022-10-15 16:54:53',_binary ''),(2,'Phòng ý tưởng và cung ứng','Quản lý ý tưởng, thiết kế','2022-05-01 00:00:00',_binary ''),(3,'Phòng tổ chức hành chính','Quản lý hành chính','2022-05-01 00:00:00',_binary ''),(4,'Phòng quản lý kỹ thuật sản xuất và thi công','Quản lý kỹ thuật, thi công dự án','2022-05-01 00:00:00',_binary ''),(5,'Phòng đầu tư','Quản lý đầu tư','2022-05-01 00:00:00',_binary ''),(51,'Phòng ban mới','Phòng ban mới 1',NULL,_binary '\0'),(52,'Phòng ban mới 2','Phòng ban mới 2',NULL,_binary '\0'),(53,'Phòng ban demo','Phòng ban demo',NULL,_binary '\0'),(54,'Phòng ban demo','Phòng ban demo',NULL,_binary '\0'),(55,'Phòng ban demo','Phòng ban demo',NULL,_binary '\0'),(56,'Phòng kế hoạch đầu tư','Quản lý kế hoạch đầu tư','2022-11-05 09:44:10',_binary '\0'),(57,'Phòng ban mới','Demo','2022-11-30 08:13:44',_binary '\0'),(58,'Phòng ban kiểm tra','Kiểm tra','2022-11-30 08:14:26',_binary '');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,8 +125,8 @@ DROP TABLE IF EXISTS `discuss`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `discuss` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `topic` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8_unicode_ci,
+  `topic` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci,
   `created_date` datetime DEFAULT NULL,
   `id_project` int DEFAULT NULL,
   `person_created` int DEFAULT NULL,
@@ -156,8 +156,8 @@ DROP TABLE IF EXISTS `invest`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `invest` (
   `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `money` decimal(12,0) DEFAULT NULL,
   `created_date` date DEFAULT NULL,
   `approved_date` date DEFAULT NULL,
@@ -195,11 +195,11 @@ DROP TABLE IF EXISTS `issue`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `issue` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci,
   `start_date` date DEFAULT NULL,
   `finish_date` date DEFAULT NULL,
-  `priority` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `priority` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_date` datetime DEFAULT NULL,
   `id_task` int DEFAULT NULL,
   `id_personnel` int DEFAULT NULL,
@@ -234,7 +234,7 @@ CREATE TABLE `participation` (
   `id` int NOT NULL AUTO_INCREMENT,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
-  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `position` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   `id_project` int DEFAULT NULL,
   `id_personnel` int DEFAULT NULL,
@@ -265,14 +265,14 @@ DROP TABLE IF EXISTS `partner`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `partner` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `note` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `website` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
@@ -297,17 +297,17 @@ DROP TABLE IF EXISTS `personnel`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `personnel` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `gender` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `birthday` date DEFAULT NULL,
-  `identity` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `role` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `identity` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_position` int DEFAULT NULL,
   `id_department` int DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
@@ -338,8 +338,8 @@ DROP TABLE IF EXISTS `position`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `position` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
@@ -364,10 +364,10 @@ DROP TABLE IF EXISTS `project`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `project` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `location` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `location` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `finish_date` date DEFAULT NULL,
   `created_date` datetime DEFAULT NULL,
@@ -403,8 +403,8 @@ DROP TABLE IF EXISTS `status`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `status` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -428,11 +428,11 @@ DROP TABLE IF EXISTS `task`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `finish_date` date DEFAULT NULL,
-  `priority` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `priority` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci DEFAULT NULL,
   `percent` float DEFAULT NULL,
   `active` bit(1) DEFAULT NULL,
   `id_personnel` int DEFAULT NULL,
@@ -467,4 +467,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-29 17:32:19
+-- Dump completed on 2022-11-30 11:17:47
